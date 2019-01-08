@@ -9,42 +9,60 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 'employees',
         children: [
           {
             path: '',
-            loadChildren: '../tab1/tab1.module#Tab1PageModule'
+            loadChildren: '../employee-list/employee-list.module#EmployeeListPageModule'
           }
-        ]
+        ],
       },
       {
-        path: 'tab2',
+        path: 'messages',
         children: [
           {
             path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
+            loadChildren: '../message-list/message-list.module#MessageListPageModule'
           }
-        ]
+        ],
       },
       {
-        path: 'tab3',
+        path: 'expenses',
         children: [
           {
             path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
+            loadChildren: '../expense-list/expense-list.module#ExpenseListPageModule'
           }
-        ]
+        ],
+      },
+      {
+        path: 'timeoff',
+        children: [
+          {
+            path: '',
+            loadChildren: '../time-off/time-off.module#TimeOffPageModule'
+          }
+        ],
+      },
+      {
+        path: 'settings',
+        children: [
+          {
+            path: '',
+            loadChildren: '../settings/settings.module#SettingsPageModule'
+          }
+        ],
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/employees',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/employees',
     pathMatch: 'full'
   }
 ];
