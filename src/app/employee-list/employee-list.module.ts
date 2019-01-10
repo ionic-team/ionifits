@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { EmployeeListPage } from './employee-list.page';
+import { ScrollingModule  } from '@angular/cdk/scrolling';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    ScrollingModule,
     RouterModule.forChild(routes)
   ],
   declarations: [EmployeeListPage]

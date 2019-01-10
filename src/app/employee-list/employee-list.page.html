@@ -1,9 +1,63 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>People</ion-title>
-  </ion-toolbar>
+  <ion-toolbar> <ion-title>People</ion-title> </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content id="content">
+  <!-- <ion-list>
+    <ion-item *ngFor="let employee of employees">
+      <ion-avatar slot="start">
+        <ion-img src="assets/avatars/{{ employee.id }}-thumb.jpg"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ employee.firstName }} {{ employee.lastName }}</h2>
+        <p>{{ employee.title }}</p>
+        <p>{{ employee.office }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list> -->
 
+  <ion-list>
+    <ion-virtual-scroll [items]="employees" approxItemHeight="80px">
+      <ion-item *virtualItem="let employee">
+        <ion-avatar slot="start">
+          <img src="assets/avatars/{{ employee.id }}-thumb.jpg" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ employee.firstName }} {{ employee.lastName }}</h2>
+          <p>{{ employee.title }}</p>
+          <p>{{ employee.office }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-virtual-scroll>
+    <ion-infinite-scroll threshold="300px;" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-list>
+
+  <!-- <cdk-virtual-scroll-viewport
+    class="scroll-viewport"
+    #scroll
+    itemSize="80"
+    minBufferPx="900"
+    maxBufferPx="1800"
+  >
+    <ion-list>
+      <ion-item *cdkVirtualFor="let employee of employees; trackBy: trackByFn">
+        <ion-avatar slot="start">
+          <img src="assets/avatars/{{ employee.id }}-thumb.jpg" />
+        </ion-avatar>
+        <ion-label>
+          <h2>{{ employee.firstName }} {{ employee.lastName }}</h2>
+          <p>{{ employee.title }}</p>
+          <p>{{ employee.office }}</p>
+        </ion-label>
+      </ion-item>
+      <ion-infinite-scroll threshold="300px;" (ionInfinite)="loadData($event)">
+          <ion-infinite-scroll-content loadingSpinner="bubbles">
+          </ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </ion-list>
+
+  </cdk-virtual-scroll-viewport> -->
 </ion-content>

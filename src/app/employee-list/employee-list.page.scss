@@ -1,0 +1,22 @@
+
+ion-avatar {
+  width: 48px;
+  height: 48px;
+}
+
+// .scroll-viewport {
+//   height: 100vh;
+//   div {
+//     display: flex;
+//     flex-direction: column;
+//   }
+// }
+
+cdk-virtual-scroll-viewport {
+  width: 100%;
+  height: 100%;
+}
+
+cdk-virtual-scroll-viewport /deep/ .cdk-virtual-scroll-content-wrapper {
+  max-width: 100%;
+}

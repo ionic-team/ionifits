@@ -1,5 +1,7 @@
 {
   "name": "demoapp-ionifits",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
