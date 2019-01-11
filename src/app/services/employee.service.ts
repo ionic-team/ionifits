@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { from, Observable, pipe, timer } from 'rxjs';
-import { take, flatMap, debounceTime, throttleTime, delay, map, tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { data } from '../../data/employeeData.js';
 import { Employee } from '../models/employee.js';
 
@@ -19,21 +19,14 @@ export class EmployeeService {
     return data.slice(page * pageSize, page * pageSize + pageSize);
   }
 
-  getEmployees(page = 0, pageSize = 50) {
-
-    // const employees = this.getData(page, pageSize);
-
-    // const result = this.cache.reduce((acc, current) => {
-    //   return acc.concat(current);
-    // }, []);
-    return timer(1000).pipe(
-      tap(_ => this.cache[page] = this.getData(page, pageSize)),
+  getEmployees(page = 0, pageSize = 100) {
+    return timer(this.cache.length === 0 ? 0 : 1000).pipe(
+      tap(_ => (this.cache[page] = this.getData(page, pageSize))),
       map(_ => {
         return this.cache.reduce((acc, current) => {
-             return acc.concat(current);
-          }, []);
+          return acc.concat(current);
+        }, []);
       })
-
     );
   }
 }

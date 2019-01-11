@@ -1,23 +1,7 @@
 <ion-header>
-  <ion-toolbar> <ion-title>People</ion-title> </ion-toolbar>
+  <ion-toolbar> <ion-title>Messages</ion-title> </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let employee of employees">
-      <ion-avatar slot="start">
-        <img src="assets/avatars/{{ employee.id }}-thumb.jpg" />
-      </ion-avatar>
-      <ion-label>
-        <h2>{{ employee.firstName }} {{ employee.lastName }}</h2>
-        <p>{{ employee.title }}</p>
-        <p>{{ employee.office }}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list>
 
-  <ion-infinite-scroll threshold="1000px;" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
 </ion-content>
