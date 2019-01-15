@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
-import { Observable, concat, of } from 'rxjs';
+import { Observable, concat, of, BehaviorSubject } from 'rxjs';
 import { Employee } from '../models/employee';
-import { tap } from 'rxjs/operators';
+import { tap, throttleTime, mergeMap, scan, map } from 'rxjs/operators';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-employee-list',
@@ -10,30 +11,44 @@ import { tap } from 'rxjs/operators';
   styleUrls: ['./employee-list.page.scss']
 })
 export class EmployeeListPage implements OnInit {
-  employees$: Observable<Employee[]>;
   employees: Employee[] = [];
+  employees$: Observable<Employee[]>;
   page = 0;
+  showLoading = false;
+  pager$ = new BehaviorSubject(undefined);
+  @ViewChild(CdkVirtualScrollViewport) viewport: CdkVirtualScrollViewport;
 
   constructor(private employeeService: EmployeeService) {}
   ngOnInit() {
-    this.employeeService
-      .getEmployees(this.page, 50)
-      .subscribe(x => (this.employees = x));
-  }
+    const batchMap = this.pager$.pipe(
+      throttleTime(500),
+      tap(_ => (this.page += 1)),
+      tap(_ => (this.showLoading = true)),
+      mergeMap(page => this.employeeService.getEmployees(page)),
+      tap(_ => (this.showLoading = false)),
+      scan((acc, batch) => {
+        return { ...acc, ...batch };
+      }, {})
+    );
 
-  loadData(event) {
-    this.page += 1;
-    this.employeeService.getEmployees(this.page).subscribe(x => {
-      this.employees = x;
-      event.target.complete();
-    });
+    this.employees$ = batchMap.pipe(map(v => Object.values(v)));
+    this.employees$.subscribe(x => (this.employees = x));
   }
 
   trackByFn(_, item) {
     return item.id;
   }
 
-  scroll(event) {
-    console.log('scroll');
+  checkNextPage(e, offset) {
+    const end = this.viewport.getRenderedRange().end;
+    const total = this.viewport.getDataLength();
+
+    if (total === 0) {
+      return;
+    }
+    console.log(`${end}, '>=', ${total}`);
+    if (end === total) {
+      this.pager$.next(this.page);
+    }
   }
 }
