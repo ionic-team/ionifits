@@ -29,4 +29,14 @@ export class EmployeeService {
       })
     );
   }
+
+  getEmployee(id: number) {
+    return new Observable<Employee>(subscriber => {
+      setTimeout(() => {
+        const employee = data.find(x => x.id === id);
+        subscriber.next(employee);
+        subscriber.complete();
+      }, 0);
+    });
+  }
 }

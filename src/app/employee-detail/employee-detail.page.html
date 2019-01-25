@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"> <ion-back-button></ion-back-button> </ion-buttons>
+    <ion-title>{{ fullName }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container *ngIf="employee">
+    <div
+      class="detail-header"
+      [ngClass]="avatarExpanded ? 'expanded' : ''"
+      style.backgroundImage="url('assets/avatars/{{ employee.id }}-large.jpg')"
+      (click)="expandAvatar($event)"
+    >
+      <div class="avatar-container" [ngClass]="avatarExpanded ? 'expanded' : ''">
+        <img
+          class="medium-img"
+          (click)="expandAvatar($event)"
+          src="assets/avatars/{{ employee.id }}-medium.jpg"
+        />
+      </div>
+    </div>
+    <div class="employee-details">
+      <p class="name">{{ fullName }}</p>
+      <p>{{ employee.title }}</p>
+      <p>{{ employee.department }}</p>
+      <p>{{ employee.office }}</p>
+      <ion-list>
+        <ion-item>
+          <ion-avatar slot="start"> <ion-icon name="call" size="large"></ion-icon> </ion-avatar>
+          <ion-label>
+            <h2>Phone</h2>
+            <p>
+              {{ employee.contact.phone }}
+            </p>
+          </ion-label>
+          <ion-avatar slot="end"> <ion-icon name="chatboxes" size="large"></ion-icon> </ion-avatar>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start"> <ion-icon name="call" size="large"></ion-icon> </ion-avatar>
+          <ion-label>
+            <h2>Cell</h2>
+            <p>{{ employee.contact.cell }}</p>
+          </ion-label>
+          <ion-avatar slot="end"> <ion-icon name="chatboxes" size="large"></ion-icon> </ion-avatar>
+        </ion-item>
+        <ion-item>
+          <ion-avatar slot="start"> <ion-icon name="mail" size="large"></ion-icon> </ion-avatar>
+          <ion-label>
+            <h2>Email</h2>
+            <p>{{ employee.contact.email }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ng-container>
+</ion-content>

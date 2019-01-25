@@ -25,7 +25,7 @@
     "label-position": true,
     "max-line-length": [
       true,
-      140
+      100
     ],
     "member-access": false,
     "member-ordering": [
@@ -133,6 +133,7 @@
     "no-output-rename": true,
     "use-life-cycle-interface": true,
     "use-pipe-transform-interface": true,
-    "directive-class-suffix": true
+    "directive-class-suffix": true,
+    "trailing-comma": false
   }
 }
