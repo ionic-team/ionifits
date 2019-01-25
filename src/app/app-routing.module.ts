@@ -7,7 +7,8 @@ const routes: Routes = [
   { path: 'message-list', loadChildren: './message-list/message-list.module#MessageListPageModule' },
   { path: 'expense-list', loadChildren: './expense-list/expense-list.module#ExpenseListPageModule' },
   { path: 'time-off', loadChildren: './time-off/time-off.module#TimeOffPageModule' },
-  { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' }
+  { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
+  { path: 'employee-detail', loadChildren: './employee-detail/employee-detail.module#EmployeeDetailPageModule' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

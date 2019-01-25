@@ -14,7 +14,8 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../employee-list/employee-list.module#EmployeeListPageModule'
-          }
+          },
+          { path: 'detail/:id', loadChildren: '../employee-detail/employee-detail.module#EmployeeDetailPageModule' }
         ],
       },
       {

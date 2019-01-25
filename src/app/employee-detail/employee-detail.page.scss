@@ -1,0 +1,80 @@
+.detail-header {
+  position: relative;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  margin-bottom: 24px;
+  transition: all 0.3s;
+
+  &::before {
+    opacity: 1;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(80, 0, 255, .8);
+    transition: all 0.3s;
+  }
+
+  &.expanded {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .9);
+    height: 100%;
+    z-index: 100;
+
+    &::before {
+      opacity: 0;
+    }
+
+    div.avatar-container {
+      opacity: 0;
+    }
+  }
+
+  div.avatar-container {
+    position: absolute;
+    overflow: visible;
+    bottom: -36px;
+    left: 18px;
+    transition: all .3s;
+
+    img.medium-img {
+      position: relative;
+      height: 72px;
+      width: 72px;
+      border-radius: 100%;
+      border: 3px solid white;
+    }
+  }
+
+}
+
+.employee-details {
+  padding: 16px;
+  color: #888;
+  font-size: .9rem;
+
+  p {
+    margin: 0 0 3px;
+
+    &.name {
+      color: black;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+  }
+
+  ion-list {
+    ion-icon {
+      color: var(--ion-color-primary-tint);
+    }
+  }
+
+}

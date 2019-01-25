@@ -8,12 +8,17 @@
     #scroll
     itemSize="80"
     minBufferPx="900"
-    maxBufferPx="1800"
+    maxBufferPx="1350"
     (scrolledIndexChange)="checkNextPage($event, '')"
   >
     <ion-list>
-      <ion-item *cdkVirtualFor="let employee of employees; trackBy: trackByFn">
-        <ion-avatar slot="start"> <img src="assets/avatars/{{ employee.id }}-thumb.jpg" /> </ion-avatar>
+      <ion-item
+        *cdkVirtualFor="let employee of employees; trackBy: trackByFn"
+        routerLink="/tabs/employees/detail/{{employee.id}}"
+      >
+        <ion-avatar slot="start">
+          <img src="assets/avatars/{{ employee.id }}-thumb.jpg" />
+        </ion-avatar>
         <ion-label>
           <h2>{{ employee.firstName }} {{ employee.lastName }}</h2>
           <p>{{ employee.title }}</p>

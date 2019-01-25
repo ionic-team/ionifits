@@ -46,7 +46,6 @@ export class EmployeeListPage implements OnInit {
     if (total === 0) {
       return;
     }
-    console.log(`${end}, '>=', ${total}`);
     if (end === total) {
       this.pager$.next(this.page);
     }
