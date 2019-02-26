@@ -6,4 +6,59 @@
 
 <ion-content padding>
 
+<ion-list>
+    <ion-item detail routerLink="/tabs/employees/detail/3">
+      <ion-avatar >
+        <img src="https://randomuser.me/api/portraits/thumb/men/37.jpg" />
+      </ion-avatar>
+      <ion-label>
+        <h2>Herbert Simmons</h2>
+        <p>View your profile</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+<ion-item-group>
+  <ion-list-header>
+    <ion-label>Communications</ion-label>
+  </ion-list-header>
+    <ion-item>
+      <ion-icon name="send" slot></ion-icon>
+      <ion-label>Push Notifications</ion-label>
+      <ion-toggle slot checked></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="mail" slot></ion-icon>
+      <ion-label>Email</ion-label>
+      <ion-toggle slot></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="text" slot></ion-icon>
+      <ion-label>SMS</ion-label>
+      <ion-toggle slot checked></ion-toggle>
+    </ion-item>
+  </ion-item-group>
+
+  <ion-item-group>
+    <ion-list-header>
+      <ion-label>Sign Out</ion-label>
+    </ion-list-header>
+  </ion-item-group>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Ionifits Demo App</ion-card-title>
+    <ion-card-subtitle>Version 0.0.1</ion-card-subtitle>
+  </ion-card-header>
+    
+  <ion-card-content>
+    An Ionic 4 Angular demo app built by the Ionic team to demonstrate various performance capabilities.
+    <p style="padding-top: 10px"> 
+      Interested in learning how Ionic can help your business?
+    </p>
+    <ion-button slot="end"
+        href="https://ionicframework.com/sales?product_of_interest=Ionic%20Enterprise%20Engine">
+        Contact Us</ion-button>
+  </ion-card-content>
+</ion-card>
 </ion-content>
