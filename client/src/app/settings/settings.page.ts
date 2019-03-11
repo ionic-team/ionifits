@@ -12,4 +12,8 @@ export class SettingsPage implements OnInit {
   ngOnInit() {
   }
 
+  viewProfile() {
+    
+  }
+
 }

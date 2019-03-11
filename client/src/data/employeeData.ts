@@ -42,9 +42,9 @@ export const data: Employee[] = [
   {
     id: 3,
     firstName: 'Herbert',
-    lastName: 'Simmmons',
+    lastName: 'Simmons',
     contact: {
-      email: 'herbert.simmmons@ionifits.com',
+      email: 'herbert.simmons@ionifits.com',
       phone: '665-616-7174',
       cell: '020-334-2896'
     },

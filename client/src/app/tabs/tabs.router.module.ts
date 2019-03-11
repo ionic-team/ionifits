@@ -19,15 +19,6 @@ const routes: Routes = [
         ],
       },
       {
-        path: 'messages',
-        children: [
-          {
-            path: '',
-            loadChildren: '../message-list/message-list.module#MessageListPageModule'
-          }
-        ],
-      },
-      {
         path: 'expenses',
         children: [
           {
