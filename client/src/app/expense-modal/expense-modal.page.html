@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+          <ion-icon (click)="closeModal()" name="close" slot="start"></ion-icon>
+    
+    <ion-title>New Expense</ion-title>
+      <ion-button (click)="closeModal()" slot="end">Save</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+  <ion-row>
+    <ion-col size="10">
+      <ion-list>
+<ion-item>
+  <ion-input placeholder="Merchant"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label>$</ion-label>
+  <ion-input placeholder="0.00" type="number" slot></ion-input>
+</ion-item>
+  </ion-list>
+    </ion-col>
+    <ion-col size="2">
+      <ion-icon name="camera" (click)="captureReceipt()" size="large" slot></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-list>
+   <ion-item>
+   <ion-label>Category</ion-label>
+   <ion-select role="combobox" placeholder="Select One">
+      <ion-select-option value="office">Office Expense</ion-select-option>
+      <ion-select-option value="parking">Parking</ion-select-option>
+      <ion-select-option value="Recruiting">Recruiting</ion-select-option>
+      <ion-select-option value="Shipping">Shipping</ion-select-option>
+      <ion-select-option value="software">Software</ion-select-option>
+      <ion-select-option value="travel-af">Travel - Airfare</ion-select-option>
+      <ion-select-option value="travel-h">Travel - Hotel</ion-select-option>
+      <ion-select-option value="travel-m">Travel - Meals</ion-select-option>
+    </ion-select>
+   </ion-item>
+   <ion-item>
+   <ion-label>Notes</ion-label>
+   <ion-textarea placeholder="Additional details?"></ion-textarea>
+   </ion-item>
+</ion-list>
+
+</ion-content>

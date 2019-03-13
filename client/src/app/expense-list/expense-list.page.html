@@ -5,5 +5,25 @@
 </ion-header>
 
 <ion-content padding>
-
+  <ion-item-group>
+    <!-- <ion-list-header> -->
+    <ion-item-divider>
+       <ion-label>Completed Expenses</ion-label>
+       </ion-item-divider>
+  
+    
+  <ion-item>
+  <ion-icon name="briefcase"></ion-icon>
+      <ion-label>
+        <h2>Delta Airlines</h2>
+        <p>something</p>
+        <p>2/7/2019</p>
+      </ion-label>  
+      <ion-note color="success" slot="end">385.20</ion-note>
+      </ion-item></ion-item-group>
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="newExpense()">
+      <ion-icon name="create"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
