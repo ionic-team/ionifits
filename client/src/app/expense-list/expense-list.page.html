@@ -4,23 +4,35 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-item-group>
-    <!-- <ion-list-header> -->
-    <ion-item-divider>
-       <ion-label>Completed Expenses</ion-label>
-       </ion-item-divider>
-  
-    
+<ion-content>
+    <ion-list-header *ngIf="expenses.length > 0">
+      <ion-label>Completed Expenses</ion-label>
+    </ion-list-header>
+        
+  <ion-list>
+  <ion-item-sliding *ngFor="let expense of expenses">
   <ion-item>
-  <ion-icon name="briefcase"></ion-icon>
+    <ion-icon slot="start" name="briefcase"></ion-icon>
       <ion-label>
-        <h2>Delta Airlines</h2>
-        <p>something</p>
-        <p>2/7/2019</p>
+        <h2>{{expense.merchant}}</h2>
+        <p>{{expense.category}}</p>
+        <p>{{expense.date}}</p>
       </ion-label>  
-      <ion-note color="success" slot="end">385.20</ion-note>
-      </ion-item></ion-item-group>
+      <ion-note color="success" slot="end">${{expense.cost}}</ion-note>
+      </ion-item>
+      <ion-item-options side="end">
+      <ion-item-option (click)="removeExpense(expense.id)" color="danger">Remove</ion-item-option>
+      </ion-item-options>
+  </ion-item-sliding>
+  </ion-list>
+
+<ion-card *ngIf="expenses.length === 0">
+  <ion-card-header>
+    <ion-card-title><ion-icon name="briefcase"></ion-icon>No expenses found</ion-card-title>
+    <ion-card-subtitle>Add one below!</ion-card-subtitle>
+  </ion-card-header>
+</ion-card>
+
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="newExpense()">
       <ion-icon name="create"></ion-icon>

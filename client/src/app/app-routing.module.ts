@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
   { path: 'employee-detail', loadChildren: './employee-detail/employee-detail.module#EmployeeDetailPageModule' },
   { path: 'expense-modal', loadChildren: './expense-modal/expense-modal.module#ExpenseModalPageModule' }
-];
+  ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

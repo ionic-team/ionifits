@@ -12,18 +12,21 @@ export class ExpenseModalPage implements OnInit {
   constructor(private modalController: ModalController,
               private navParams: NavParams) { }
 
-  private newExpense: Expense;
+  private newExpense: Expense = new Expense();
 
   ngOnInit() {
-  
+  if (!this.newExpense.date) {
+  // Automatically select Today's date
+  this.newExpense.date = new Date().toISOString().slice(0, 10);
+  }
   }
 
   async captureReceipt() {
 
   }
 
-  async closeModal() {
-    await this.modalController.dismiss(this.newExpense);
+  async closeModal(cancelled) {
+      await this.modalController.dismiss(cancelled ? null : this.newExpense);
   }
 
 }
