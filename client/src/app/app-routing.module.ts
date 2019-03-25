@@ -7,8 +7,9 @@ const routes: Routes = [
   { path: 'expense-list', loadChildren: './expense-list/expense-list.module#ExpenseListPageModule' },
   { path: 'time-off', loadChildren: './time-off/time-off.module#TimeOffPageModule' },
   { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
-  { path: 'employee-detail', loadChildren: './employee-detail/employee-detail.module#EmployeeDetailPageModule' }
-];
+  { path: 'employee-detail', loadChildren: './employee-detail/employee-detail.module#EmployeeDetailPageModule' },
+  { path: 'expense-modal', loadChildren: './expense-modal/expense-modal.module#ExpenseModalPageModule' }
+  ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
