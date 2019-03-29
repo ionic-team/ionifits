@@ -1,3 +1,3 @@
-export interface Photo {
+export class Photo {
 data: any;
 }

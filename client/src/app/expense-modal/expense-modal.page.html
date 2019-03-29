@@ -49,7 +49,8 @@
     </ion-list-header>
 
     <ion-item>
-      <img src="assets/image-placeholder.jpg">
+      <!-- <img src="{{newExpense.receipt.data}}"> -->
+      <img [src]="safeReceipt" />
   </ion-item>
    
 <ion-fab vertical="bottom" horizontal="center" slot="fixed">
