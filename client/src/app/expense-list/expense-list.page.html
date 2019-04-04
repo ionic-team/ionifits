@@ -9,10 +9,13 @@
       <ion-label>Completed Expenses</ion-label>
     </ion-list-header>
         
-  <ion-list>
-  <ion-item-sliding *ngFor="let expense of expenses">
-  <ion-item>
-    <ion-icon slot="start" name="briefcase"></ion-icon>
+  <ion-list *ngIf="expenses.length > 0">
+    <ion-item-sliding *ngFor="let expense of expenses; index as position">
+    <ion-item (click)="openExpense(expense.id)">
+      <ion-thumbnail slot="start" *ngIf="expense.receipt && expense.receipt.webviewPath">
+        <ion-img src="{{expense.receipt.webviewPath}}"></ion-img>
+      </ion-thumbnail>
+      <ion-icon slot="start" name="briefcase" *ngIf="!expense.receipt.webviewPath"></ion-icon>
       <ion-label>
         <h2>{{expense.merchant}}</h2>
         <p>{{expense.category}}</p>
@@ -20,10 +23,10 @@
       </ion-label>  
       <ion-note color="success" slot="end">${{expense.cost}}</ion-note>
       </ion-item>
-      <ion-item-options side="end">
-      <ion-item-option (click)="removeExpense(expense.id)" color="danger">Remove</ion-item-option>
-      </ion-item-options>
-  </ion-item-sliding>
+        <ion-item-options side="end">
+        <ion-item-option (click)="removeExpense(expense, position)" color="danger">Remove</ion-item-option>
+        </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 
 <ion-card *ngIf="expenses.length === 0">

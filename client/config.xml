@@ -3,7 +3,7 @@
     <name>Ionifits</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://10.0.1.92:8101" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -83,6 +83,7 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-camera" spec="4.0.3" />
     <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
+    <plugin name="cordova-plugin-file" spec="6.0.1" />
     <edit-config file="*-Info.plist" mode="merge" target="NSCameraUsageDescription">
         <string>Used to capture expense receipts</string>
     </edit-config>
@@ -91,4 +92,7 @@
     </edit-config>
     <plugin name="cordova-sqlite-storage" spec="3.2.0" />
     <engine name="android" spec="8.0.0" />
+    <allow-navigation href="http://10.0.1.92:8101" sessionid="f67624db" />
+    <allow-navigation href="http://10.0.1.92:8102" sessionid="1ebd3685" />
+    <allow-navigation href="http://10.0.1.92:8103" sessionid="af8a4d6a" />
 </widget>

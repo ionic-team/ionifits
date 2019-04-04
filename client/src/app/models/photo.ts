@@ -1,3 +1,5 @@
 export class Photo {
-data: any;
+    name: any;
+    filePath: any;
+    webviewPath: any;
 }

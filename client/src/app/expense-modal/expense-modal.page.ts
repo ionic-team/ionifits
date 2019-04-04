@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams, Platform } from '@ionic/angular';
 import { Expense } from '../models/expense';
-import { Photo } from '../models/photo';
 import { ExpenseService } from '../services/expense.service';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-expense-modal',
@@ -19,36 +18,36 @@ export class ExpenseModalPage implements OnInit {
               private webview: WebView,
               private expenseService: ExpenseService, private sanitizer: DomSanitizer,) { }
 
-  private newExpense: Expense = new Expense();
-  private safeReceipt: any;
+  public newExpense: Expense = new Expense();
+  public safeReceipt: any;
 
   ngOnInit() {
-  if (!this.newExpense.date) {
-  // Automatically select Today's date
-  this.newExpense.date = new Date().toISOString().slice(0, 10);
+    if (!this.newExpense.date) {
+      // Automatically select Today's date
+      this.newExpense.date = new Date().toISOString().slice(0, 10);
+    }
+
+    if (this.platform.is("cordova")) {
+      this.safeReceipt = this.webview.convertFileSrc("assets/image-placeholder.jpg");
+    } else {
+      this.safeReceipt = "assets/image-placeholder.jpg";
+    }
   }
 
-  if (this.platform.is("cordova")) {
-  this.safeReceipt = this.webview.convertFileSrc("assets/image-placeholder.jpg");
-//this.newExpense.receipt.data = this.webview.convertFileSrc("assets/image-placeholder.jpg");
-  } else {
-  this.safeReceipt = "assets/image-placeholder.jpg";
-//this.newExpense.receipt.data = "assets/image-placeholder.jpg";
-  }    
+  async captureReceipt() {
+    const image = await this.expenseService.captureExpenseReceipt();
+    
+    this.newExpense.receipt.filePath = image.original;
+    this.safeReceipt = image.sanitized;
   }
 
-  captureReceipt() {
-    this.expenseService.captureExpenseReceipt().then((image) => {
-      console.log("modal image: " + image);
-      //const resolvedImg = this.webview.convertFileSrc(image);
-
-      //this.safeReceipt = this.sanitizer.bypassSecurityTrustUrl(image);
-      this.safeReceipt = this.sanitizer.bypassSecurityTrustUrl(image);
-    });
+  async closeModal() {
+    await this.modalController.dismiss(null);
   }
 
-  async closeModal(cancelled) {
-      await this.modalController.dismiss(cancelled ? null : this.newExpense);
+  async createExpense() {
+    const updatedExpense = await this.expenseService.createNewExpense(this.newExpense);
+    this.modalController.dismiss(updatedExpense);
   }
 
 }

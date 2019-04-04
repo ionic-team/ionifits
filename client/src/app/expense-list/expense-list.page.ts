@@ -13,14 +13,19 @@ export class ExpenseListPage implements OnInit {
 
   constructor(public modalController: ModalController, public expenseService: ExpenseService) { }
 
-  private expenses: Expense[] = [];
+  public expenses: Expense[] = [];
 
-  ngOnInit() {
-  this.expenseService.loadSaved();
+  async ngOnInit() {
+    this.expenses = await this.expenseService.loadSaved();
+    console.log("");
+  }
+
+  openExpense(id) {
+
   }
 
   async newExpense() {
-  const modal: HTMLIonModalElement =
+    const modal: HTMLIonModalElement =
        await this.modalController.create({
           component: ExpenseModalPage,
           componentProps: { }
@@ -28,16 +33,19 @@ export class ExpenseListPage implements OnInit {
      
     modal.onDidDismiss().then((result) => {
        if (result.data !== null) {
-         this.expenses.unshift(result.data);
+         // TODO - pass by reference issue?
+         //this.expenses.unshift(result.data);
+         console.log("");
        }
     });
     
     return await modal.present();
-  
   }
 
-  async removeExpense(id: number) {
-  
+  async removeExpense(expense, position) {
+    await this.expenseService.removeExpense(expense, position);
+
+    //this.expenses.splice(position, 1);
   }
 
 }
