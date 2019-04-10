@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Storage } from '@ionic/storage';
 import { Expense } from '../models/expense';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { File } from '@ionic-native/file/ngx';
 
@@ -24,9 +24,10 @@ export class ExpenseService {
   }
 
   getExpense(id: number) {
-
+    return this.expenses.find(expense => expense.id === id);
   }
 
+  // Capture receipt image, stored in temporary storage on the device.
   async captureExpenseReceipt() {
     const options: CameraOptions = {
       quality: 100,
@@ -38,50 +39,80 @@ export class ExpenseService {
     const imageData = await this.camera.getPicture(options);
     const resolvedImg = this.webview.convertFileSrc(imageData);
     return {
-      sanitized: this.sanitizer.bypassSecurityTrustUrl(resolvedImg),
-      original: imageData
+      sanitizedReceiptImage: this.sanitizer.bypassSecurityTrustUrl(resolvedImg),
+      originalImage: imageData
     };
   }
 
-  // https://devdactic.com/ionic-4-image-upload-storage/
-  async createNewExpense(expense: Expense) {
-    const newFile = this.createFileName();
-    expense.id = newFile.id;
-    
-    if (expense.receipt && expense.receipt.filePath) {
-      const imagePath = expense.receipt.filePath;
-      const currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-      const correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-      
-      await this.file.copyFile(correctPath, currentName, this.file.dataDirectory, newFile.filename);
+  // Some Camera/File logic referenced from: https://devdactic.com/ionic-4-image-upload-storage/
+  async createUpdateExpense(expense: Expense) {
+    const isNewExpense = (expense.id === undefined) ? true : false;
+    let expenseId = expense.id || 0;
 
-      let filePath = this.file.dataDirectory + newFile.filename;
-      expense.receipt.name = newFile.filename;
-      expense.receipt.filePath = filePath;
-      expense.receipt.webviewPath = this.webview.convertFileSrc(filePath);
+    /* 
+     * Create or update the receipt file.
+     * 
+     * The camera & file plugins are notoriously challenging to work with. Easiest path is to leverage Ionic Native's
+     * deleteFile and copyFile methods: Delete the old receipt, then copy the new receipt image from temp 
+     * storage into permanent file storage. In the process this changes the image filename, but that doesn't really matter.
+    */
+    if (expense.receipt.tempPath) {
+      let tempReceiptFilePath = expense.receipt.tempPath;
+      const tempFilename = tempReceiptFilePath.substr(tempReceiptFilePath.lastIndexOf('/') + 1);
+      const tempBaseFilesystemPath = tempReceiptFilePath.substr(0, tempReceiptFilePath.lastIndexOf('/') + 1);
+
+      let newFilename;
+      const newFile = this.prepNewFile();
+      newFilename = newFile.filename;
+      expenseId = newFile.id;
+
+      const oldFilePath = expense.receipt.filePath;
+      if (oldFilePath) {
+        // update existing receipt by deleting the old file first
+        const oldFilename = oldFilePath.substr(oldFilePath.lastIndexOf('/') + 1);
+        await this.deleteFile(oldFilePath, oldFilename);
+      }
+
+      const newBaseFilesystemPath = this.file.dataDirectory;
+      await this.file.copyFile(tempBaseFilesystemPath, tempFilename, newBaseFilesystemPath, 
+        newFilename);
+      
+      let receiptFilePath = newBaseFilesystemPath + newFilename;
+      expense.receipt.filePath = receiptFilePath;
+      // clear out placeholder image
+      expense.receipt.tempPath = null;
+      expense.receipt.name = newFilename;
+      expense.receipt.webviewPath = this.webview.convertFileSrc(receiptFilePath);
     }
 
+    if (isNewExpense) {
+      expense.id = expenseId;
+      this.expenses.unshift(expense);
+    }
+    
     // Save all expenses
-    this.expenses.unshift(expense);
     this.storage.set(EXPENSES, JSON.stringify(this.expenses));
-
+    
     return expense;
   }
-
+  
+  // Remove expense from local copy and Storage
   async removeExpense(expense, position) {
-    // Remove expense from local copy and Storage
     this.expenses.splice(position, 1);
     await this.storage.set(EXPENSES, JSON.stringify(this.expenses));
 
     // Delete Receipt file on disk
     if (expense.receipt && expense.receipt.name) {
-      const correctPath = expense.receipt.filePath.substr(0, expense.receipt.filePath.lastIndexOf('/') + 1);
-  
-      await this.file.removeFile(correctPath, expense.receipt.name);
+      await this.deleteFile(expense.receipt.filePath, expense.receipt.name);
     }
   }
 
-  createFileName() {
+  async deleteFile(filePath, fileName) {
+    const baseFilesystemPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+    await this.file.removeFile(baseFilesystemPath, fileName);
+  }
+
+  prepNewFile() {
     var d = new Date(),
         fileId = d.getTime(),
         newFileName = fileId + ".jpg";

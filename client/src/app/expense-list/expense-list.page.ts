@@ -17,35 +17,29 @@ export class ExpenseListPage implements OnInit {
 
   async ngOnInit() {
     this.expenses = await this.expenseService.loadSaved();
-    console.log("");
   }
 
-  openExpense(id) {
-
+  async openExpense(id) {
+    return this.openExpenseModal(id);
   }
 
   async newExpense() {
-    const modal: HTMLIonModalElement =
-       await this.modalController.create({
-          component: ExpenseModalPage,
-          componentProps: { }
+    return this.openExpenseModal(null);
+  }
+
+  async openExpenseModal(expenseId) {
+    const modal: HTMLIonModalElement = await this.modalController.create({
+      component: ExpenseModalPage,
+      componentProps: { "existingExpenseId": expenseId }
     });
      
-    modal.onDidDismiss().then((result) => {
-       if (result.data !== null) {
-         // TODO - pass by reference issue?
-         //this.expenses.unshift(result.data);
-         console.log("");
-       }
-    });
+    modal.onDidDismiss().then((result) => { });
     
     return await modal.present();
   }
 
   async removeExpense(expense, position) {
     await this.expenseService.removeExpense(expense, position);
-
-    //this.expenses.splice(position, 1);
   }
 
 }

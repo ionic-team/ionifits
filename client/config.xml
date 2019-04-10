@@ -3,7 +3,7 @@
     <name>Ionifits</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://10.0.1.92:8101" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -95,4 +95,7 @@
     <allow-navigation href="http://10.0.1.92:8101" sessionid="f67624db" />
     <allow-navigation href="http://10.0.1.92:8102" sessionid="1ebd3685" />
     <allow-navigation href="http://10.0.1.92:8103" sessionid="af8a4d6a" />
+    <allow-navigation href="http://192.168.2.102:8100" sessionid="96d60575" />
+    <allow-navigation href="http://192.168.2.102:8101" sessionid="487ffd72" />
+    <allow-navigation href="http://10.0.1.92:8100" sessionid="893c1b41" />
 </widget>

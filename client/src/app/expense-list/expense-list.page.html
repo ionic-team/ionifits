@@ -19,7 +19,7 @@
       <ion-label>
         <h2>{{expense.merchant}}</h2>
         <p>{{expense.category}}</p>
-        <p>{{expense.date}}</p>
+        <p>{{expense.date | date }}</p>
       </ion-label>  
       <ion-note color="success" slot="end">${{expense.cost}}</ion-note>
       </ion-item>
