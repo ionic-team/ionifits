@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="1" id="io.ionic.demoapp.ionifits.netkow" ios-CFBundleVersion="1" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="1" id="io.ionic.demoapp.ionifits" ios-CFBundleVersion="1" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Ionifits</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -92,10 +92,4 @@
     </edit-config>
     <plugin name="cordova-sqlite-storage" spec="3.2.0" />
     <engine name="android" spec="8.0.0" />
-    <allow-navigation href="http://10.0.1.92:8101" sessionid="f67624db" />
-    <allow-navigation href="http://10.0.1.92:8102" sessionid="1ebd3685" />
-    <allow-navigation href="http://10.0.1.92:8103" sessionid="af8a4d6a" />
-    <allow-navigation href="http://192.168.2.102:8100" sessionid="96d60575" />
-    <allow-navigation href="http://192.168.2.102:8101" sessionid="487ffd72" />
-    <allow-navigation href="http://10.0.1.92:8100" sessionid="893c1b41" />
 </widget>
