@@ -15,9 +15,10 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { Camera } from '@ionic-native/camera/ngx';
+import { File } from '@ionic-native/file/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { ExpenseModalPageModule } from './expense-modal/expense-modal.module';
-
+import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,8 +37,10 @@ import { ExpenseModalPageModule } from './expense-modal/expense-modal.module';
     StatusBar,
     SplashScreen,
     Camera,
+    File,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    EmployeeService
+    EmployeeService,
+    WebView
   ],
   bootstrap: [AppComponent]
 })

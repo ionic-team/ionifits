@@ -1,11 +1,11 @@
 <ion-header slot>
   <ion-toolbar>
-          <ion-button (click)="closeModal(true)" name="close" slot="start" fill="clear" color="dark" size="large">
-             <ion-icon slot="icon-only" name="close"></ion-icon>
-          </ion-button>
+    <ion-button (click)="closeModal()" name="close" slot="start" fill="clear" color="dark" size="large">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+    </ion-button>
     
-    <ion-title slot>New Expense</ion-title>
-      <ion-button (click)="closeModal()" slot="end" fill="solid">Add</ion-button>
+    <ion-title slot>{{ newExpense.id ? 'Update' : 'New' }} Expense</ion-title>
+    <ion-button (click)="updateExpense()" slot="end" fill="solid">{{ newExpense.id ? 'Update' : 'Add' }}</ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -19,7 +19,7 @@
 </ion-item>
 <ion-item>
    <ion-label>Date</ion-label>
-   <ion-datetime [(ngModel)]="newExpense.date"></ion-datetime>
+   <ion-datetime [(ngModel)]="newExpense.date" display-format="MMM DD, YYYY"></ion-datetime>
    </ion-item>
 
 <ion-list-header>
@@ -41,7 +41,7 @@
    </ion-item>
    <ion-item slot>
    <ion-label>Notes</ion-label>
-   <ion-input placeholder="Additional details..." [(ngModel)]="newExpense.notes" slot></ion-input>
+   <ion-input placeholder="Additional details..." [(ngModel)]="newExpense.note" slot></ion-input>
    </ion-item>
 </ion-list>   
    <ion-list-header>
@@ -49,7 +49,7 @@
     </ion-list-header>
 
     <ion-item>
-      <img src="assets/image-placeholder.jpg">
+      <img [src]="safeReceipt" />
   </ion-item>
    
 <ion-fab vertical="bottom" horizontal="center" slot="fixed">

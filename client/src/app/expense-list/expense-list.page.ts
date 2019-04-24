@@ -13,33 +13,33 @@ export class ExpenseListPage implements OnInit {
 
   constructor(public modalController: ModalController, public expenseService: ExpenseService) { }
 
-  private expenses: Expense[] = [];
+  public expenses: Expense[] = [];
 
-  ngOnInit() {
-  this.expenseService.loadSaved();
+  async ngOnInit() {
+    this.expenses = await this.expenseService.loadSaved();
+  }
+
+  async openExpense(id) {
+    return this.openExpenseModal(id);
   }
 
   async newExpense() {
-  const modal: HTMLIonModalElement =
-       await this.modalController.create({
-          component: ExpenseModalPage,
-          componentProps: { }
-    });
-     
-    modal.onDidDismiss().then((result) => {
-       if (result.data !== null) {
-         console.log('The result: ', result);
-         this.expenses.unshift(result.data);
-         console.log(this.expenses);
-       }
-    });
-    
-    return await modal.present();
-  
+    return this.openExpenseModal(null);
   }
 
-  async removeExpense(id: number) {
-  
+  async openExpenseModal(expenseId) {
+    const modal: HTMLIonModalElement = await this.modalController.create({
+      component: ExpenseModalPage,
+      componentProps: { "existingExpenseId": expenseId }
+    });
+     
+    modal.onDidDismiss().then((result) => { });
+    
+    return await modal.present();
+  }
+
+  async removeExpense(expense, position) {
+    await this.expenseService.removeExpense(expense, position);
   }
 
 }

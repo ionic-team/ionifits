@@ -8,4 +8,8 @@ export class Expense {
   cost: number;
   date: string;
   receipt: Photo;
+
+  constructor() {
+  this.receipt = new Photo();
+  }
 }
