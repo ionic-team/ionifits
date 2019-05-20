@@ -1,0 +1,7 @@
+{
+  "appId": "io.ionic.myapp",
+  "appName": "MyApp",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

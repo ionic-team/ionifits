@@ -74,15 +74,20 @@ export class ExpenseService {
       }
 
       const newBaseFilesystemPath = this.file.dataDirectory;
+      console.log("old filepath: " + tempBaseFilesystemPath + tempFilename);
+      console.log("new filepath: " + newBaseFilesystemPath + newFilename);
       await this.file.copyFile(tempBaseFilesystemPath, tempFilename, newBaseFilesystemPath, 
         newFilename);
       
       let receiptFilePath = newBaseFilesystemPath + newFilename;
       expense.receipt.filePath = receiptFilePath;
+      console.log("");
       // clear out placeholder image
       expense.receipt.tempPath = null;
       expense.receipt.name = newFilename;
+      console.log("receiptFile: " + receiptFilePath);
       expense.receipt.webviewPath = this.webview.convertFileSrc(receiptFilePath);
+      console.log("new webview path " + expense.receipt.webviewPath);
     }
 
     if (isNewExpense) {
@@ -91,6 +96,7 @@ export class ExpenseService {
     }
     
     // Save all expenses
+    console.log("saving expenses...");
     this.storage.set(EXPENSES, JSON.stringify(this.expenses));
     
     return expense;
