@@ -47,7 +47,7 @@ export class ExpenseService {
   // Some Camera/File logic referenced from: https://devdactic.com/ionic-4-image-upload-storage/
   async createUpdateExpense(expense: Expense) {
     const isNewExpense = (expense.id === undefined) ? true : false;
-    let expenseId = expense.id || 0;
+    let expenseId = expense.id || this.createExpenseId();
 
     /* 
      * Create or update the receipt file.
@@ -120,5 +120,9 @@ export class ExpenseService {
       id: fileId,
       filename: newFileName
     };
+  }
+
+  createExpenseId() {
+    return new Date().getTime();
   }
 }
