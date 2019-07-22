@@ -19,6 +19,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -105,4 +106,5 @@
     </edit-config>
     <plugin name="cordova-sqlite-storage" spec="3.2.0" />
     <engine name="android" spec="8.0.0" />
+    <engine name="ios" spec="5.0.0" />
 </widget>
