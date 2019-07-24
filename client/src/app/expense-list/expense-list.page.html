@@ -6,7 +6,7 @@
 
 <ion-content>
     <ion-list-header *ngIf="expenses.length > 0">
-      <ion-label>Completed Expenses</ion-label>
+      <ion-label color="ios-lh-labl-gray">Completed Expenses</ion-label>
     </ion-list-header>
         
   <ion-list *ngIf="expenses.length > 0">
@@ -15,7 +15,7 @@
       <ion-thumbnail slot="start" *ngIf="expense.receipt && expense.receipt.webviewPath">
         <ion-img src="{{expense.receipt.webviewPath}}"></ion-img>
       </ion-thumbnail>
-      <ion-icon slot="start" name="briefcase" *ngIf="!expense.receipt.webviewPath" color="medium"></ion-icon>
+      <ion-icon slot="start" name="briefcase" *ngIf="!expense.receipt.webviewPath" color="medium" size="large"></ion-icon>
       <ion-label>
         <h2>{{expense.merchant}}</h2>
         <p>{{expense.category}}</p>

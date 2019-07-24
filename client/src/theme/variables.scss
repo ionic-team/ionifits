@@ -81,4 +81,22 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /* iOS: list header label gray. example: Completed Expenses */
+  --ion-color-ios-lh-labl-gray: #86868B;
+  --ion-color-ios-lh-labl-gray-rgb: 134,134,139;
+  --ion-color-ios-lh-labl-gray-contrast: #000000;
+  --ion-color-ios-lh-labl-gray-contrast-rgb: 0,0,0;
+  --ion-color-ios-lh-labl-gray-shade: #76767a;
+  --ion-color-ios-lh-labl-gray-tint: #929297;
 }
+
+.ion-color-ios-lh-labl-gray {
+  --ion-color-base: var(--ion-color-ios-lh-labl-gray);
+  --ion-color-base-rgb: var(--ion-color-ios-lh-labl-gray-rgb);
+  --ion-color-contrast: var(--ion-color-ios-lh-labl-gray-contrast);
+  --ion-color-contrast-rgb: var(--ion-color-ios-lh-labl-gray-contrast-rgb);
+  --ion-color-shade: var(--ion-color-ios-lh-labl-gray-shade);
+  --ion-color-tint: var(--ion-color-ios-lh-labl-gray-tint);
+}
+
