@@ -4,11 +4,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
 <ion-list>
     <ion-item detail routerLink="/tabs/employees/detail/3">
-      <ion-avatar >
+      <ion-avatar slot="start">
         <img src="https://randomuser.me/api/portraits/thumb/men/37.jpg" />
       </ion-avatar>
       <ion-label>
@@ -18,47 +17,43 @@
     </ion-item>
   </ion-list>
 
-<ion-item-group>
   <ion-list-header>
     <ion-label>Communications</ion-label>
   </ion-list-header>
+  <ion-list>
     <ion-item>
-      <ion-icon name="send" slot></ion-icon>
+      <ion-icon name="send" slot="start"></ion-icon>
       <ion-label>Push Notifications</ion-label>
       <ion-toggle slot checked></ion-toggle>
     </ion-item>
     <ion-item>
-      <ion-icon name="mail" slot></ion-icon>
+      <ion-icon name="mail" slot="start"></ion-icon>
       <ion-label>Email</ion-label>
       <ion-toggle slot></ion-toggle>
     </ion-item>
     <ion-item>
-      <ion-icon name="text" slot></ion-icon>
+      <ion-icon name="text" slot="start"></ion-icon>
       <ion-label>SMS</ion-label>
       <ion-toggle slot checked></ion-toggle>
     </ion-item>
-  </ion-item-group>
-
-  <ion-item-group>
-    <ion-list-header>
-      <ion-label>Sign Out</ion-label>
-    </ion-list-header>
-  </ion-item-group>
+  </ion-list>
 
 <ion-card>
   <ion-card-header>
-    <ion-card-title>Ionifits Demo App</ion-card-title>
-    <ion-card-subtitle>Version 0.0.1</ion-card-subtitle>
+    <ion-card-title>Version 0.0.1</ion-card-title>
+    <ion-card-subtitle>Ionifits Demo App</ion-card-subtitle>
   </ion-card-header>
     
   <ion-card-content>
-    An Ionic 4 Angular demo app built by the Ionic team to demonstrate various performance capabilities.
+    An Ionic Angular 4 demo app built by the Ionic team to demonstrate various performance capabilities.
     <p style="padding-top: 10px"> 
       Interested in learning how Ionic can help your business?
     </p>
-    <ion-button slot="end"
-        href="https://ionicframework.com/sales?product_of_interest=Ionic%20Enterprise%20Engine">
-        Contact Us</ion-button>
+    <div class="center">
+      <ion-button fill="clear" 
+          href="https://ionicframework.com/sales?product_of_interest=Ionic%20Enterprise%20Engine">
+          Contact Us</ion-button>
+    </div>
   </ion-card-content>
 </ion-card>
 </ion-content>
