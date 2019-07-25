@@ -2,6 +2,16 @@ ion-content {
   --background: #F2F2F7;
 }
 
+/* Workaround for Ionic bug where Card color is set to gray due to 
+   ion-content background rule above */
+ion-card {
+  --background: white !important;
+}
+
 .center {
   text-align: center;
+}
+
+.card-padding{
+  padding-top: 30px;
 }

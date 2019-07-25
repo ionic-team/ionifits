@@ -9,13 +9,14 @@
 
 <ion-content>
 <ion-item>
-  <ion-input placeholder="Merchant" [(ngModel)]="newExpense.merchant" name="merchant"></ion-input>
+  <ion-label>Merchant</ion-label>
+  <ion-input placeholder="Name" [(ngModel)]="newExpense.merchant" name="merchant"></ion-input>
 </ion-item>
 <ion-item>
   <ion-label>$</ion-label>
   <ion-input placeholder="0.00" type="number" [(ngModel)]="newExpense.cost" slot></ion-input>
 </ion-item>
-<ion-item>
+<ion-item lines="full">
    <ion-label>Date</ion-label>
    <ion-datetime [(ngModel)]="newExpense.date" display-format="MMM DD, YYYY"></ion-datetime>
    </ion-item>
@@ -37,7 +38,7 @@
       <ion-select-option value="Travel - Meals">Travel - Meals</ion-select-option>
     </ion-select>
    </ion-item>
-   <ion-item slot>
+   <ion-item slot lines="full">
    <ion-label>Notes</ion-label>
    <ion-input placeholder="Additional details..." [(ngModel)]="newExpense.note" slot></ion-input>
    </ion-item>
@@ -46,7 +47,7 @@
       <ion-label color="ios-lh-labl-gray">Upload Receipt</ion-label>
     </ion-list-header>
 
-  <img [src]="safeReceipt" />
+  <img [src]="safeReceipt" (click)="captureReceipt()" />
    
 <ion-fab horizontal="center" vertical="bottom" >
     <ion-fab-button (click)="captureReceipt()">

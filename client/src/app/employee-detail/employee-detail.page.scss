@@ -78,3 +78,9 @@
   }
 
 }
+
+/* iOS style: Add top border to the 1st ion-item in ion-list */
+.top-border-line {
+  margin-top: 10px;
+  border-top: 1px solid #e9eaeb;
+}

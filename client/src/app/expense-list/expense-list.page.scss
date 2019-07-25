@@ -2,6 +2,12 @@ ion-content {
   --background: #F2F2F7;
 }
 
+/* Centering the ion-avatar when no expenses present. The ion-avatar element is a block element, 
+change it to an inline-block in order for it to be able to be styled using text-align */
+ion-avatar {
+  display: inline-block;
+}
+
 .no-expenses {
   padding-top: 40px;
 }

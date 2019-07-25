@@ -6,7 +6,7 @@
 
 <ion-content>
 <ion-list>
-    <ion-item detail routerLink="/tabs/employees/detail/3">
+    <ion-item lines="full" detail routerLink="/tabs/employees/detail/3">
       <ion-avatar slot="start">
         <img src="https://randomuser.me/api/portraits/thumb/men/37.jpg" />
       </ion-avatar>
@@ -22,16 +22,16 @@
   </ion-list-header>
   <ion-list>
     <ion-item>
-      <ion-icon name="send" slot="start"  color="medium"></ion-icon>
+      <ion-icon name="send" slot="start" color="medium"></ion-icon>
       <ion-label>Push Notifications</ion-label>
       <ion-toggle slot checked></ion-toggle>
     </ion-item>
     <ion-item>
-      <ion-icon name="mail" slot="start"  color="medium"></ion-icon>
+      <ion-icon name="mail" slot="start" color="medium"></ion-icon>
       <ion-label>Email</ion-label>
       <ion-toggle slot></ion-toggle>
     </ion-item>
-    <ion-item>
+    <ion-item lines="full">
       <ion-icon name="text" slot="start" color="medium"></ion-icon>
       <ion-label>SMS</ion-label>
       <ion-toggle slot checked></ion-toggle>
@@ -45,8 +45,8 @@
   </ion-card-header>
     
   <ion-card-content>
-    An Ionic Angular 4 demo app built by the Ionic team to demonstrate various performance capabilities.
-    <p style="padding-top: 10px"> 
+    An Ionic Angular 4 demo app built by the Ionic team to demonstrate various native plugin and performance capabilities.
+    <p class="card-padding"> 
       Interested in learning how Ionic can help your business?
     </p>
     <div class="center">
