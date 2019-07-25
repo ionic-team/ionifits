@@ -3,7 +3,7 @@
     <name>Ionifits</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content original-src="index.html" src="http://192.168.2.102:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -105,7 +105,6 @@
         <string>Save expense receipts to Photo Library</string>
     </edit-config>
     <plugin name="cordova-sqlite-storage" spec="3.2.0" />
-    <allow-navigation href="http://192.168.2.102:8100" sessionid="01a360e5" />
     <engine name="android" spec="8.0.0" />
     <engine name="ios" spec="5.0.0" />
 </widget>

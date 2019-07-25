@@ -18,6 +18,7 @@ import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { ExpenseModalPageModule } from './expense-modal/expense-modal.module';
+import { ImplementationModalPageModule } from './implementation-modal/implementation-modal.module';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 
 @NgModule({
@@ -31,7 +32,8 @@ import { WebView } from '@ionic-native/ionic-webview/ngx';
     NoopAnimationsModule,
     ScrollingModule,
     IonicStorageModule.forRoot(),
-    ExpenseModalPageModule
+    ExpenseModalPageModule,
+    ImplementationModalPageModule
   ],
   providers: [
     StatusBar,

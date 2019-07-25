@@ -4,6 +4,8 @@ import { Observable, concat, of, BehaviorSubject } from 'rxjs';
 import { Employee } from '../models/employee';
 import { tap, throttleTime, mergeMap, scan, map } from 'rxjs/operators';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { ImplementationModalPage } from '../implementation-modal/implementation-modal.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-employee-list',
@@ -18,7 +20,7 @@ export class EmployeeListPage implements OnInit {
   pager$ = new BehaviorSubject(undefined);
   @ViewChild(CdkVirtualScrollViewport) viewport: CdkVirtualScrollViewport;
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(private employeeService: EmployeeService, public modalController: ModalController) {}
   ngOnInit() {
     const batchMap = this.pager$.pipe(
       throttleTime(500),
@@ -49,5 +51,24 @@ export class EmployeeListPage implements OnInit {
     if (end === total) {
       this.pager$.next(this.page);
     }
+  }
+
+  async openImplModal() {
+    const modal: HTMLIonModalElement = await this.modalController.create({
+      component: ImplementationModalPage,
+      componentProps: { 
+        "description": "High performance infinite scrolling in a list containing hundreds of items.",
+        "uiComps": [
+          "List (<ion-list>): Display all employee data.", 
+          "Avatar (<ion-avatar): Circular components that wrap an image or icon. Displays employee profile picture.",
+          "Virtual Scroll (Angular CDK: <cdk-virtual-scroll-viewport>): Displays large lists of elements performantly by only rendering the items that fit on-screen."
+          ],
+        "nativeFeatures": ""
+      }
+    });
+     
+    modal.onDidDismiss().then((result) => { });
+    
+    return await modal.present();
   }
 }
