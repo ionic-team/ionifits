@@ -9,8 +9,8 @@ import { ModalController } from '@ionic/angular';
 export class ImplementationModalPage implements OnInit {
 
   @Input() description: string;
-  @Input() uiComps: string[];
-  @Input() nativeFeatures: string[];
+  @Input() uiComps: UIComponent[];
+  @Input() nativeFeatures: NativeFeature[];
 
   constructor(private modalController: ModalController) { }
 
@@ -19,4 +19,18 @@ export class ImplementationModalPage implements OnInit {
   async closeModal() {
     await this.modalController.dismiss(null);
   }
+}
+
+class UIComponent {
+  name: string;
+  icon: string;
+  tag: string;
+  description: string;
+}
+
+class NativeFeature {
+  name: string;
+  icon: string;
+  runtime: string;
+  description: string;
 }

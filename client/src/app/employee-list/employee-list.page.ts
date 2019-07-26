@@ -58,12 +58,17 @@ export class EmployeeListPage implements OnInit {
       component: ImplementationModalPage,
       componentProps: { 
         "description": "High performance infinite scrolling in a list containing hundreds of items.",
-        "uiComps": [
-          "List (<ion-list>): Display all employee data.", 
-          "Avatar (<ion-avatar): Circular components that wrap an image or icon. Displays employee profile picture.",
-          "Virtual Scroll (Angular CDK: <cdk-virtual-scroll-viewport>): Displays large lists of elements performantly by only rendering the items that fit on-screen."
-          ],
-        "nativeFeatures": ""
+        "uiComps": [ {
+          name: "List", icon: "list", tag: "<ion-list>",
+          description: "Display all employee data." 
+        }, {
+          name: "Avatar", icon: "person", tag: "<ion-avatar>",
+          description: "Circular components that wrap an image or icon. Displays employee profile picture.",
+        }, { 
+          name: "Virtual Scroll", icon: "flash", tag: "<cdk-virtual-scroll-viewport>",
+          description: "From the Angular CDK. Displays large lists of elements performantly by only rendering the items that fit on-screen."
+        }],
+        "nativeFeatures": []
       }
     });
      

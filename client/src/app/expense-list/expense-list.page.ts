@@ -50,16 +50,33 @@ export class ExpenseListPage implements OnInit {
       componentProps: { 
         "description": "Complete expense management implementation (CRUD). Native device features include Camera and Filesystem access.",
         "uiComps": [
-          "List (<ion-list>): Display all completed expenses.", 
-          "Sliding Item (<ion-item-sliding>): An item that can be dragged to reveal buttons. Drag right to left on an expense item to delete it.",
-          "Modal (<ion-modal>): A dialog that appears on top of the current page's content. Tap on an expense item to edit its details.",
-          "Floating Action Button (<ion-fab>): Tap to create a new expense item.",
-          "Grid (<ion-grid>): A powerful mobile-first flexbox system for building custom layouts. Used to center the 'No expenses found' messaging."
-          ],
+          {
+            name: "List", icon: "list", tag: "<ion-list>",
+            description: "Display all completed expenses."
+          }, {
+            name: "Sliding Item", icon: "return-left", tag: "<ion-item-sliding>",
+            description: "An item that can be dragged to reveal buttons. Drag right to left on an expense item to delete it."
+          }, {
+            name: "Modal", icon: "tablet-portrait", tag: "<ion-modal>",
+            description: "A dialog that appears on top of the current page's content. Tap on an expense item to edit its details."
+          }, {
+            name: "FAB", icon: "add-circle-outline", tag: "<ion-fab>",
+            description: "Floating Action Button. Tap to create a new expense item."
+          }, {
+            name: "Grid", icon: "grid", tag: "<ion-grid>", 
+            description: "A powerful mobile-first flexbox system for building custom layouts. Used to center the 'No expenses found' messaging."
+          }],
         "nativeFeatures": [
-         "Camera: Cordova plugin used to take expense receipt pictures on user's mobile device.",
-         "File: Cordova plugin used to store expense receipt pictures on user's mobile device.",
-         "Storage: Ionic Native plugin used to cache app data such as expense details for later retrieval."
+          {
+            name: "Camera", icon: "camera", runtime: "Cordova",
+            description: "Used to take expense receipt pictures on user's mobile device."
+          }, {
+            name: "File", icon: "document", runtime: "Cordova",
+            description: "Used to store expense receipt pictures on user's mobile device."
+          }, {
+            name: "Storage", icon: "briefcase", runtime: "Ionic Native",
+            description: "Used to cache app data such as expense details for later retrieval."
+          }
         ]
       }
     });
