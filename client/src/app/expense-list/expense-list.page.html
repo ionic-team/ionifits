@@ -15,9 +15,9 @@
   <ion-list *ngIf="expenses.length > 0">
     <ion-item-sliding *ngFor="let expense of expenses; index as position">
     <ion-item (click)="openExpense(expense.id)">
-      <ion-thumbnail slot="start" *ngIf="expense.receipt && expense.receipt.webviewPath">
+      <ion-avatar slot="start" *ngIf="expense.receipt && expense.receipt.webviewPath">
         <ion-img src="{{expense.receipt.webviewPath}}"></ion-img>
-      </ion-thumbnail>
+      </ion-avatar>
       <ion-avatar slot="start" *ngIf="!expense.receipt.webviewPath">
             <img src="/assets/expenses.svg">
         </ion-avatar>

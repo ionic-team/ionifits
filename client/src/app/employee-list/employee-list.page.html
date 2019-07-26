@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header translucent>
   <ion-toolbar> <ion-title>People</ion-title> 
   <ion-icon name="information-circle-outline" slot="end" size="large"
     class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
@@ -6,7 +6,7 @@
 </ion-toolbar>
 </ion-header>
 
-<ion-content id="content">
+<ion-content id="content" fullscreen>
   <cdk-virtual-scroll-viewport
     class="scroll-viewport"
     #scroll
