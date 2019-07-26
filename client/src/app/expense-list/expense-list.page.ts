@@ -3,6 +3,7 @@ import { ExpenseService } from '../services/expense.service';
 import { ModalController } from '@ionic/angular';
 import { ExpenseModalPage } from '../expense-modal/expense-modal.page';
 import { Expense } from '../models/expense';
+import { ImplementationModalPage } from '../implementation-modal/implementation-modal.page';
 
 @Component({
   selector: 'app-expense-list',
@@ -30,7 +31,8 @@ export class ExpenseListPage implements OnInit {
   async openExpenseModal(expenseId) {
     const modal: HTMLIonModalElement = await this.modalController.create({
       component: ExpenseModalPage,
-      componentProps: { "existingExpenseId": expenseId }
+      componentProps: { 
+        "existingExpenseId": expenseId }
     });
      
     modal.onDidDismiss().then((result) => { });
@@ -40,6 +42,48 @@ export class ExpenseListPage implements OnInit {
 
   async removeExpense(expense, position) {
     await this.expenseService.removeExpense(expense, position);
+  }
+
+  async openImplModal() {
+    const modal: HTMLIonModalElement = await this.modalController.create({
+      component: ImplementationModalPage,
+      componentProps: { 
+        "description": "Complete expense management implementation (CRUD). Native device features include Camera and Filesystem access.",
+        "uiComps": [
+          {
+            name: "List", icon: "list", tag: "<ion-list>",
+            description: "Display all completed expenses."
+          }, {
+            name: "Sliding Item", icon: "return-left", tag: "<ion-item-sliding>",
+            description: "An item that can be dragged to reveal buttons. Drag right to left on an expense item to delete it."
+          }, {
+            name: "Modal", icon: "tablet-portrait", tag: "<ion-modal>",
+            description: "A dialog that appears on top of the current page's content. Tap on an expense item to edit its details."
+          }, {
+            name: "FAB", icon: "add-circle-outline", tag: "<ion-fab>",
+            description: "Floating Action Button. Tap to create a new expense item."
+          }, {
+            name: "Grid", icon: "grid", tag: "<ion-grid>", 
+            description: "A powerful mobile-first flexbox system for building custom layouts. Used to center the 'No expenses found' messaging."
+          }],
+        "nativeFeatures": [
+          {
+            name: "Camera", icon: "camera", runtime: "Cordova",
+            description: "Used to take expense receipt pictures on user's mobile device."
+          }, {
+            name: "File", icon: "document", runtime: "Cordova",
+            description: "Used to store expense receipt pictures on user's mobile device."
+          }, {
+            name: "Storage", icon: "briefcase", runtime: "Ionic Native",
+            description: "Used to cache app data such as expense details for later retrieval."
+          }
+        ]
+      }
+    });
+     
+    modal.onDidDismiss().then((result) => { });
+    
+    return await modal.present();
   }
 
 }

@@ -1,29 +1,28 @@
 <ion-header slot>
   <ion-toolbar>
-    <ion-button (click)="closeModal()" name="close" slot="start" fill="clear" color="dark" size="large">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
-    </ion-button>
+    <ion-button (click)="closeModal()" slot="start" fill="clear">Cancel</ion-button>
     
-    <ion-title slot>{{ newExpense.id ? 'Update' : 'New' }} Expense</ion-title>
-    <ion-button (click)="updateExpense()" slot="end" fill="solid">{{ newExpense.id ? 'Update' : 'Add' }}</ion-button>
+    <ion-title>{{ newExpense.id ? 'Update' : 'New' }} Expense</ion-title>
+    <ion-button (click)="updateExpense()" slot="end" fill="clear">{{ newExpense.id ? 'Update' : 'Add' }}</ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 <ion-item>
-  <ion-input placeholder="Merchant" [(ngModel)]="newExpense.merchant" name="merchant"></ion-input>
+  <ion-label>Merchant</ion-label>
+  <ion-input placeholder="Name" [(ngModel)]="newExpense.merchant" name="merchant"></ion-input>
 </ion-item>
 <ion-item>
   <ion-label>$</ion-label>
   <ion-input placeholder="0.00" type="number" [(ngModel)]="newExpense.cost" slot></ion-input>
 </ion-item>
-<ion-item>
+<ion-item lines="full">
    <ion-label>Date</ion-label>
    <ion-datetime [(ngModel)]="newExpense.date" display-format="MMM DD, YYYY"></ion-datetime>
    </ion-item>
 
 <ion-list-header>
-      <ion-label>Details</ion-label>
+      <ion-label color="ios-lh-labl-gray">Details</ion-label>
     </ion-list-header>
 <ion-list>
    <ion-item>
@@ -39,20 +38,18 @@
       <ion-select-option value="Travel - Meals">Travel - Meals</ion-select-option>
     </ion-select>
    </ion-item>
-   <ion-item slot>
+   <ion-item slot lines="full">
    <ion-label>Notes</ion-label>
    <ion-input placeholder="Additional details..." [(ngModel)]="newExpense.note" slot></ion-input>
    </ion-item>
 </ion-list>   
    <ion-list-header>
-      <ion-label>Upload Receipt</ion-label>
+      <ion-label color="ios-lh-labl-gray">Upload Receipt</ion-label>
     </ion-list-header>
 
-    <ion-item>
-      <img [src]="safeReceipt" />
-  </ion-item>
+  <img [src]="safeReceipt" (click)="captureReceipt()" />
    
-<ion-fab vertical="bottom" horizontal="center" slot="fixed">
+<ion-fab horizontal="center" vertical="bottom" >
     <ion-fab-button (click)="captureReceipt()">
       <ion-icon name="camera"></ion-icon>
     </ion-fab-button>

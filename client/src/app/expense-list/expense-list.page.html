@@ -1,25 +1,29 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Expenses</ion-title>
+    <ion-icon name="information-circle-outline" slot="end" size="large"
+      class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
+  </ion-icon>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-list-header *ngIf="expenses.length > 0">
-      <ion-label>Completed Expenses</ion-label>
+      <ion-label color="ios-lh-labl-gray">Completed Expenses</ion-label>
     </ion-list-header>
         
   <ion-list *ngIf="expenses.length > 0">
     <ion-item-sliding *ngFor="let expense of expenses; index as position">
     <ion-item (click)="openExpense(expense.id)">
-      <ion-thumbnail slot="start" *ngIf="expense.receipt && expense.receipt.webviewPath">
+      <ion-avatar slot="start" *ngIf="expense.receipt && expense.receipt.webviewPath">
         <ion-img src="{{expense.receipt.webviewPath}}"></ion-img>
-      </ion-thumbnail>
-      <ion-icon slot="start" name="briefcase" *ngIf="!expense.receipt.webviewPath"></ion-icon>
+      </ion-avatar>
+      <ion-avatar slot="start" *ngIf="!expense.receipt.webviewPath">
+            <img src="/assets/expenses.svg">
+        </ion-avatar>
       <ion-label>
         <h2>{{expense.merchant}}</h2>
         <p>{{expense.category}}</p>
-        <p>{{expense.date | date }}</p>
       </ion-label>  
       <ion-note color="success" slot="end">${{expense.cost}}</ion-note>
       </ion-item>
@@ -29,12 +33,19 @@
     </ion-item-sliding>
   </ion-list>
 
-<ion-card *ngIf="expenses.length === 0">
-  <ion-card-header>
-    <ion-card-title><ion-icon name="briefcase"></ion-icon>No expenses found</ion-card-title>
-    <ion-card-subtitle>Add one below!</ion-card-subtitle>
-  </ion-card-header>
-</ion-card>
+<ion-grid *ngIf="expenses.length === 0" class="no-expenses">
+  <ion-row>
+    <ion-col>
+      <div class="ion-text-center">
+        <ion-avatar>
+            <img src="/assets/expenses.svg">
+        </ion-avatar>
+        <h3>No expenses found.</h3>
+        Add one below!
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="newExpense()">

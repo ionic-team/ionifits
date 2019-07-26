@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: 'time-off', loadChildren: './time-off/time-off.module#TimeOffPageModule' },
   { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
   { path: 'employee-detail', loadChildren: './employee-detail/employee-detail.module#EmployeeDetailPageModule' },
-  { path: 'expense-modal', loadChildren: './expense-modal/expense-modal.module#ExpenseModalPageModule' }
+  { path: 'expense-modal', loadChildren: './expense-modal/expense-modal.module#ExpenseModalPageModule' },
+  { path: 'implementation-modal', loadChildren: './implementation-modal/implementation-modal.module#ImplementationModalPageModule' }
   ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

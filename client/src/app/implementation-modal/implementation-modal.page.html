@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Implementation Details</ion-title>
+    <ion-button (click)="closeModal()" slot="end" fill="clear">Close</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list-header>
+    <ion-label color="ios-lh-labl-gray">Description</ion-label>
+    </ion-list-header>
+  <ion-list>
+    <ion-item>
+      <ion-label text-wrap>{{ description }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list-header>
+    <ion-label color="ios-lh-labl-gray">UI Components</ion-label>
+    </ion-list-header>
+  <ion-list>
+    <ion-item *ngFor="let comp of uiComps;">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2">
+            <ion-icon name="{{ comp.icon }}" size="large" color="primary"></ion-icon>
+          </ion-col>
+          <ion-col class="grid-margin-top">{{ comp.name }}</ion-col>
+          <ion-col class="ion-text-right smaller-font grid-margin-top">
+            <ion-label text-wrap color="primary">{{ comp.tag }}</ion-label></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2"></ion-col>
+          <ion-col class="desc-margin-top">
+            <ion-label text-wrap>{{ comp.description }}</ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+    <ion-item *ngIf="uiComps.length === 0">
+      <ion-label text-wrap>None</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list-header>
+    <ion-label color="ios-lh-labl-gray">Native Features</ion-label>
+  </ion-list-header>
+  <ion-list>
+    <ion-item *ngFor="let feature of nativeFeatures">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="2">
+            <ion-icon name="{{ feature.icon }}" size="large" color="primary"></ion-icon>
+          </ion-col>
+          <ion-col class="grid-margin-top">{{ feature.name }}</ion-col>
+          <ion-col class="ion-text-right smaller-font grid-margin-top">
+            <ion-label text-wrap color="primary">{{ feature.runtime }}</ion-label></ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="2"></ion-col>
+          <ion-col class="desc-margin-top">
+            <ion-label text-wrap>{{ feature.description }}</ion-label>
+          </ion-col>
+        </ion-row>
+        </ion-grid>
+    </ion-item>
+    <ion-item *ngIf="nativeFeatures.length === 0">
+      <ion-label text-wrap>None</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
