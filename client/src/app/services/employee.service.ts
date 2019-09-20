@@ -69,9 +69,6 @@ export class EmployeeService {
           
           this.database.save(doc);
         }
-      console.log("data loaded");
-    } else {
-      console.log("NO data loaded");
     }
 
     count = await this.getDatabaseCount();
@@ -79,15 +76,13 @@ export class EmployeeService {
 
   async filterData(office, department, firstName) {
     await this.readyPromise;
-    /*let office = "Madison";
-    let department = "";
-    let firstName = "";
-    */
 
+    // Office and Department filters: Despite always passing their values to Couchbase directly as-is, make 
+    // them fuzzy so as to support the case when user selects "Any"
     const query = QueryBuilder.select(SelectResult.all())
       .from(DataSource.database(this.database))
-      .where(Expression.property("office").like(Expression.string("%" + office + "%"))
-        .and(Expression.property("department").like(Expression.string("%" + department + "%")))
+      .where(Expression.property("office").like(this.formatWildcardExpression(office))
+        .and(Expression.property("department").like(this.formatWildcardExpression(department)))
         .and(Expression.property("firstName").like(this.formatWildcardExpression(firstName)))
         )
       .orderBy(Ordering.property('lastName').ascending());
@@ -96,7 +91,7 @@ export class EmployeeService {
 
     let filteredEmployees = [];
     for (var key in results) {
-      // SelectResult.all() gives all properties, but puts them into odd JSON format:
+      // SelectResult.all() gives all properties, but puts them into an odd JSON format:
       // [ { "*": { id: "1", firstName: "Matt" } }, { "*": { id: "2", firstName: "Max" } }]
       var singleEmp = results[key]["*"];
 

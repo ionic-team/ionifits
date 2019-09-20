@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="clearFilters()" slot="start" fill="clear">Clear</ion-button>
+    <ion-title>Filter Employees</ion-title>
+    <ion-button (click)="applyFilters()" slot="end" fill="clear">Apply</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-icon name="briefcase" slot="start"></ion-icon>
+      <ion-label>Department:</ion-label>
+      <ion-select interface="popover" slot [(ngModel)]="selectedDept">
+        <ion-select-option *ngFor="let dept of departments">{{dept}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="business" slot="start"></ion-icon>
+      <ion-label>Office:</ion-label>
+      <ion-select interface="popover" slot [(ngModel)]="selectedOffice">
+        <ion-select-option *ngFor="let office of offices">{{office}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>
