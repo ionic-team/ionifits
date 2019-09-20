@@ -1,12 +1,19 @@
 <ion-header translucent>
   <ion-toolbar> <ion-title>People</ion-title> 
-  <ion-icon name="information-circle-outline" slot="end" size="large"
+  <ion-icon name="information-circle-outline" slot="start" size="large"
     class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
+  </ion-icon>
+  <ion-icon name="options" slot="end" size="large"
+    class="icon-toolbar-padding" color="primary" (click)="openSearchFilter()">
   </ion-icon>
 </ion-toolbar>
 </ion-header>
 
 <ion-content id="content" fullscreen>
+  <ion-searchbar placeholder="Search Name..."></ion-searchbar>
+  
+  <ion-button expand="block" (click)="openSearchFilter()">Button</ion-button>
+
   <cdk-virtual-scroll-viewport
     class="scroll-viewport"
     #scroll
@@ -30,6 +37,6 @@
         </ion-label>
       </ion-item>
     </ion-list>
-    <ion-spinner name="crescent"></ion-spinner>
+    <ion-spinner name="crescent" *ngIf="showLoading"></ion-spinner>
   </cdk-virtual-scroll-viewport>
 </ion-content>

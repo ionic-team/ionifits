@@ -13,7 +13,8 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./employee-list.page.scss']
 })
 export class EmployeeListPage implements OnInit {
-  employees: Employee[] = [];
+  //employees: Employee[] = [];
+  employees = [];
   employees$: Observable<Employee[]>;
   page = 0;
   showLoading = false;
@@ -51,6 +52,14 @@ export class EmployeeListPage implements OnInit {
     if (end === total) {
       this.pager$.next(this.page);
     }
+  }
+
+  async openSearchFilter() {
+    //this.employees = await this.employeeService.filterData();
+    //console.log(this.employees);
+
+    let test = await this.employeeService.getAllUniqueValues("office");
+    console.log(test);
   }
 
   async openImplModal() {

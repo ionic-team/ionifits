@@ -24,6 +24,7 @@
     "@angular/platform-browser": "^7.2.10",
     "@angular/platform-browser-dynamic": "^7.2.10",
     "@angular/router": "^7.2.10",
+    "@ionic-enterprise/couchbase-lite": "^1.0.1",
     "@ionic-native/camera": "^5.3.0",
     "@ionic-native/core": "^5.3.0",
     "@ionic-native/file": "^5.3.0",
@@ -33,7 +34,7 @@
     "@ionic/angular": "^4.6.2",
     "@ionic/storage": "^2.2.0",
     "cordova-android": "8.0.0",
-    "cordova-ios": "5.0.0",
+    "cordova-ios": "^5.0.1",
     "cordova-plugin-camera": "4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-file": "6.0.1",
@@ -87,7 +88,8 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-file": {}
+      "cordova-plugin-file": {},
+      "@ionic-enterprise/couchbase-lite": {}
     },
     "platforms": [
       "android",
