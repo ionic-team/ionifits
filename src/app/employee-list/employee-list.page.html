@@ -1,25 +1,30 @@
 <ion-header translucent>
-  <ion-toolbar> <ion-title>People</ion-title> 
-  <ion-icon name="information-circle-outline" slot="end" size="large"
-    class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
-  </ion-icon>
-</ion-toolbar>
+  <ion-toolbar> 
+    <ion-title>People</ion-title>
+    <ion-buttons collapse="true" slot="end">
+      <ion-icon name="information-circle-outline" slot="end" size="large"
+        class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
+      </ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content id="content" fullscreen>
-  <cdk-virtual-scroll-viewport
-    class="scroll-viewport"
-    #scroll
-    itemSize="80"
-    minBufferPx="900"
-    maxBufferPx="1350"
-    (scrolledIndexChange)="checkNextPage($event, '')"
-  >
+  <ion-header collapse="condense" translucent>              
+    <ion-toolbar>      
+      <ion-title size="large">People</ion-title>
+      <ion-buttons collapse="true" slot="end">
+        <ion-icon name="information-circle-outline" slot="end" size="large"
+          class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
+        </ion-icon>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
     <ion-list>
       <ion-item
-        *cdkVirtualFor="let employee of employees; trackBy: trackByFn"
-        routerLink="/tabs/employees/detail/{{employee.id}}"
-      >
+        *ngFor="let employee of employees; trackBy: trackByFn"
+        routerLink="/tabs/employees/detail/{{employee.id}}">
         <ion-avatar slot="start">
           <img src="assets/avatars/{{ employee.id }}-thumb.jpg" />
         </ion-avatar>
@@ -31,5 +36,4 @@
       </ion-item>
     </ion-list>
     <ion-spinner name="crescent"></ion-spinner>
-  </cdk-virtual-scroll-viewport>
 </ion-content>
