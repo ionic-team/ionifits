@@ -91,9 +91,10 @@ export class EmployeeService {
 
     let filteredEmployees = [];
     for (var key in results) {
-      // SelectResult.all() gives all properties, but puts them into an odd JSON format:
+      // SelectResult.all() returns all properties, but puts them into a seemingly odd JSON format:
       // [ { "*": { id: "1", firstName: "Matt" } }, { "*": { id: "2", firstName: "Max" } }]
-      var singleEmp = results[key]["*"];
+      // Couchbase can query multiple databases at once, so "*" is just this single database.
+      let singleEmp = results[key]["*"];
 
       filteredEmployees.push(singleEmp);
     }
