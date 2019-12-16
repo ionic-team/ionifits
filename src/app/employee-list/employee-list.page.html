@@ -1,30 +1,29 @@
 <ion-header translucent>
-  <ion-toolbar> 
-    <ion-title>Employees</ion-title>
-    <ion-buttons collapse="true" slot="end">
-      <ion-icon name="information-circle-outline" slot="end" size="large"
-        class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
-      </ion-icon>
-    </ion-buttons>
-  </ion-toolbar>
+  <ion-toolbar> <ion-title>People</ion-title> 
+  <ion-icon name="information-circle-outline" slot="start" size="large"
+    class="icon-toolbar-padding-left" color="primary" (click)="openImplModal()">
+  </ion-icon>
+  <ion-icon name="options" slot="end" size="large"
+    class="icon-toolbar-padding" color="primary" (click)="openSearchFilter()">
+  </ion-icon>
+</ion-toolbar>
 </ion-header>
 
 <ion-content id="content" fullscreen>
-  <ion-header collapse="condense" translucent>              
-    <ion-toolbar>      
-      <ion-title size="large">Employees</ion-title>
-      <ion-buttons collapse="true" slot="end">
-        <ion-icon name="information-circle-outline" slot="end" size="large"
-          class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
-        </ion-icon>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-
+  <ion-searchbar placeholder="Search Name..." [(ngModel)]="currentSearchQuery" 
+    (ionChange)="searchQueryChanged($event.target.value)"></ion-searchbar>
+  <cdk-virtual-scroll-viewport
+    class="scroll-viewport"
+    #scroll
+    itemSize="80"
+    minBufferPx="900"
+    maxBufferPx="1350"
+    (scrolledIndexChange)="checkNextPage($event, '')">
     <ion-list>
       <ion-item
-        *ngFor="let employee of employees; trackBy: trackByFn"
-        routerLink="/tabs/employees/detail/{{employee.id}}">
+        *cdkVirtualFor="let employee of employees; trackBy: trackByFn"
+        routerLink="/tabs/employees/detail/{{employee.id}}"
+      >
         <ion-avatar slot="start">
           <img src="assets/avatars/{{ employee.id }}-thumb.jpg" />
         </ion-avatar>
@@ -35,5 +34,6 @@
         </ion-label>
       </ion-item>
     </ion-list>
-    <ion-spinner name="crescent"></ion-spinner>
+    <ion-spinner name="crescent" *ngIf="showLoading"></ion-spinner>
+  </cdk-virtual-scroll-viewport>
 </ion-content>

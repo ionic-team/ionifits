@@ -6,6 +6,7 @@ import { tap, throttleTime, mergeMap, scan, map } from 'rxjs/operators';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { ImplementationModalPage } from '../implementation-modal/implementation-modal.page';
 import { ModalController } from '@ionic/angular';
+import { EmployeeFilterPage } from '../employee-filter/employee-filter.page';
 
 @Component({
   selector: 'app-employee-list',
@@ -13,12 +14,15 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./employee-list.page.scss']
 })
 export class EmployeeListPage implements OnInit {
-  employees: Employee[] = [];
+  // TODO: Fix scrolling issue
+  //employees: Employee[] = [];
+  employees = [];
   employees$: Observable<Employee[]>;
   page = 0;
   showLoading = false;
   pager$ = new BehaviorSubject(undefined);
   @ViewChild(CdkVirtualScrollViewport) viewport: CdkVirtualScrollViewport;
+  currentSearchQuery: string = "";
 
   constructor(private employeeService: EmployeeService, public modalController: ModalController) {}
   ngOnInit() {
@@ -51,6 +55,24 @@ export class EmployeeListPage implements OnInit {
     if (end === total) {
       this.pager$.next(this.page);
     }
+  }
+
+  async openSearchFilter() {
+    const modal = await this.modalController.create({
+      component: EmployeeFilterPage,
+      componentProps: { }
+    });
+    await modal.present();
+
+    const { data } = await modal.onDidDismiss();
+    const { office, department } = data;
+
+    this.employees = await this.employeeService.filterData(office, department, this.currentSearchQuery);
+  }
+
+  async searchQueryChanged(newQuery) {
+    this.employees = await this.employeeService.filterData(
+      localStorage.office || "Any", localStorage.department || "Any", newQuery);
   }
 
   async openImplModal() {
