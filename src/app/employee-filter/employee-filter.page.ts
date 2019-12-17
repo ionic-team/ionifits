@@ -16,8 +16,8 @@ export class EmployeeFilterPage implements OnInit {
   constructor(private employeeService: EmployeeService, public modalCtrl: ModalController) { }
 
   async ngOnInit() {
-    this.departments = await this.employeeService.getAllUniqueValues("department");
-    this.offices = await this.employeeService.getAllUniqueValues("office");
+    // this.departments = await this.employeeService.getAllUniqueValues("department");
+    // this.offices = await this.employeeService.getAllUniqueValues("office");
 
     this.selectedDept = localStorage.department || this.selectedDept;
     this.selectedOffice = localStorage.office || this.selectedOffice;

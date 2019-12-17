@@ -1,6 +1,6 @@
 {
   "name": "demoapp-ionifits",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "scripts": {
@@ -24,7 +24,6 @@
     "@angular/platform-browser": "^7.2.10",
     "@angular/platform-browser-dynamic": "^7.2.10",
     "@angular/router": "^7.2.10",
-    "@ionic-enterprise/couchbase-lite": "^1.0.1",
     "@ionic-native/camera": "^5.3.0",
     "@ionic-native/core": "^5.3.0",
     "@ionic-native/file": "^5.3.0",
@@ -88,8 +87,7 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-file": {},
-      "@ionic-enterprise/couchbase-lite": {}
+      "cordova-plugin-file": {}
     },
     "platforms": [
       "android",

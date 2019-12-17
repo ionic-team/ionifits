@@ -57,23 +57,23 @@ export class EmployeeListPage implements OnInit {
     }
   }
 
-  async openSearchFilter() {
-    const modal = await this.modalController.create({
-      component: EmployeeFilterPage,
-      componentProps: { }
-    });
-    await modal.present();
+  // async openSearchFilter() {
+  //   const modal = await this.modalController.create({
+  //     component: EmployeeFilterPage,
+  //     componentProps: { }
+  //   });
+  //   await modal.present();
 
-    const { data } = await modal.onDidDismiss();
-    const { office, department } = data;
+  //   const { data } = await modal.onDidDismiss();
+  //   const { office, department } = data;
 
-    this.employees = await this.employeeService.filterData(office, department, this.currentSearchQuery);
-  }
+  //   this.employees = await this.employeeService.filterData(office, department, this.currentSearchQuery);
+  // }
 
-  async searchQueryChanged(newQuery) {
-    this.employees = await this.employeeService.filterData(
-      localStorage.office || "Any", localStorage.department || "Any", newQuery);
-  }
+  // async searchQueryChanged(newQuery) {
+  //   this.employees = await this.employeeService.filterData(
+  //     localStorage.office || "Any", localStorage.department || "Any", newQuery);
+  // }
 
   async openImplModal() {
     const modal: HTMLIonModalElement = await this.modalController.create({
