@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-settings',
@@ -6,14 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
+  private user: any;
 
-  constructor() { }
+  constructor(private authService: AuthenticationService, public router: Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.user = await this.authService.getUserInfo();
+  }
+  
+  async logIn() {
+    await this.router.navigate(['login']);
   }
 
-  viewProfile() {
-    
+  async signOut() {
+    await this.authService.logout();
   }
 
 }

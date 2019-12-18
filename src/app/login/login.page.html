@@ -1,0 +1,23 @@
+<ion-content>
+  <div class="top-background">
+    <img src="/assets/ionifits-icon.png" />
+  </div>
+
+  <div padding>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Welcome to Ionifits</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="button-container">
+          <ion-button (click)="login()" strong shape="round">
+            Log in
+          </ion-button>
+        </div>
+
+        <a class="link" (click)="skipLogin()">Skip</a>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
