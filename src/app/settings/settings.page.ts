@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -7,14 +8,16 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
+  private user: any;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService, public router: Router) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.user = await this.authService.getUserInfo();
   }
-
-  viewProfile() {
-    
+  
+  async logIn() {
+    await this.router.navigate(['login']);
   }
 
   async signOut() {
