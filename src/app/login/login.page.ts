@@ -23,6 +23,11 @@ export class LoginPage implements OnInit {
       // Pass it to Auth Connect
       await this.authService.callback(window.location.href, loadingIndicator);
     }
+
+    // If already signed in, then enter main app
+    if (await this.authService.isAuthenticated()) {
+      this.skipLogin();
+    }
    }
 
   async login() {
