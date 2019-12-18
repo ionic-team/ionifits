@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-<ion-list>
+  <ion-list>
     <ion-item lines="full" detail routerLink="/tabs/employees/detail/3">
       <ion-avatar slot="start">
         <img src="https://randomuser.me/api/portraits/thumb/men/37.jpg" />
@@ -15,10 +15,17 @@
         <p>View your profile</p>
       </ion-label>
     </ion-item>
+    <ion-item>
+      <div class="center">
+      <ion-button (click)="signOut()" fill="clear">Sign Out</ion-button>
+      </div>
+    </ion-item>
   </ion-list>
 
   <ion-list-header>
-    <ion-label class="ion-text-uppercase" color="ios-lh-labl-gray">Communications</ion-label>
+    <ion-label class="ion-text-uppercase" color="ios-lh-labl-gray">
+      Communications
+    </ion-label>
   </ion-list-header>
   <ion-list>
     <ion-item>
@@ -38,23 +45,26 @@
     </ion-item>
   </ion-list>
 
-<ion-card>
-  <ion-card-header>
-    <ion-card-subtitle>Ionifits Demo App</ion-card-subtitle>
-    <ion-card-title>Version 0.0.1</ion-card-title>
-  </ion-card-header>
-    
-  <ion-card-content>
-    An Ionic Angular 4 demo app built by the Ionic team to demonstrate various native plugin and performance capabilities.
-    <p class="card-padding"> 
-      Interested in learning how Ionic can help your business?
-    </p>
-    <div class="center">
-      <ion-button fill="clear" 
-          href="https://ionicframework.com/sales?product_of_interest=Ionic%20Enterprise%20Engine">
-          Contact Us</ion-button>
-    </div>
-  </ion-card-content>
-</ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Ionifits Demo App</ion-card-subtitle>
+      <ion-card-title>Version 0.0.1</ion-card-title>
+    </ion-card-header>
 
+    <ion-card-content>
+      An Ionic Angular 4 demo app built by the Ionic team to demonstrate various
+      native plugin and performance capabilities.
+      <p class="card-padding">
+        Interested in learning how Ionic can help your business?
+      </p>
+      <div class="center">
+        <ion-button
+          fill="clear"
+          href="https://ionicframework.com/sales?product_of_interest=Ionic%20Enterprise%20Engine"
+        >
+          Contact Us
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

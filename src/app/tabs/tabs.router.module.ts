@@ -47,14 +47,14 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/employees',
+        redirectTo: '/login',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/employees',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
 ];

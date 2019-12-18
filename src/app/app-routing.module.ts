@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: 'employee-detail', loadChildren: './employee-detail/employee-detail.module#EmployeeDetailPageModule' },
   { path: 'expense-modal', loadChildren: './expense-modal/expense-modal.module#ExpenseModalPageModule' },
   { path: 'implementation-modal', loadChildren: './implementation-modal/implementation-modal.module#ImplementationModalPageModule' },
-  { path: 'employee-filter', loadChildren: './employee-filter/employee-filter.module#EmployeeFilterPageModule' }
+  { path: 'employee-filter', loadChildren: './employee-filter/employee-filter.module#EmployeeFilterPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
   ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
