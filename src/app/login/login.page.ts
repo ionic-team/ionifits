@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
+import { IdentityService } from '../services/identity.service';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
 
   constructor(private authService: AuthenticationService, 
+    private identityService: IdentityService,
     public loadingController: LoadingController,
     public router: Router) { }
 
@@ -29,6 +31,20 @@ export class LoginPage implements OnInit {
       this.skipLogin();
     }
    }
+
+   async ionViewWillEnter() {
+    // Check if user has previously signed into Auth Connect
+    const hasSession = await this.identityService.hasStoredSession();
+
+    if (hasSession) {
+      // if yes, then attempt FaceId unlock
+      await this.identityService.unlock();
+      if (await this.authService.isAuthenticated()) {
+        // if it unlocks, enter app
+        await this.router.navigate(['tabs/employees']);
+      }
+   }
+  }
 
   async login() {
     // Display loading indicator while Auth Connect login window is open

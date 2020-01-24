@@ -1,6 +1,6 @@
 {
-  "name": "demoapp-ionifits",
-  "version": "0.0.2",
+  "name": "ionifits",
+  "version": "0.0.3",
   "author": "Ionic Framework",
   "homepage": "http://ionicframework.com/",
   "scripts": {
@@ -10,6 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "ios": "ionic cordova prepare ios",
     "webbuild-ios": "ionic build --prod && rm -rf ./platforms/ios/www && cp -a www ./platforms/ios"
   },
   "private": true,

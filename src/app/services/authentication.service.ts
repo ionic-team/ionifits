@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IonicAuth, IonicAuthOptions } from '@ionic-enterprise/auth';
 import { Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { IdentityService } from './identity.service';
 
 const auth0CordovaConfig : IonicAuthOptions = {
   // the auth provider
@@ -61,16 +62,18 @@ const auth0WebConfig : IonicAuthOptions = {
   providedIn: 'root'
 })
 export class AuthenticationService extends IonicAuth {
-
+  private identityService: IdentityService;
   private router: Router;
   private loadingIndicator: HTMLIonLoadingElement;
 
-  constructor(router: Router, platform: Platform) {
+  constructor(router: Router, platform: Platform, identityService: IdentityService) {
       // Determine whether to run on mobile or the web
       const selectedConfig = platform.is("hybrid") ? auth0CordovaConfig : auth0WebConfig;
+      selectedConfig.tokenStorageProvider = identityService;
       super(selectedConfig);
 
       this.router = router;
+      this.identityService = identityService;
     }
 
      async login(loadingIndicator) {
@@ -99,6 +102,8 @@ export class AuthenticationService extends IonicAuth {
     // Log out of auth provider, then automatically redirect to the app page
     // specified in the `logoutUrl` property
     async logout() {
+      this.identityService.logout();
+
       await super.logout();
     }
 
