@@ -13,11 +13,12 @@ export class IdentityService extends IonicIdentityVaultUser<DefaultSession> {
 
   constructor(public platform: Platform) {
     super(platform, {
-      authMode: AuthMode.SecureStorage,
-      restoreSessionOnReady: true,
-      unlockOnReady: true,
+      authMode: AuthMode.BiometricOnly,
+      restoreSessionOnReady: false,
+      unlockOnReady: false,
+      // Automatically trigger Face Id
       unlockOnAccess: true,
-      lockAfter: 5000,
+      lockAfter: 1000,
       hideScreenOnBackground: true
     });
    }
