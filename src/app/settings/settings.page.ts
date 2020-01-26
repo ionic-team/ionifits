@@ -8,7 +8,7 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-  private user: any;
+  public user: any;
 
   constructor(private authService: AuthenticationService, public router: Router) { }
 
