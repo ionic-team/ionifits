@@ -21,7 +21,7 @@ export class EmployeeListPage implements OnInit {
   page = 0;
   showLoading = false;
   pager$ = new BehaviorSubject(undefined);
-  @ViewChild(CdkVirtualScrollViewport) viewport: CdkVirtualScrollViewport;
+  @ViewChild(CdkVirtualScrollViewport, { static: true }) viewport: CdkVirtualScrollViewport;
   currentSearchQuery: string = "";
 
   constructor(private employeeService: EmployeeService, public modalController: ModalController) {}
