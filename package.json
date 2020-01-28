@@ -35,7 +35,7 @@
     "@ionic-native/status-bar": "^5.19.1",
     "@ionic/angular": "^5.0.0-rc.1",
     "@ionic/storage": "^2.2.0",
-    "cordova-android": "^8.0.0",
+    "cordova-android": "^8.1.0",
     "cordova-ios": "^5.1.1",
     "cordova-plugin-add-swift-support": "^2.0.2",
     "cordova-plugin-camera": "4.0.3",
@@ -55,7 +55,7 @@
     "@angular-devkit/architect": "^0.803.23",
     "@angular-devkit/build-angular": "^0.803.23",
     "@angular-devkit/core": "^8.3.23",
-    "@angular-devkit/schematics": "^7.2.4",
+    "@angular-devkit/schematics": "^8.3.23",
     "@angular/cli": "^8.3.23",
     "@angular/compiler": "^8.2.14",
     "@angular/compiler-cli": "^8.2.14",
@@ -98,8 +98,8 @@
       "@ionic-enterprise/identity-vault": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }

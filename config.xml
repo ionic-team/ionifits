@@ -110,5 +110,4 @@
         <string>Save expense receipts to Photo Library</string>
     </edit-config>
     <plugin name="cordova-sqlite-storage" spec="3.2.0" />
-    <engine name="android" spec="8.0.0" />
 </widget>
