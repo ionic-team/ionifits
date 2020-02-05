@@ -6,19 +6,21 @@
 </ion-header>
 
 <ion-content>
-  <ion-list-header>
-    <ion-label color="ios-lh-labl-gray">Description</ion-label>
-    </ion-list-header>
+  
   <ion-list>
+    <ion-list-header>
+      <ion-label color="ios-lh-labl-gray">Description</ion-label>
+      </ion-list-header>
     <ion-item>
       <ion-label text-wrap>{{ description }}</ion-label>
     </ion-item>
   </ion-list>
 
-  <ion-list-header>
-    <ion-label color="ios-lh-labl-gray">UI Components</ion-label>
-    </ion-list-header>
+  
   <ion-list>
+    <ion-list-header>
+      <ion-label color="ios-lh-labl-gray">UI Components</ion-label>
+      </ion-list-header>
     <ion-item *ngFor="let comp of uiComps;">
       <ion-grid>
         <ion-row>
