@@ -1,21 +1,31 @@
-<ion-header translucent>
-  <ion-toolbar> <ion-title collapse="true">People</ion-title> 
-  <ion-icon collapse="true" name="information-circle-outline" slot="end" size="large"
-    class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
-  </ion-icon>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons collapse="true" slot="end">
+      <ion-button (click)="openImplModal()" >
+        <ion-icon name="information-circle-outline"  size="large"
+          class="icon-toolbar-padding" color="primary">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>People</ion-title>
   <!-- <ion-icon name="options" slot="end" size="large"
     class="icon-toolbar-padding" color="primary" (click)="openSearchFilter()">
-  </ion-icon> -->
-</ion-toolbar>
+  </ion-icon>
+  -->
+  </ion-toolbar>
 </ion-header> 
 
 <ion-content id="content" fullscreen>
   <ion-header collapse="condense">              
-    <ion-toolbar>      
+    <ion-toolbar>
+      <ion-buttons collapse="true" (click)="openImplModal()" slot="end">
+        <ion-button slot="end">
+          <ion-icon name="information-circle-outline"  size="large"
+            class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
+          </ion-icon>
+        </ion-button>
+      </ion-buttons>
       <ion-title size="large">People</ion-title>
-      <ion-icon name="information-circle-outline" slot="end" size="large"
-    class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
-  </ion-icon>
     </ion-toolbar>
   </ion-header>
 
