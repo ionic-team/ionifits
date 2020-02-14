@@ -7,6 +7,7 @@ import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { ImplementationModalPage } from '../implementation-modal/implementation-modal.page';
 import { ModalController } from '@ionic/angular';
 import { EmployeeFilterPage } from '../employee-filter/employee-filter.page';
+import { IonRouterOutlet } from '@ionic/angular';
 
 @Component({
   selector: 'app-employee-list',
@@ -21,10 +22,11 @@ export class EmployeeListPage implements OnInit {
   page = 0;
   showLoading = false;
   pager$ = new BehaviorSubject(undefined);
-  @ViewChild(CdkVirtualScrollViewport) viewport: CdkVirtualScrollViewport;
+  @ViewChild(CdkVirtualScrollViewport, { static: true }) viewport: CdkVirtualScrollViewport;
   currentSearchQuery: string = "";
 
-  constructor(private employeeService: EmployeeService, public modalController: ModalController) {}
+  constructor(private employeeService: EmployeeService, public modalController: ModalController, 
+    private routerOutlet: IonRouterOutlet) {}
   ngOnInit() {
     const batchMap = this.pager$.pipe(
       throttleTime(500),
@@ -78,6 +80,8 @@ export class EmployeeListPage implements OnInit {
   async openImplModal() {
     const modal: HTMLIonModalElement = await this.modalController.create({
       component: ImplementationModalPage,
+      swipeToClose: true,
+      presentingElement: this.routerOutlet.nativeEl,
       componentProps: { 
         "description": "High performance infinite scrolling in a list containing hundreds of items.",
         "uiComps": [ {

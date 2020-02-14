@@ -9,7 +9,7 @@ cdk-virtual-scroll-viewport {
   height: 100%;
 }
 
-cdk-virtual-scroll-viewport /deep/ .cdk-virtual-scroll-content-wrapper {
+cdk-virtual-scroll-viewport ::ng-deep .cdk-virtual-scroll-content-wrapper {
   max-width: 100%;
 }
 

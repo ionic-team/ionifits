@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { ExpenseModalPage } from '../expense-modal/expense-modal.page';
 import { Expense } from '../models/expense';
 import { ImplementationModalPage } from '../implementation-modal/implementation-modal.page';
+import { IonRouterOutlet } from '@ionic/angular';
 
 @Component({
   selector: 'app-expense-list',
@@ -12,7 +13,8 @@ import { ImplementationModalPage } from '../implementation-modal/implementation-
 })
 export class ExpenseListPage implements OnInit {
 
-  constructor(public modalController: ModalController, public expenseService: ExpenseService) { }
+  constructor(public modalController: ModalController, public expenseService: ExpenseService, 
+    private routerOutlet: IonRouterOutlet) { }
 
   public expenses: Expense[] = [];
 
@@ -31,6 +33,8 @@ export class ExpenseListPage implements OnInit {
   async openExpenseModal(expenseId) {
     const modal: HTMLIonModalElement = await this.modalController.create({
       component: ExpenseModalPage,
+      swipeToClose: true,
+      presentingElement: this.routerOutlet.nativeEl,
       componentProps: { 
         "existingExpenseId": expenseId }
     });
@@ -47,6 +51,8 @@ export class ExpenseListPage implements OnInit {
   async openImplModal() {
     const modal: HTMLIonModalElement = await this.modalController.create({
       component: ImplementationModalPage,
+      swipeToClose: true,
+      presentingElement: this.routerOutlet.nativeEl,
       componentProps: { 
         "description": "Complete expense management implementation (CRUD). Native device features include Camera and Filesystem access.",
         "uiComps": [
@@ -54,7 +60,7 @@ export class ExpenseListPage implements OnInit {
             name: "List", icon: "list", tag: "<ion-list>",
             description: "Display all completed expenses."
           }, {
-            name: "Sliding Item", icon: "return-left", tag: "<ion-item-sliding>",
+            name: "Sliding Item", icon: "return-down-back", tag: "<ion-item-sliding>",
             description: "An item that can be dragged to reveal buttons. Drag right to left on an expense item to delete it."
           }, {
             name: "Modal", icon: "tablet-portrait", tag: "<ion-modal>",

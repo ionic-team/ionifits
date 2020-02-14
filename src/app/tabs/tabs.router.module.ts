@@ -13,9 +13,9 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../employee-list/employee-list.module#EmployeeListPageModule'
+            loadChildren: () => import('../employee-list/employee-list.module').then(m => m.EmployeeListPageModule)
           },
-          { path: 'detail/:id', loadChildren: '../employee-detail/employee-detail.module#EmployeeDetailPageModule' }
+          { path: 'detail/:id', loadChildren: () => import('../employee-detail/employee-detail.module').then(m => m.EmployeeDetailPageModule) }
         ],
       },
       {
@@ -23,16 +23,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../expense-list/expense-list.module#ExpenseListPageModule'
-          }
-        ],
-      },
-      {
-        path: 'timeoff',
-        children: [
-          {
-            path: '',
-            loadChildren: '../time-off/time-off.module#TimeOffPageModule'
+            loadChildren: () => import('../expense-list/expense-list.module').then(m => m.ExpenseListPageModule)
           }
         ],
       },
@@ -41,7 +32,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../settings/settings.module#SettingsPageModule'
+            loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule)
           }
         ],
       },
