@@ -1,4 +1,4 @@
-Ionifits is a Zenefits-inspired, human resources app. It's a showcase of Ionic App Platform technologies, including Ionic Framework and Ionic Native solutions.
+Ionifits is a Zenefits-inspired human resources demo app. It's a showcase of Ionic App Platform technologies, including [Ionic Framework](https://ionicframework.com) and [Ionic Native solutions](https://ionicframework.com/docs/enterprise/solutions).
 
 ## Features
 
@@ -10,15 +10,24 @@ Ionifits is a Zenefits-inspired, human resources app. It's a showcase of Ionic A
 
 **Expense Management page:** Complete expense management implementation (similar to how Abacus works), featuring full CRUD (create-read-update-delete) for expenses. Add a new expense's merchant name, cost, date, and more, and capture a photo of the receipt using your device's camera. Once saved, tap on the expense to make changes. Slide an expense item in the list of Completed Expenses to the left to delete it.
 
-**Settings page:** Simple page showing off other Ionic Framework UI components. Includes "Contact Us" CTA that opens up web browser to [https://ionicframework.com/sales](https://ionicframework.com/sales).
+**Settings page:** Simple page showing off other Ionic Framework UI components.
 
 **Implementation Details buttons:** Tap the "i" icon in the upper-right hand corner to view details about the technologies used, including Ionic Framework UI components and Ionic Native features.
 
 ## Tech Details
 
 - Native runtime: Cordova (will move to Capacitor eventually)
-- Framework: Ionic Angular 4 (on Angular 7)
+- Framework: Ionic 5 (on Angular 8)
 - Ionic Native plugins:
     - Camera, File, Storage
 - Ionic Native solutions: Auth Connect and Identity Vault
-    - Offline Storage coming soon
+
+## How to Run
+> Note: Installing and running this app requires a subscription to [Ionic Enterprise](https://ionicframework.com/enterprise). For details and a live demo, please reach out [here](https://ionicframework.com/enterprise/contact).
+
+1) Install the Ionic CLI: `npm install -g @ionic/cli`
+2) Clone this repository: `git clone https://github.com/ionic-team/ionifits.git`
+3) Navigate to repo in a terminal: `cd ionifits`
+4) Install dependencies (this will fail if you don't have an Ionic Native key): `npm i`
+5) Run locally in a browser: `ionic serve`
+6) Deploy to a mobile device: See details [here](https://ionicframework.com/docs/building/running).
