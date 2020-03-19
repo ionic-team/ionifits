@@ -4,7 +4,7 @@ import { Platform } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { IdentityService } from './identity.service';
 
-const auth0CordovaConfig : IonicAuthOptions = {
+const auth0CordovaConfig: IonicAuthOptions = {
   // the auth provider
   authConfig: 'auth0',
   // The platform which we are running on
@@ -30,24 +30,26 @@ const auth0CordovaConfig : IonicAuthOptions = {
   iosWebView: 'private'
 };
 
-const auth0WebConfig : IonicAuthOptions = {
+const auth0WebConfig: IonicAuthOptions = {
   // the auth provider
   authConfig: 'auth0',
   // The platform which we are running on
   platform: 'web',
   // client or application id for provider
-  clientID: 'ihSRqLLa2z33PTyeNNlI2uxgsqorb08l',
+  clientID: 'vbOi3NDg3eRfQTUL4FuTqhaQHcHKPgOh',
   // the discovery url for the provider
   // OpenID configuration
-  discoveryUrl: 'https://ionicorg.auth0.com/.well-known/openid-configuration',
+  discoveryUrl: 'https://ionicteam.auth0.com/.well-known/openid-configuration',
   // the URI to redirect to after log in
+  // redirectUri: 'https://ionifits.now.sh/login',
   redirectUri: 'http://localhost:8100/login',
   // requested scopes from provider
   scope: 'openid offline_access email picture profile',
   // the audience, if applicable
   audience: 'https://api.myapp.com',
   // the URL to redirect to after log out
-  logoutUrl: 'http://localhost:8100/login',
+  // logoutUrl: 'https://ionifits.now.sh/logout',
+  logoutUrl: 'http://localhost:8100/logout',
   // The type of iOS webview to use. 'shared' will use a webview that can share session/cookies
   // on iOS to provide SSO across multiple apps but will cause a prompt for the user which asks them
   // to confirm they want to share site data with the app. 'private' uses a webview which will not
@@ -68,7 +70,7 @@ export class AuthenticationService extends IonicAuth {
 
   constructor(router: Router, platform: Platform, identityService: IdentityService) {
       // Determine whether to run on mobile or the web
-      const selectedConfig = platform.is("hybrid") ? auth0CordovaConfig : auth0WebConfig;
+      const selectedConfig = platform.is('hybrid') ? auth0CordovaConfig : auth0WebConfig;
       selectedConfig.tokenStorageProvider = identityService;
       super(selectedConfig);
 
