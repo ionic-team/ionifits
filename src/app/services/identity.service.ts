@@ -15,7 +15,7 @@ export class IdentityService extends IonicIdentityVaultUser<DefaultSession> {
 
   constructor(public platform: Platform, private browserAuthPlugin: BrowserAuthPlugin) {
     super(platform, {
-      authMode: AuthMode.BiometricOnly,
+      // authMode: AuthMode.BiometricOnly,
       restoreSessionOnReady: false,
       unlockOnReady: false,
       // Automatically trigger Face Id
