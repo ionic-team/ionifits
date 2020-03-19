@@ -1,7 +1,7 @@
 {
   "name": "Ionifits",
   "integrations": {
-    "cordova": {}
+    "capacitor": {}
   },
   "type": "angular"
 }

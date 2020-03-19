@@ -11,20 +11,20 @@
     <ion-list-header *ngIf="expenses.length > 0">
       <ion-label color="ios-lh-labl-gray">Completed Expenses</ion-label>
     </ion-list-header>
-        
+
   <ion-list *ngIf="expenses.length > 0">
     <ion-item-sliding *ngFor="let expense of expenses; index as position">
     <ion-item (click)="openExpense(expense.id)">
-      <ion-avatar slot="start" *ngIf="expense.receipt && expense.receipt.webviewPath">
-        <ion-img src="{{expense.receipt.webviewPath}}"></ion-img>
+      <ion-avatar slot="start" *ngIf="expense.receipt">
+        <ion-img src="{{expense.receipt}}"></ion-img>
       </ion-avatar>
-      <ion-avatar slot="start" *ngIf="!expense.receipt.webviewPath">
+      <ion-avatar slot="start" *ngIf="!expense.receipt">
             <img src="/assets/expenses.svg">
         </ion-avatar>
       <ion-label>
         <h2>{{expense.merchant}}</h2>
         <p>{{expense.category}}</p>
-      </ion-label>  
+      </ion-label>
       <ion-note color="success" slot="end">${{expense.cost}}</ion-note>
       </ion-item>
         <ion-item-options side="end">

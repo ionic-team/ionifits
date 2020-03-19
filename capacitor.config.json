@@ -1,0 +1,6 @@
+{
+  "appId": "io.ionic.demoapp.ionifits",
+  "appName": "Ionifits",
+  "webDir": "www",
+  "npmClient": "npm"
+}
