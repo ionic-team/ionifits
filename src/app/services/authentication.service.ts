@@ -8,7 +8,7 @@ const auth0CordovaConfig: IonicAuthOptions = {
   // the auth provider
   authConfig: 'auth0',
   // The platform which we are running on
-  platform: 'cordova',
+  platform: 'capacitor',
   // client or application id for provider
   clientID: 'ihSRqLLa2z33PTyeNNlI2uxgsqorb08l',
   // the discovery url for the provider
@@ -39,7 +39,7 @@ const auth0WebConfig: IonicAuthOptions = {
   clientID: 'vbOi3NDg3eRfQTUL4FuTqhaQHcHKPgOh',
   // the discovery url for the provider
   // OpenID configuration
-  discoveryUrl: 'https://ionicteam.auth0.com/.well-known/openid-configuration',
+  discoveryUrl: 'https://ionicorg.auth0.com/.well-known/openid-configuration',
   // the URI to redirect to after log in
   // redirectUri: 'https://ionifits.now.sh/login',
   redirectUri: 'http://localhost:8100/login',
