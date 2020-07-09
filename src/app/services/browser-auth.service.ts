@@ -10,6 +10,12 @@ const { Storage } = Plugins;
 export class BrowserAuthService implements IdentityVault {
   
   constructor() {}
+  isLockedOutOfBiometrics(): Promise<boolean> {
+    throw new Error("Method not implemented.");
+  }
+  getAvailableHardware(): Promise<import("@ionic-enterprise/identity-vault").SupportedBiometricType[]> {
+    throw new Error("Method not implemented.");
+  }
 
   config = {
     authMode: AuthMode.SecureStorage,
