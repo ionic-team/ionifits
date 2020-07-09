@@ -12,7 +12,6 @@ import { EmployeeService } from './services/employee.service';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
-import { IonicStorageModule } from '@ionic/storage';
 import { ExpenseModalPageModule } from './expense-modal/expense-modal.module';
 import { ImplementationModalPageModule } from './implementation-modal/implementation-modal.module';
 import { EmployeeFilterPageModule } from './employee-filter/employee-filter.module';
@@ -27,7 +26,6 @@ import { EmployeeFilterPageModule } from './employee-filter/employee-filter.modu
     AppRoutingModule,
     NoopAnimationsModule,
     ScrollingModule,
-    IonicStorageModule.forRoot(),
     ExpenseModalPageModule,
     ImplementationModalPageModule,
     EmployeeFilterPageModule

@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { Expense } from '../models/expense';
 import { ExpenseService } from '../services/expense.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import {Capacitor} from '@capacitor/core';
 
 @Component({
   selector: 'app-expense-modal',
@@ -35,17 +36,20 @@ export class ExpenseModalPage implements OnInit {
   }
 
   setReceiptImage() {
-    if (this.newExpense.id && this.newExpense.receiptImage) {
-      this.safeReceipt = this.sanitizeReceiptImage(this.newExpense.receiptImage);
+    if (this.newExpense.id && this.newExpense.receipt.webviewPath) {
+      this.safeReceipt = this.sanitizeReceiptImage(this.newExpense.receipt.webviewPath);
     } else {
-      this.safeReceipt = 'assets/image-placeholder.jpg';
+        this.safeReceipt = 
+          Capacitor.isNative 
+          ? Capacitor.convertFileSrc('assets/image-placeholder.jpg')
+          : 'assets/image-placeholder.jpg';
     }
   }
 
   async captureReceipt() {
     const image = await this.expenseService.captureExpenseReceipt();
-    this.newExpense.receiptImage = image;
-    this.safeReceipt = this.sanitizeReceiptImage(image);
+    this.newExpense.receipt.tempPath = image.filepath;
+    this.safeReceipt = image.sanitizedReceiptImage;
   }
 
   async closeModal() {

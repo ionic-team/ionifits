@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Storage } from '@ionic/storage';
 import { BiometricType, IdentityVault, PluginConfiguration, AuthMode } from '@ionic-enterprise/identity-vault';
+import { Plugins } from '@capacitor/core';
+
+const { Storage } = Plugins;
 
 @Injectable({
   providedIn: 'root'
 })
 export class BrowserAuthService implements IdentityVault {
   
-  constructor(private storage: Storage) {}
+  constructor() {}
 
   config = {
     authMode: AuthMode.SecureStorage,
@@ -28,7 +30,7 @@ export class BrowserAuthService implements IdentityVault {
   }
 
   clear(): Promise<void> {
-    return this.storage.clear();
+    return Storage.clear();
   }
 
   lock(): Promise<void> {
@@ -40,7 +42,7 @@ export class BrowserAuthService implements IdentityVault {
   }
 
   async isInUse(): Promise<boolean> {
-    return !!(await this.storage.get('session'));
+    return !!((await Storage.get({ key: 'session'})).value);
   }
 
   getConfig(): Promise<PluginConfiguration> {
@@ -64,11 +66,11 @@ export class BrowserAuthService implements IdentityVault {
   }
 
   async storeValue(key: string, value: any): Promise<void> {
-    await this.storage.set(key, value);
+    await Storage.set({ key: key, value: value});
   }
 
   getValue(key: string): Promise<any> {
-    return this.storage.get(key);
+    return Storage.get({ key: key});
   }
 
   getBiometricType(): Promise<BiometricType> {

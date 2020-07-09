@@ -16,11 +16,11 @@ Ionifits is a Zenefits-inspired human resources demo app. It's a showcase of Ion
 
 ## Tech Details
 
-- Native runtime: Cordova (will move to Capacitor eventually)
+- Native runtime: [Capacitor](https://capacitorjs.com)
 - Framework: Ionic 5 (on Angular 8)
 - Ionic Native plugins:
     - Camera, File, Storage
-- Ionic Native solutions: Auth Connect and Identity Vault
+- Ionic Native Enterprise solutions: Auth Connect and Identity Vault
 
 ## How to Run
 > Note: Installing and running this app requires a subscription to [Ionic Enterprise](https://ionicframework.com/enterprise). For details and a live demo, please reach out [here](https://ionicframework.com/enterprise/contact).

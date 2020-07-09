@@ -1,4 +1,4 @@
-type Base64String = string;
+import { Photo } from '../models/photo';
 
 export class Expense {
   id: number;
@@ -7,5 +7,9 @@ export class Expense {
   note: string;
   cost: number;
   date: string;
-  receiptImage: Base64String;
+  receipt: Photo;
+
+  constructor() {
+    this.receipt = new Photo();
+  }
 }
