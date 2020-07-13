@@ -9,9 +9,8 @@
 log.txt
 *.sublime-project
 *.sublime-workspace
-.vscode/
 npm-debug.log*
-
+.vscode/settings.json
 .idea/
 .ionic/
 .sourcemaps/

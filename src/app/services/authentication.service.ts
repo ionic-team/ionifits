@@ -1,62 +1,9 @@
 import { Injectable } from '@angular/core';
-import { IonicAuth, IonicAuthOptions } from '@ionic-enterprise/auth';
-import { Platform } from '@ionic/angular';
+import { IonicAuth } from '@ionic-enterprise/auth';
 import { Router } from '@angular/router';
 import { IdentityService } from './identity.service';
-
-const auth0CordovaConfig : IonicAuthOptions = {
-  // the auth provider
-  authConfig: 'auth0',
-  // The platform which we are running on
-  platform: 'cordova',
-  // client or application id for provider
-  clientID: 'ihSRqLLa2z33PTyeNNlI2uxgsqorb08l',
-  // the discovery url for the provider
-  // OpenID configuration
-  discoveryUrl: 'https://ionicorg.auth0.com/.well-known/openid-configuration',
-  // the URI to redirect to after log in
-  redirectUri: 'ionifits://login',
-  // requested scopes from provider
-  scope: 'openid offline_access email picture profile',
-  // the audience, if applicable
-  audience: 'https://api.myapp.com',
-  // the URL to redirect to after log out
-  logoutUrl: 'ionifits://login',
-  // The type of iOS webview to use. 'shared' will use a webview that can share session/cookies
-  // on iOS to provide SSO across multiple apps but will cause a prompt for the user which asks them
-  // to confirm they want to share site data with the app. 'private' uses a webview which will not
-  // prompt the user but will not be able to share session/cookie data either for true SSO across
-  // multiple apps.
-  iosWebView: 'private'
-};
-
-const auth0WebConfig : IonicAuthOptions = {
-  // the auth provider
-  authConfig: 'auth0',
-  // The platform which we are running on
-  platform: 'web',
-  // client or application id for provider
-  clientID: 'ihSRqLLa2z33PTyeNNlI2uxgsqorb08l',
-  // the discovery url for the provider
-  // OpenID configuration
-  discoveryUrl: 'https://ionicorg.auth0.com/.well-known/openid-configuration',
-  // the URI to redirect to after log in
-  redirectUri: 'http://localhost:8100/login',
-  // requested scopes from provider
-  scope: 'openid offline_access email picture profile',
-  // the audience, if applicable
-  audience: 'https://api.myapp.com',
-  // the URL to redirect to after log out
-  logoutUrl: 'http://localhost:8100/login',
-  // The type of iOS webview to use. 'shared' will use a webview that can share session/cookies
-  // on iOS to provide SSO across multiple apps but will cause a prompt for the user which asks them
-  // to confirm they want to share site data with the app. 'private' uses a webview which will not
-  // prompt the user but will not be able to share session/cookie data either for true SSO across
-  // multiple apps.
-  iosWebView: 'private',
-  implicitLogin: 'CURRENT'
-};
-
+import { Capacitor } from '@capacitor/core';
+import { auth0NativeConfig, auth0WebConfig } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -66,9 +13,9 @@ export class AuthenticationService extends IonicAuth {
   private router: Router;
   private loadingIndicator: HTMLIonLoadingElement;
 
-  constructor(router: Router, platform: Platform, identityService: IdentityService) {
+  constructor(router: Router, identityService: IdentityService) {
       // Determine whether to run on mobile or the web
-      const selectedConfig = platform.is("hybrid") ? auth0CordovaConfig : auth0WebConfig;
+      const selectedConfig = Capacitor.isNative ? auth0NativeConfig : auth0WebConfig;
       selectedConfig.tokenStorageProvider = identityService;
       super(selectedConfig);
 

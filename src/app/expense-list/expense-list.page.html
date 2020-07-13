@@ -11,7 +11,7 @@
     <ion-list-header *ngIf="expenses.length > 0">
       <ion-label color="ios-lh-labl-gray">Completed Expenses</ion-label>
     </ion-list-header>
-        
+
   <ion-list *ngIf="expenses.length > 0">
     <ion-item-sliding *ngFor="let expense of expenses; index as position">
     <ion-item (click)="openExpense(expense.id)">
@@ -24,7 +24,7 @@
       <ion-label>
         <h2>{{expense.merchant}}</h2>
         <p>{{expense.category}}</p>
-      </ion-label>  
+      </ion-label>
       <ion-note color="success" slot="end">${{expense.cost}}</ion-note>
       </ion-item>
         <ion-item-options side="end">

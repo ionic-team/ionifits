@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ModalController, Platform } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 import { Expense } from '../models/expense';
 import { ExpenseService } from '../services/expense.service';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { DomSanitizer } from '@angular/platform-browser';
+import {Capacitor} from '@capacitor/core';
 
 @Component({
   selector: 'app-expense-modal',
@@ -15,8 +15,6 @@ export class ExpenseModalPage implements OnInit {
   @Input() existingExpenseId: number;
 
   constructor(private modalController: ModalController,
-              private platform: Platform,
-              private webview: WebView,
               private sanitizer: DomSanitizer,
               private expenseService: ExpenseService) { }
 
@@ -40,20 +38,17 @@ export class ExpenseModalPage implements OnInit {
   setReceiptImage() {
     if (this.newExpense.id && this.newExpense.receipt.webviewPath) {
       this.safeReceipt = this.sanitizeReceiptImage(this.newExpense.receipt.webviewPath);
-    }
-    else {
-      if (this.platform.is("cordova")) {
-        this.safeReceipt = this.webview.convertFileSrc("assets/image-placeholder.jpg");
-      } else {
-        this.safeReceipt = "assets/image-placeholder.jpg";
-      }
+    } else {
+        this.safeReceipt = 
+          Capacitor.isNative 
+          ? Capacitor.convertFileSrc('assets/image-placeholder.jpg')
+          : 'assets/image-placeholder.jpg';
     }
   }
 
   async captureReceipt() {
     const image = await this.expenseService.captureExpenseReceipt();
-    
-    this.newExpense.receipt.tempPath = image.originalImage;
+    this.newExpense.receipt.tempPath = image.filepath;
     this.safeReceipt = image.sanitizedReceiptImage;
   }
 

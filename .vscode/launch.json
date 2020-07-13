@@ -1,0 +1,25 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Ionic web debug",
+            "url": "http://localhost:8100",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "android-webview",
+            "request": "attach",
+            "name": "Attach to Android WebView",
+            "webRoot": "${workspaceFolder}/www",
+            "sourceMaps": true,
+            "sourceMapPathOverrides": {
+                "webpack:/*": "${workspaceFolder}/*"
+            }
+        }
+    ]
+}

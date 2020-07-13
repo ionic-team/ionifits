@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { IdentityService } from '../services/identity.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController, IonRouterOutlet } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ImplementationModalPage } from '../implementation-modal/implementation-modal.page';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,9 @@ export class LoginPage implements OnInit {
   constructor(private authService: AuthenticationService, 
     private identityService: IdentityService,
     public loadingController: LoadingController,
-    public router: Router) { }
+    public router: Router,
+    public modalController: ModalController,
+    private routerOutlet: IonRouterOutlet) { }
 
   async ngOnInit() {
     // If coming back after logging into Auth0,
@@ -64,5 +67,34 @@ export class LoginPage implements OnInit {
 
   async skipLogin() {
     await this.router.navigate(['tabs/employees']);
+  }
+
+  async openImplModal() {
+    const modal: HTMLIonModalElement = await this.modalController.create({
+      component: ImplementationModalPage,
+      swipeToClose: true,
+      presentingElement: this.routerOutlet.nativeEl,
+      componentProps: { 
+        "description": "Log in with username: user@test.com and password: ionic",
+        "uiComps": [
+          {
+            name: "Card", icon: "easel-outline", tag: "<ion-card>",
+            description: "The login form."
+          }],
+        "nativeFeatures": [
+          {
+            name: "Auth Connect", icon: "lock-closed-outline", runtime: "Capacitor Enterprise",
+            description: "Seamless single sign-on. Currently, the auth provider is Auth0."
+          }, {
+            name: "Identity Vault", icon: "key-outline", runtime: "Capacitor Enterprise",
+            description: "All-in-one biometric authentication. After login, the Auth0 user access token is securely stored in the mobile device keychain using Ionic Identity Vault. When the app is placed into the background, the screen is obscured to protect Ionifits data."
+          }
+        ]
+      }
+    });
+     
+    modal.onDidDismiss().then((result) => { });
+    
+    return await modal.present();
   }
 }

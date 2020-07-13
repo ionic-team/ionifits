@@ -10,6 +10,6 @@ export class Expense {
   receipt: Photo;
 
   constructor() {
-  this.receipt = new Photo();
+    this.receipt = new Photo();
   }
 }

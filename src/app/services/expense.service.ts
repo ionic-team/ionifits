@@ -1,25 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { Storage } from '@ionic/storage';
 import { Expense } from '../models/expense';
 import { DomSanitizer } from '@angular/platform-browser';
-import { WebView } from '@ionic-native/ionic-webview/ngx';
-import { File } from '@ionic-native/file/ngx';
+import { Capacitor, Plugins, CameraResultType, CameraPhoto, CameraSource, FilesystemDirectory } from '@capacitor/core';
+import { Photo } from '../models/photo';
+const { Camera, Filesystem, Storage } = Plugins;
 
-const EXPENSES: string = "expenses";
+const EXPENSES = 'expenses';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExpenseService {
   private expenses: Expense[] = [];
-  
-  constructor(private camera: Camera, private storage: Storage, 
-              private sanitizer: DomSanitizer, private webview: WebView, 
-              private file: File) { }
-  
+
+  constructor(private sanitizer: DomSanitizer) { }
+
   async loadSaved() {
-    this.expenses = JSON.parse(await this.storage.get(EXPENSES)) || [];
+    this.expenses = JSON.parse((await Storage.get({ key: EXPENSES })).value) || [];
+
+    if (Capacitor.getPlatform() === 'web') {
+      // Display the photo by reading into base64 format
+      for (let expense of this.expenses) {
+        // Read each saved photo's data from the Filesystem
+        const readFile = await Filesystem.readFile({
+            path: expense.receipt.filePath,
+            directory: FilesystemDirectory.Data
+        });
+      
+        const base64 = await fetch(`data:image/jpeg;base64,${readFile.data}`);
+        const blob = await base64.blob();
+        expense.receipt.webviewPath = URL.createObjectURL(blob);
+      }
+    }
+
     return this.expenses;
   }
 
@@ -29,98 +42,123 @@ export class ExpenseService {
 
   // Capture receipt image, stored in temporary storage on the device.
   async captureExpenseReceipt() {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
+    const imageData = await Camera.getPhoto({
+      resultType: CameraResultType.Uri, // file-based data; provides best performance
+      source: CameraSource.Camera, // automatically take a new photo with the camera
+      quality: 100 // highest quality (0 to 100)
+    });
+    
+    const receiptPath = Capacitor.isNative ? imageData.path : imageData.webPath;
 
-    const imageData = await this.camera.getPicture(options);
-    const resolvedImg = this.webview.convertFileSrc(imageData);
     return {
-      sanitizedReceiptImage: this.sanitizer.bypassSecurityTrustUrl(resolvedImg),
-      originalImage: imageData
+      sanitizedReceiptImage: 
+        this.sanitizer.bypassSecurityTrustUrl(Capacitor.convertFileSrc(receiptPath)),
+      filepath: receiptPath
     };
   }
 
-  // Some Camera/File logic referenced from: https://devdactic.com/ionic-4-image-upload-storage/
   async createUpdateExpense(expense: Expense) {
-    const isNewExpense = (expense.id === undefined) ? true : false;
-    let expenseId = expense.id || this.createExpenseId();
+    const isNewExpense = expense.id === undefined;
+    const expenseId = expense.id || this.createExpenseId();
 
-    /* 
-     * Create or update the receipt file.
-     * 
-     * The camera & file plugins are notoriously challenging to work with. Easiest path is to leverage Ionic Native's
-     * deleteFile and copyFile methods: Delete the old receipt, then copy the new receipt image from temp 
-     * storage into permanent file storage. In the process this changes the image filename, but that doesn't really matter.
-    */
     if (expense.receipt.tempPath) {
-      let tempReceiptFilePath = expense.receipt.tempPath;
-      const tempFilename = tempReceiptFilePath.substr(tempReceiptFilePath.lastIndexOf('/') + 1);
-      const tempBaseFilesystemPath = tempReceiptFilePath.substr(0, tempReceiptFilePath.lastIndexOf('/') + 1);
+      expense.receipt.name = expenseId + '.jpeg';
+      const savedReceipt = await this.savePicture(expense.receipt);
 
-      let newFilename;
-      const newFile = this.prepNewFile();
-      newFilename = newFile.filename;
-      expenseId = newFile.id;
-
-      const oldFilePath = expense.receipt.filePath;
-      if (oldFilePath) {
-        // update existing receipt by deleting the old file first
-        const oldFilename = oldFilePath.substr(oldFilePath.lastIndexOf('/') + 1);
-        await this.deleteFile(oldFilePath, oldFilename);
-      }
-
-      const newBaseFilesystemPath = this.file.dataDirectory;
-      await this.file.copyFile(tempBaseFilesystemPath, tempFilename, newBaseFilesystemPath, 
-        newFilename);
-      
-      let receiptFilePath = newBaseFilesystemPath + newFilename;
-      expense.receipt.filePath = receiptFilePath;
-      // clear out placeholder image
-      expense.receipt.tempPath = null;
-      expense.receipt.name = newFilename;
-      expense.receipt.webviewPath = this.webview.convertFileSrc(receiptFilePath);
+      expense.receipt.filePath = savedReceipt.filepath;
+      expense.receipt.tempPath = null; // clear placeholder image
+      expense.receipt.webviewPath = savedReceipt.webviewPath;
     }
-
+    
     if (isNewExpense) {
       expense.id = expenseId;
       this.expenses.unshift(expense);
     }
     
     // Save all expenses
-    this.storage.set(EXPENSES, JSON.stringify(this.expenses));
+    Storage.set({
+      key: EXPENSES,
+      value: JSON.stringify(this.expenses)
+    });
     
     return expense;
   }
   
   // Remove expense from local copy and Storage
-  async removeExpense(expense, position) {
+  async removeExpense(expense: Expense, position: number) {
     this.expenses.splice(position, 1);
-    await this.storage.set(EXPENSES, JSON.stringify(this.expenses));
+    Storage.set({
+      key: EXPENSES,
+      value: JSON.stringify(this.expenses)
+    });
 
     // Delete Receipt file on disk
-    if (expense.receipt && expense.receipt.name) {
-      await this.deleteFile(expense.receipt.filePath, expense.receipt.name);
+    if (expense.receipt.name) {
+      await Filesystem.deleteFile({
+        path: expense.receipt.name,
+        directory: FilesystemDirectory.Data
+      });
     }
   }
 
-  async deleteFile(filePath, fileName) {
-    const baseFilesystemPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-    await this.file.removeFile(baseFilesystemPath, fileName);
+  // Save picture to file on device
+  private async savePicture(cameraPhoto: Photo) {
+    // Convert photo to base64 format, required by Filesystem API to save
+    const base64Data = await this.readAsBase64(cameraPhoto.tempPath);
+
+    // Write the file to the data directory
+    const savedFile = await Filesystem.writeFile({
+      path: cameraPhoto.name,
+      data: base64Data,
+      directory: FilesystemDirectory.Data
+    });
+
+    if (Capacitor.isNative) {
+      // Display the new image by rewriting the 'file://' path to HTTP
+      // Details: https://ionicframework.com/docs/building/webview#file-protocol
+      return {
+        filepath: savedFile.uri,
+        webviewPath: Capacitor.convertFileSrc(savedFile.uri),
+      };
+    }
+    else {
+      // Use webPath to display the new image instead of base64 since it's 
+      // already loaded into memory
+      return {
+        filepath: cameraPhoto.name,
+        webviewPath: cameraPhoto.tempPath
+      };
+    }
   }
 
-  prepNewFile() {
-    var d = new Date(),
-        fileId = d.getTime(),
-        newFileName = fileId + ".jpg";
-    return {
-      id: fileId,
-      filename: newFileName
-    };
+  // Read camera photo into base64 format based on the platform the app is running on
+  private async readAsBase64(filepath: string) {
+    // ios/android
+    if (Capacitor.isNative) {
+      // Read the file into base64 format
+      const file = await Filesystem.readFile({
+        path: filepath
+      });
+
+      return file.data;
+    }
+    else {
+      // Fetch the photo, read as a blob, then convert to base64 format
+      const response = await fetch(filepath);
+      const blob = await response.blob();
+
+      return await this.convertBlobToBase64(blob) as string;  
+    }
   }
+
+  convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
+    const reader = new FileReader;
+    reader.onerror = reject;
+    reader.onload = () => {
+        resolve(reader.result);
+    };
+    reader.readAsDataURL(blob);
+  });
 
   createExpenseId() {
     return new Date().getTime();
