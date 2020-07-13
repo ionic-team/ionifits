@@ -1,7 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Ionifits</string>
-    <string name="title_activity_main">Ionifits</string>
-    <string name="package_name">io.ionic.demoapp.ionifits</string>
-    <string name="custom_url_scheme">io.ionic.demoapp.ionifits</string>
+  <string name="app_name">Ionifits</string>
+  <string name="title_activity_main">Ionifits</string>
+  <string name="package_name">io.ionic.demoapp.ionifits</string>
+  <string name="custom_url_scheme">io.ionic.demoapp.ionifits</string>
+  <string name="ionic_app_id">34df4710</string>
+  <string name="ionic_channel_name">master</string>
+  <string name="ionic_update_method">background</string>
+  <string name="ionic_max_versions">2</string>
+  <string name="ionic_min_background_duration">30</string>
+  <string name="ionic_update_api">https://api.ionicjs.com</string>
 </resources>

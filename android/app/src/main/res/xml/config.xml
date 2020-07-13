@@ -15,5 +15,14 @@
     <param name="onload" value="true"/>
   </feature>
 
+  <feature name="IonicCordovaCommon">
+    <param name="android-package" value="com.ionicframework.common.IonicCordovaCommon" onload="true"/>
+  </feature>
+
+  <feature name="Whitelist">
+    <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin"/>
+    <param name="onload" value="true"/>
+  </feature>
+
   
 </widget>
