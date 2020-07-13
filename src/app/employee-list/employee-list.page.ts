@@ -92,7 +92,7 @@ export class EmployeeListPage implements OnInit {
           description: "Circular components that wrap an image or icon. Displays employee profile picture.",
         }, { 
           name: "Virtual Scroll", icon: "flash", tag: "<cdk-virtual-scroll-viewport>",
-          description: "From the Angular CDK. Displays large lists of elements performantly by only rendering the items that fit on-screen."
+          description: "Displays large lists of elements performantly by only rendering the items that fit on-screen. From the Angular CDK."
         }],
         "nativeFeatures": []
       }

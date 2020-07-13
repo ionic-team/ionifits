@@ -74,13 +74,13 @@ export class ExpenseListPage implements OnInit {
           }],
         "nativeFeatures": [
           {
-            name: "Camera", icon: "camera", runtime: "Cordova",
+            name: "Camera", icon: "camera", runtime: "Capacitor Core",
             description: "Used to take expense receipt pictures on user's mobile device."
           }, {
-            name: "File", icon: "document", runtime: "Cordova",
+            name: "File", icon: "document", runtime: "Capacitor Core",
             description: "Used to store expense receipt pictures on user's mobile device."
           }, {
-            name: "Storage", icon: "briefcase", runtime: "Ionic Native",
+            name: "Storage", icon: "briefcase", runtime: "Capacitor Core",
             description: "Used to cache app data such as expense details for later retrieval."
           }
         ]

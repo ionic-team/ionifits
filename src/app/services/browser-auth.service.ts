@@ -75,8 +75,9 @@ export class BrowserAuthService implements IdentityVault {
     await Storage.set({ key: key, value: value});
   }
 
-  getValue(key: string): Promise<any> {
-    return Storage.get({ key: key});
+  async getValue(key: string): Promise<any> {
+    const { value } = await Storage.get({ key: key});
+    return value;
   }
 
   getBiometricType(): Promise<BiometricType> {
