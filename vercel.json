@@ -1,7 +1,7 @@
 {
     "build": {
       "env": {
-        "NPM_TOKEN": "@npm_token"
+        "NPM_TOKEN": "@npm-token-preview-i67y"
       }
     }
   }  
