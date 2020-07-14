@@ -1,4 +1,4 @@
-Ionifits is a Zenefits-inspired human resources demo app. It's a showcase of Ionic App Platform technologies, including [Ionic Framework](https://ionicframework.com) and [Ionic Native solutions](https://ionicframework.com/docs/enterprise/solutions).
+Ionifits is a Zenefits-inspired human resources demo app. It's a showcase of Ionic App Platform technologies, including [Ionic Framework](https://ionicframework.com) and [Ionic Native Enterprise solutions](https://ionicframework.com/docs/enterprise/solutions).
 
 ## Features
 
@@ -12,14 +12,14 @@ Ionifits is a Zenefits-inspired human resources demo app. It's a showcase of Ion
 
 **Settings page:** Simple page showing off other Ionic Framework UI components.
 
-**Implementation Details buttons:** Tap the "i" icon in the upper-right hand corner to view details about the technologies used, including Ionic Framework UI components and Ionic Native features.
+**Implementation Details buttons:** Tap the "i" icon in the upper-right hand corner to view details about the technologies used, including Ionic Framework UI components and Ionic Native Enterprise features.
 
 ## Tech Details
 
 - Native runtime: [Capacitor](https://capacitorjs.com)
 - Framework: Ionic 5 (on Angular 8)
-- Ionic Native plugins:
-    - Camera, File, Storage
+- Capacitor Core plugins:
+    - Camera, Filesystem, Storage
 - Ionic Native Enterprise solutions: Auth Connect and Identity Vault
 
 ## How to Run
@@ -30,4 +30,4 @@ Ionifits is a Zenefits-inspired human resources demo app. It's a showcase of Ion
 3) Navigate to repo in a terminal: `cd ionifits`
 4) Install dependencies (this will fail if you don't have an Ionic Native key): `npm i`
 5) Run locally in a browser: `ionic serve`
-6) Deploy to a mobile device: See details [here](https://ionicframework.com/docs/building/running).
+6) Deploy to a mobile device: See details [here](https://capacitorjs.com/docs/basics/running-your-app).
