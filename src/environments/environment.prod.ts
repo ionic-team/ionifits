@@ -36,7 +36,7 @@ export const auth0WebConfig: IonicAuthOptions = {
   // The platform which we are running on
   platform: 'web',
   // client or application id for provider
-  clientID: 'vbOi3NDg3eRfQTUL4FuTqhaQHcHKPgOh',
+  clientID: 'ihSRqLLa2z33PTyeNNlI2uxgsqorb08l',
   // the discovery url for the provider
   // OpenID configuration
   discoveryUrl: 'https://ionicorg.auth0.com/.well-known/openid-configuration',
