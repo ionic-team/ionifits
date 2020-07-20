@@ -25,9 +25,10 @@ Ionifits is a Zenefits-inspired human resources demo app. It's a showcase of Ion
 ## How to Run
 > Note: Installing and running this app requires a subscription to [Ionic Enterprise](https://ionicframework.com/enterprise). For details and a live demo, please reach out [here](https://ionicframework.com/enterprise/contact).
 
-1) Install the Ionic CLI: `npm install -g @ionic/cli`
-2) Clone this repository: `git clone https://github.com/ionic-team/ionifits.git`
-3) Navigate to repo in a terminal: `cd ionifits`
-4) Install dependencies (this will fail if you don't have an Ionic Native key): `npm i`
-5) Run locally in a browser: `ionic serve`
-6) Deploy to a mobile device: See details [here](https://capacitorjs.com/docs/basics/running-your-app).
+- Install the Ionic CLI: `npm install -g @ionic/cli`
+- Clone this repository: `git clone https://github.com/ionic-team/ionifits.git`
+- Navigate to repo in a terminal: `cd ionifits`
+- Add an Ionic Enterprise Native key to your `.bash_profile` or X: export ENT_NATIVE_KEY="key_4e9d5..."
+- Install dependencies (this will fail if you don't have an Ionic Native key): `npm i`
+- Run locally in a browser: `ionic serve`
+- Deploy to a mobile device: See details [here](https://capacitorjs.com/docs/basics/running-your-app).
