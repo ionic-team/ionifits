@@ -29,7 +29,7 @@
     "@ionic-enterprise/auth": "^3.1.1",
     "@ionic-enterprise/identity-vault": "^4.2.2",
     "@ionic/angular": "^5.0.0",
-    "@ionic/pwa-elements": "^1.5.1",
+    "@ionic/pwa-elements": "^3.0.0",
     "cordova-plugin-ionic": "5.4.7",
     "cordova-plugin-whitelist": "^1.3.4",
     "core-js": "^2.6.5",
