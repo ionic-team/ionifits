@@ -41,15 +41,13 @@ export const auth0WebConfig: IonicAuthOptions = {
   // OpenID configuration
   discoveryUrl: 'https://ionicorg.auth0.com/.well-known/openid-configuration',
   // the URI to redirect to after log in
-  // redirectUri: 'https://ionifits.now.sh/login',
-  redirectUri: 'http://localhost:8100/login',
+  redirectUri: 'https://ionifits.ionicframework.com/login',
   // requested scopes from provider
   scope: 'openid offline_access email picture profile',
   // the audience, if applicable
   audience: 'https://api.myapp.com',
   // the URL to redirect to after log out
-  // logoutUrl: 'https://ionifits.now.sh/logout',
-  logoutUrl: 'http://localhost:8100/login',
+  logoutUrl: 'https://ionifits.ionicframework.com/login',
   // The type of iOS webview to use. 'shared' will use a webview that can share session/cookies
   // on iOS to provide SSO across multiple apps but will cause a prompt for the user which asks them
   // to confirm they want to share site data with the app. 'private' uses a webview which will not
