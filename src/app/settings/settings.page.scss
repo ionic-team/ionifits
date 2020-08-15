@@ -1,5 +1,9 @@
+.icon-information-circle {
+  cursor: pointer;
+}
+
 ion-content {
-  --background: #F2F2F7;
+  --background: #f2f2f7;
 }
 
 /* Workaround for Ionic bug where Card color is set to gray due to 
@@ -12,7 +16,7 @@ ion-card {
   text-align: center;
 }
 
-.card-padding{
+.card-padding {
   padding-top: 30px;
 }
 
