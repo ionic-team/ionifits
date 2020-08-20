@@ -15,6 +15,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ExpenseModalPageModule } from './expense-modal/expense-modal.module';
 import { ImplementationModalPageModule } from './implementation-modal/implementation-modal.module';
 import { EmployeeFilterPageModule } from './employee-filter/employee-filter.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +30,8 @@ import { EmployeeFilterPageModule } from './employee-filter/employee-filter.modu
     ScrollingModule,
     ExpenseModalPageModule,
     ImplementationModalPageModule,
-    EmployeeFilterPageModule
+    EmployeeFilterPageModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
