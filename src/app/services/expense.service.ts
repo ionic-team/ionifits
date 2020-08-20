@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Expense } from '../models/expense';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Capacitor, Plugins, CameraResultType, CameraPhoto, CameraSource, FilesystemDirectory } from '@capacitor/core';
+import { Capacitor, Plugins, CameraResultType, CameraSource, FilesystemDirectory } from '@capacitor/core';
 import { Photo } from '../models/photo';
 const { Camera, Filesystem, Storage } = Plugins;
 
@@ -27,9 +27,7 @@ export class ExpenseService {
             directory: FilesystemDirectory.Data
         });
       
-        const base64 = await fetch(`data:image/jpeg;base64,${readFile.data}`);
-        const blob = await base64.blob();
-        expense.receipt.webviewPath = URL.createObjectURL(blob);
+        expense.receipt.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
       }
     }
 
