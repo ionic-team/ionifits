@@ -7,9 +7,8 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EmployeeService } from './services/employee.service';
+//import { EmployeeService } from './services/employee.service';
 
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { ExpenseModalPageModule } from './expense-modal/expense-modal.module';
@@ -25,7 +24,6 @@ import { environment } from '../environments/environment';
     FormsModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    NoopAnimationsModule,
     ScrollingModule,
     ExpenseModalPageModule,
     ImplementationModalPageModule,
@@ -33,7 +31,7 @@ import { environment } from '../environments/environment';
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    EmployeeService
+    //EmployeeService
   ],
   bootstrap: [AppComponent]
 })
