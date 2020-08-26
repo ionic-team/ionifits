@@ -9,7 +9,6 @@ const routes: Routes = [
   { path: 'employee-detail', loadChildren: () => import('./employee-detail/employee-detail.module').then(m => m.EmployeeDetailPageModule) },
   { path: 'expense-modal', loadChildren: () => import('./expense-modal/expense-modal.module').then(m => m.ExpenseModalPageModule) },
   { path: 'implementation-modal', loadChildren: () => import('./implementation-modal/implementation-modal.module').then(m => m.ImplementationModalPageModule) },
-  { path: 'employee-filter', loadChildren: () => import('./employee-filter/employee-filter.module').then(m => m.EmployeeFilterPageModule) },
   { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule) },
   ];
 @NgModule({

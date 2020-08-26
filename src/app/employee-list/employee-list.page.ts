@@ -6,7 +6,6 @@ import { tap, throttleTime, mergeMap, scan, map } from 'rxjs/operators';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { ImplementationModalPage } from '../implementation-modal/implementation-modal.page';
 import { ModalController } from '@ionic/angular';
-import { EmployeeFilterPage } from '../employee-filter/employee-filter.page';
 import { IonRouterOutlet } from '@ionic/angular';
 
 @Component({
@@ -58,24 +57,6 @@ export class EmployeeListPage implements OnInit {
       this.pager$.next(this.page);
     }
   }
-
-  // async openSearchFilter() {
-  //   const modal = await this.modalController.create({
-  //     component: EmployeeFilterPage,
-  //     componentProps: { }
-  //   });
-  //   await modal.present();
-
-  //   const { data } = await modal.onDidDismiss();
-  //   const { office, department } = data;
-
-  //   this.employees = await this.employeeService.filterData(office, department, this.currentSearchQuery);
-  // }
-
-  // async searchQueryChanged(newQuery) {
-  //   this.employees = await this.employeeService.filterData(
-  //     localStorage.office || "Any", localStorage.department || "Any", newQuery);
-  // }
 
   async openImplModal() {
     const modal: HTMLIonModalElement = await this.modalController.create({

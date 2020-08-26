@@ -14,7 +14,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 
 import { ExpenseModalPageModule } from './expense-modal/expense-modal.module';
 import { ImplementationModalPageModule } from './implementation-modal/implementation-modal.module';
-import { EmployeeFilterPageModule } from './employee-filter/employee-filter.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
@@ -30,7 +29,6 @@ import { environment } from '../environments/environment';
     ScrollingModule,
     ExpenseModalPageModule,
     ImplementationModalPageModule,
-    EmployeeFilterPageModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
