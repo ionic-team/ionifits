@@ -7,7 +7,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-//import { EmployeeService } from './services/employee.service';
 
 import { ScrollingModule } from '@angular/cdk/scrolling';
 
@@ -31,7 +30,6 @@ import { environment } from '../environments/environment';
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    //EmployeeService
   ],
   bootstrap: [AppComponent]
 })
