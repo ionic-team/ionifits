@@ -1,4 +1,4 @@
-Ionifits is a Zenefits-inspired human resources demo app. It's a showcase of Ionic App Platform technologies, including [Ionic Framework](https://ionicframework.com) and [Ionic Native Enterprise solutions](https://ionicframework.com/docs/enterprise/solutions).
+Ionifits is a Zenefits-inspired human resources demo app. It's a showcase of Ionic App Platform technologies, including [Ionic Framework](https://ionicframework.com), [Capacitor](https://capacitorjs.com), and [Ionic Native Enterprise solutions](https://ionicframework.com/docs/enterprise/solutions).
 
 ## Try the App
 
@@ -27,7 +27,7 @@ An [8 minute overview video](https://ionicpro.wistia.com/medias/s8h3vpsxp8) of t
 ## Tech Details
 
 - Native runtime: [Capacitor](https://capacitorjs.com)
-- Framework: Ionic 5 (on Angular 8)
+- Framework: Ionic 5 (Angular 10)
 - Capacitor Core plugins:
     - Camera, Filesystem, Storage
 - Ionic Native Enterprise solutions: Auth Connect and Identity Vault
