@@ -27,7 +27,7 @@ An [8 minute overview video](https://ionicpro.wistia.com/medias/s8h3vpsxp8) of t
 ## Tech Details
 
 - Native runtime: [Capacitor](https://capacitorjs.com)
-- Framework: Ionic 5 (Angular 10)
+- Framework: Ionic 5 (Angular 11)
 - Capacitor Core plugins:
     - Camera, Filesystem, Storage
 - Ionic Native Enterprise solutions: Auth Connect and Identity Vault
