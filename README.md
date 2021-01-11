@@ -1,5 +1,7 @@
 Ionifits is a Zenefits-inspired human resources demo app. It's a showcase of Ionic App Platform technologies, including [Ionic Framework](https://ionicframework.com), [Capacitor](https://capacitorjs.com), and [Ionic Native Enterprise solutions](https://ionicframework.com/docs/enterprise/solutions).
 
+![Ionifits on iOS](ionifits-ios-screenshot.png)
+
 ## Try the App
 
 Ionifits runs on the web, iOS, and Android all from a single codebase. See for yourself:
