@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BiometricType, IdentityVault, PluginConfiguration, AuthMode } from '@ionic-enterprise/identity-vault';
-import { Plugins } from '@capacitor/core';
-
-const { Storage } = Plugins;
+import { Storage } from '@capacitor/storage';
 
 @Injectable({
   providedIn: 'root'

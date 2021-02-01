@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Expense } from '../models/expense';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Capacitor, Plugins, CameraResultType, CameraSource, FilesystemDirectory } from '@capacitor/core';
+import { Capacitor } from '@capacitor/core';
 import { Photo } from '../models/photo';
-const { Camera, Filesystem, Storage } = Plugins;
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Filesystem, Directory,  } from '@capacitor/filesystem';
+import { Storage } from '@capacitor/storage';
 
 const EXPENSES = 'expenses';
 
@@ -24,7 +26,7 @@ export class ExpenseService {
         // Read each saved photo's data from the Filesystem
         const readFile = await Filesystem.readFile({
             path: expense.receipt.filePath,
-            directory: FilesystemDirectory.Data
+            directory: Directory.Data
         });
       
         expense.receipt.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
@@ -46,7 +48,7 @@ export class ExpenseService {
       quality: 100 // highest quality (0 to 100)
     });
     
-    const receiptPath = Capacitor.isNative ? imageData.path : imageData.webPath;
+    const receiptPath = Capacitor.isNativePlatform() ? imageData.path : imageData.webPath;
 
     return {
       sanitizedReceiptImage: 
@@ -94,7 +96,7 @@ export class ExpenseService {
     if (expense.receipt.name) {
       await Filesystem.deleteFile({
         path: expense.receipt.name,
-        directory: FilesystemDirectory.Data
+        directory: Directory.Data
       });
     }
   }
@@ -108,10 +110,10 @@ export class ExpenseService {
     const savedFile = await Filesystem.writeFile({
       path: cameraPhoto.name,
       data: base64Data,
-      directory: FilesystemDirectory.Data
+      directory: Directory.Data
     });
 
-    if (Capacitor.isNative) {
+    if (Capacitor.isNativePlatform()) {
       // Display the new image by rewriting the 'file://' path to HTTP
       // Details: https://ionicframework.com/docs/building/webview#file-protocol
       return {
