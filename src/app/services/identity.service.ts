@@ -7,6 +7,7 @@ import {
 } from '@ionic-enterprise/identity-vault';
 import { Platform } from '@ionic/angular';
 import { BrowserAuthPlugin } from './browser-auth.plugin';
+import { Capacitor } from '@capacitor/core';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +27,7 @@ export class IdentityService extends IonicIdentityVaultUser<DefaultSession> {
    }
 
    getPlugin(): IonicNativeAuthPlugin {
-    if (this.platform.is('hybrid')) {
+    if (Capacitor.isNativePlatform()) {
       return super.getPlugin();
     }
     return this.browserAuthPlugin;

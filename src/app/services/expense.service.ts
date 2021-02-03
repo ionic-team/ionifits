@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Capacitor } from '@capacitor/core';
 import { Photo } from '../models/photo';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { Filesystem, Directory,  } from '@capacitor/filesystem';
+import { Filesystem, Directory  } from '@capacitor/filesystem';
 import { Storage } from '@capacitor/storage';
 
 const EXPENSES = 'expenses';
@@ -134,7 +134,7 @@ export class ExpenseService {
   // Read camera photo into base64 format based on the platform the app is running on
   private async readAsBase64(filepath: string) {
     // ios/android
-    if (Capacitor.isNative) {
+    if (Capacitor.isNativePlatform()) {
       // Read the file into base64 format
       const file = await Filesystem.readFile({
         path: filepath
