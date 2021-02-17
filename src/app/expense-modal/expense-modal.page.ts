@@ -40,7 +40,7 @@ export class ExpenseModalPage implements OnInit {
       this.safeReceipt = this.sanitizeReceiptImage(this.newExpense.receipt.webviewPath);
     } else {
         this.safeReceipt = 
-          Capacitor.isNative 
+          Capacitor.isNativePlatform() 
           ? Capacitor.convertFileSrc('assets/image-placeholder.jpg')
           : 'assets/image-placeholder.jpg';
     }
