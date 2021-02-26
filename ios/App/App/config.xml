@@ -2,5 +2,23 @@
 <widget version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <access origin="*" />
   
+  <feature name="SecureWebView">
+    <param name="ios-package" value="SecureWebView"/>
+  </feature>
+  <feature name="IonicHttp">
+    <param name="ios-package" value="IonicHttp"/>
+  </feature>
+  <feature name="IonicAuthConnectStorage">
+    <param name="ios-package" value="IonicAuthConnectStorage"/>
+  </feature>
+
+  <feature name="IonicNativeAuth">
+    <param name="ios-package" value="IonicNativeAuthPlugin" onload="true"/>
+  </feature>
+
+  <feature name="IonicCordovaCommon">
+    <param name="ios-package" value="IonicCordovaCommon" onload="true"/>
+  </feature>
+
   
 </widget>

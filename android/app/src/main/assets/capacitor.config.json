@@ -5,7 +5,7 @@
 	"npmClient": "npm",
 	"plugins": {
 		"SplashScreen": {
-			"launchShowDuration": 5,
+			"launchShowDuration": 15000,
 			"launchAutoHide": false
 		}
 	}
