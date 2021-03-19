@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BiometricType, IdentityVault, PluginConfiguration, AuthMode } from '@ionic-enterprise/identity-vault';
-import { Storage } from '@capacitor/storage';
+import { Storage } from '@ionic/storage-angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BrowserAuthService implements IdentityVault {
   
-  constructor() {}
+  constructor(private storage: Storage) {
+    this.storage.create();
+  }
+
   isLockedOutOfBiometrics(): Promise<boolean> {
     throw new Error("Method not implemented.");
   }
@@ -34,7 +37,8 @@ export class BrowserAuthService implements IdentityVault {
   }
 
   clear(): Promise<void> {
-    return Storage.clear();
+    //return Storage.clear();
+    return;
   }
 
   lock(): Promise<void> {
@@ -46,7 +50,8 @@ export class BrowserAuthService implements IdentityVault {
   }
 
   async isInUse(): Promise<boolean> {
-    return !!((await Storage.get({ key: 'session'})).value);
+    //return !!((await Storage.get({ key: 'session'})).value);
+    return true;
   }
 
   getConfig(): Promise<PluginConfiguration> {
@@ -70,12 +75,12 @@ export class BrowserAuthService implements IdentityVault {
   }
 
   async storeValue(key: string, value: any): Promise<void> {
-    await Storage.set({ key: key, value: value});
+    //await Storage.set({ key: key, value: value});
   }
 
   async getValue(key: string): Promise<any> {
-    const { value } = await Storage.get({ key: key});
-    return value;
+    // const { value } = await Storage.get({ key: key});
+    // return value;
   }
 
   getBiometricType(): Promise<BiometricType> {

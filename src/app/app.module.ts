@@ -15,6 +15,10 @@ import { ImplementationModalPageModule } from './implementation-modal/implementa
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
+import { SQLite } from '@ionic-enterprise/secure-storage/ngx';
+import { IonicStorageModule } from '@ionic/storage-angular';
+import { Drivers } from '@ionic/storage';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -27,10 +31,14 @@ import { environment } from '../environments/environment';
     ExpenseModalPageModule,
     ImplementationModalPageModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    RouterModule
+    RouterModule,
+    IonicStorageModule.forRoot({
+      driverOrder: [Drivers.SecureStorage, Drivers.IndexedDB, Drivers.LocalStorage]
+    })
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SQLite
   ],
   bootstrap: [AppComponent]
 })

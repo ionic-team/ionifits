@@ -5,9 +5,7 @@ import { Capacitor } from '@capacitor/core';
 import { Photo } from '../models/photo';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Filesystem, Directory  } from '@capacitor/filesystem';
-import { Storage } from '@capacitor/storage';
-
-const EXPENSES = 'expenses';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,21 +13,26 @@ const EXPENSES = 'expenses';
 export class ExpenseService {
   private expenses: Expense[] = [];
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, private storageService: StorageService) {
+
+  }
 
   async loadSaved() {
-    this.expenses = JSON.parse((await Storage.get({ key: EXPENSES })).value) || [];
+    await this.storageService.init();
+    this.expenses = await this.storageService.readExpenses();
 
     if (Capacitor.getPlatform() === 'web') {
       // Display the photo by reading into base64 format
       for (let expense of this.expenses) {
         // Read each saved photo's data from the Filesystem
-        const readFile = await Filesystem.readFile({
-            path: expense.receipt.filePath,
-            directory: Directory.Data
-        });
-      
-        expense.receipt.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
+        if (expense.receipt.filePath) {
+          const readFile = await Filesystem.readFile({
+              path: expense.receipt.filePath,
+              directory: Directory.Data
+          });
+        
+          expense.receipt.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
+        }
       }
     }
 
@@ -73,24 +76,22 @@ export class ExpenseService {
     if (isNewExpense) {
       expense.id = expenseId;
       this.expenses.unshift(expense);
+      await this.storageService.createExpense(expense);
     }
-    
-    // Save all expenses
-    Storage.set({
-      key: EXPENSES,
-      value: JSON.stringify(this.expenses)
-    });
-    
+    else {
+      await this.storageService.updateExpense(expense, this.expenses);
+    }
+        
     return expense;
   }
   
   // Remove expense from local copy and Storage
   async removeExpense(expense: Expense, position: number) {
     this.expenses.splice(position, 1);
-    Storage.set({
-      key: EXPENSES,
-      value: JSON.stringify(this.expenses)
-    });
+    // Storage.set({
+    //   key: this.EXPENSES,
+    //   value: JSON.stringify(this.expenses)
+    // });
 
     // Delete Receipt file on disk
     if (expense.receipt.name) {
