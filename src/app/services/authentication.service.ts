@@ -43,7 +43,7 @@ export class AuthenticationService extends IonicAuth {
      async callback(url, loadingIndicator) {
        loadingIndicator.dismiss();
 
-       await super.handleCallback(url);
+       await super.handleLoginCallback(url);
      }
 
     // Log out of auth provider, then automatically redirect to the app page
