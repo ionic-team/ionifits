@@ -15,7 +15,7 @@ export class AuthenticationService extends IonicAuth {
 
   constructor(router: Router, identityService: IdentityService) {
       // Determine whether to run on mobile or the web
-      const selectedConfig = Capacitor.isNative ? auth0NativeConfig : auth0WebConfig;
+      const selectedConfig = Capacitor.isNativePlatform() ? auth0NativeConfig : auth0WebConfig;
       selectedConfig.tokenStorageProvider = identityService;
       super(selectedConfig);
 
@@ -43,7 +43,7 @@ export class AuthenticationService extends IonicAuth {
      async callback(url, loadingIndicator) {
        loadingIndicator.dismiss();
 
-       await super.handleCallback(url);
+       await super.handleLoginCallback(url);
      }
 
     // Log out of auth provider, then automatically redirect to the app page

@@ -8,9 +8,16 @@
   <feature name="IonicHttp">
     <param name="ios-package" value="IonicHttp"/>
   </feature>
+  <feature name="IonicAuthConnectStorage">
+    <param name="ios-package" value="IonicAuthConnectStorage"/>
+  </feature>
 
   <feature name="IonicNativeAuth">
     <param name="ios-package" value="IonicNativeAuthPlugin" onload="true"/>
+  </feature>
+
+  <feature name="SQLitePlugin">
+    <param name="ios-package" value="SQLitePlugin"/>
   </feature>
 
   <feature name="IonicCordovaCommon">

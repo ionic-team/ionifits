@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Expense } from '../models/expense';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Capacitor, Plugins, CameraResultType, CameraSource, FilesystemDirectory } from '@capacitor/core';
+import { Capacitor } from '@capacitor/core';
 import { Photo } from '../models/photo';
-const { Camera, Filesystem, Storage } = Plugins;
-
-const EXPENSES = 'expenses';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Filesystem, Directory  } from '@capacitor/filesystem';
+import { StorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,21 +13,26 @@ const EXPENSES = 'expenses';
 export class ExpenseService {
   private expenses: Expense[] = [];
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer, private storageService: StorageService) {
+
+  }
 
   async loadSaved() {
-    this.expenses = JSON.parse((await Storage.get({ key: EXPENSES })).value) || [];
+    await this.storageService.init();
+    this.expenses = await this.storageService.readExpenses();
 
     if (Capacitor.getPlatform() === 'web') {
       // Display the photo by reading into base64 format
       for (let expense of this.expenses) {
         // Read each saved photo's data from the Filesystem
-        const readFile = await Filesystem.readFile({
-            path: expense.receipt.filePath,
-            directory: FilesystemDirectory.Data
-        });
-      
-        expense.receipt.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
+        if (expense.receipt.filePath) {
+          const readFile = await Filesystem.readFile({
+              path: expense.receipt.filePath,
+              directory: Directory.Data
+          });
+        
+          expense.receipt.webviewPath = `data:image/jpeg;base64,${readFile.data}`;
+        }
       }
     }
 
@@ -46,7 +51,7 @@ export class ExpenseService {
       quality: 100 // highest quality (0 to 100)
     });
     
-    const receiptPath = Capacitor.isNative ? imageData.path : imageData.webPath;
+    const receiptPath = Capacitor.isNativePlatform() ? imageData.path : imageData.webPath;
 
     return {
       sanitizedReceiptImage: 
@@ -71,30 +76,26 @@ export class ExpenseService {
     if (isNewExpense) {
       expense.id = expenseId;
       this.expenses.unshift(expense);
+      await this.storageService.createExpense(expense, this.expenses);
     }
-    
-    // Save all expenses
-    Storage.set({
-      key: EXPENSES,
-      value: JSON.stringify(this.expenses)
-    });
-    
+    else {
+      await this.storageService.updateExpense(expense, this.expenses);
+    }
+        
     return expense;
   }
   
   // Remove expense from local copy and Storage
   async removeExpense(expense: Expense, position: number) {
     this.expenses.splice(position, 1);
-    Storage.set({
-      key: EXPENSES,
-      value: JSON.stringify(this.expenses)
-    });
+
+    await this.storageService.deleteExpense(expense, this.expenses);
 
     // Delete Receipt file on disk
     if (expense.receipt.name) {
       await Filesystem.deleteFile({
         path: expense.receipt.name,
-        directory: FilesystemDirectory.Data
+        directory: Directory.Data
       });
     }
   }
@@ -108,10 +109,10 @@ export class ExpenseService {
     const savedFile = await Filesystem.writeFile({
       path: cameraPhoto.name,
       data: base64Data,
-      directory: FilesystemDirectory.Data
+      directory: Directory.Data
     });
 
-    if (Capacitor.isNative) {
+    if (Capacitor.isNativePlatform()) {
       // Display the new image by rewriting the 'file://' path to HTTP
       // Details: https://ionicframework.com/docs/building/webview#file-protocol
       return {
@@ -132,7 +133,7 @@ export class ExpenseService {
   // Read camera photo into base64 format based on the platform the app is running on
   private async readAsBase64(filepath: string) {
     // ios/android
-    if (Capacitor.isNative) {
+    if (Capacitor.isNativePlatform()) {
       // Read the file into base64 format
       const file = await Filesystem.readFile({
         path: filepath

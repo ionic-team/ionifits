@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Plugins, StatusBarStyle, Capacitor } from '@capacitor/core';
-const { SplashScreen, StatusBar } = Plugins;
+import { Capacitor } from '@capacitor/core';
+import { StatusBar, Style } from '@capacitor/status-bar';
+import { SplashScreen } from '@capacitor/splash-screen';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +13,15 @@ export class AppComponent {
   }
 
   initializeApp() {
-    if (Capacitor.isNative) {
-      StatusBar.setStyle({ style: StatusBarStyle.Light });
+    if (Capacitor.isNativePlatform()) {
+
+      StatusBar.setStyle({ style: Style.Light });
 
       /* To make sure we provide the fastest app loading experience 
           for our users, hide the splash screen automatically 
           when the app is ready to be used:
           
-          https://capacitor.ionicframework.com/docs/apis/splash-screen#hiding-the-splash-screen
+          https://capacitorjs.com/docs/apis/splash-screen#hiding-the-splash-screen
       */
       SplashScreen.hide();
     }

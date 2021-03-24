@@ -83,10 +83,10 @@ export class LoginPage implements OnInit {
           }],
         "nativeFeatures": [
           {
-            name: "Auth Connect", icon: "lock-closed-outline", runtime: "Capacitor Enterprise",
+            name: "Auth Connect", icon: "lock-closed-outline", runtime: "Ionic Enterprise",
             description: "Seamless single sign-on. Currently, the auth provider is Auth0."
           }, {
-            name: "Identity Vault", icon: "key-outline", runtime: "Capacitor Enterprise",
+            name: "Identity Vault", icon: "key-outline", runtime: "Ionic Enterprise",
             description: "All-in-one biometric authentication. After login, the Auth0 user access token is securely stored in the mobile device keychain using Ionic Identity Vault. When the app is placed into the background, the screen is obscured to protect Ionifits data."
           }
         ]

@@ -9,10 +9,17 @@
   <feature name="IonicHttp">
     <param name="android-package" value="com.ionicframework.auth.ionichttp.IonicHttp"/>
   </feature>
+  <feature name="IonicAuthConnectStorage">
+    <param name="android-package" value="com.ionicframework.auth.ionicauthconnectstorage.IonicAuthConnectStorage"/>
+  </feature>
 
   <feature name="IonicNativeAuth">
     <param name="android-package" value="com.ionicframework.auth.IonicNativeAuth"/>
     <param name="onload" value="true"/>
+  </feature>
+
+  <feature name="SQLitePlugin">
+    <param name="android-package" value="io.sqlc.SQLitePlugin"/>
   </feature>
 
   <feature name="IonicCordovaCommon">
