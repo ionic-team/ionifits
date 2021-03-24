@@ -4,6 +4,7 @@ import { Capacitor } from '@capacitor/core';
 import { SQLite, SQLiteObject } from '@ionic-enterprise/secure-storage/ngx';
 import { Storage } from '@ionic/storage-angular';
 import IonicSecureStorageDriver from '@ionic-enterprise/secure-storage/driver';
+import { IdentityService } from './identity.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,38 +14,31 @@ export class StorageService {
   private _database: SQLiteObject | null = null;
   private EXPENSES: string = "EXPENSES";
 
-  constructor(private storage: Storage, private sqlite: SQLite) {
-    this.init();
-  }
+  constructor(private storage: Storage, private sqlite: SQLite, private identityService: IdentityService) {  }
 
   async init() {
-    // Get encryption key
-    // TODO - generate GUID once and store in IV
-    // load from IV
-    // OR: if accessing data later or inspecting the sqlite database, generate it from the server
-    const encryptionKey = "TODO";
-
     // Initialize Ionic Secure Storage on mobile and Ionic Storage on web
     if (Capacitor.getPlatform() === 'web') {
       await this.storage.defineDriver(IonicSecureStorageDriver);
-      //this.storage.setEncryptionKey(encryptionKey);
       const storage = await this.storage.create();
 
       this._storage = storage;
     }
     else {
+      // Obtain encryption key
+      const encryptionKey = await this.identityService.getEncryptionKey();
+
       // Create the ionifits database
       try {
-        this._database = await this.sqlite.create({
+        this._database = await this.sqlite.create({ 
           name: "ionifits.db",
           location: "default",
-          // Key/Password used to encrypt the database
-          // Strongly recommended to use Identity Vault to manage this
+          // Key/Password used to encrypt the database  
           key: encryptionKey
         });
     
         // Create the Expenses table
-        await this._database.executeSql(
+        await this._database.executeSql( 
           'CREATE TABLE IF NOT EXISTS expenses(id INTEGER PRIMARY KEY,category,merchant,note,cost,date,receipt)', []);
       } catch (e) {
         console.error('Unable to initialize database', e);
@@ -60,10 +54,13 @@ export class StorageService {
     else {
       let expenses = [];
 
-      this._database.transaction(tx => {
+      await this._database.transaction(tx => {
         tx.executeSql('SELECT * from expenses', [], (tx, result) => {
           for (let i = 0; i < result.rows.length; i++) {
-            expenses.push(result.rows.item(i));
+            let expense = result.rows.item(i);
+            expense.receipt = JSON.parse(result.rows.item(i).receipt);
+            
+            expenses.push(expense);
           }
         });
       });
@@ -72,36 +69,45 @@ export class StorageService {
     }
   }
 
-  async createExpense(expense: Expense) {
-    if (Capacitor.getPlatform() === 'web') {
-      const allExpenses = await this.readExpenses();
-      allExpenses.unshift(expense);
-      await this._storage.set(this.EXPENSES, JSON.stringify(allExpenses));
-    }
-  }
-
-  async updateExpense(newExpense: Expense, allExpenses?) {
+  async createExpense(expense: Expense, allExpenses?) {
     if (Capacitor.getPlatform() === 'web') {
       await this._storage.set(this.EXPENSES, JSON.stringify(allExpenses));
     }
     else {
-      this._database.transaction(tx => {
-        //let placeholders = Object.keys((expense) => '(?)').join(',');
-  
-        // REPLACE INTO
-        // https://www.sqlitetutorial.net/sqlite-replace-statement/
-        tx.executeSql('INSERT INTO expenses VALUES (?,?,?,?,?,?,?)', Object.values(newExpense));
-      });
+      await this.replaceExpense(expense);
     }
   }
 
-  async deleteExpense(expense: Expense) {
-    this._database.transaction(tx => {
-      tx.executeSql('DELETE FROM expenses WHERE id = ?', [expense.id], (tx, result) => {
-          console.log('Rows affected: ' + result.rowsAffected);
-        },
-      );
+  async updateExpense(expense: Expense, allExpenses?) {
+    if (Capacitor.getPlatform() === 'web') {
+      await this._storage.set(this.EXPENSES, JSON.stringify(allExpenses));
+    }
+    else {
+      await this.replaceExpense(expense);
+    }
+  }
+
+  // Insert or Update an expense
+  private async replaceExpense(expense: Expense) {
+    await this._database.transaction(tx => {
+      tx.executeSql('REPLACE INTO expenses VALUES (?,?,?,?,?,?,?)', 
+        [ expense.id, expense.category, expense.merchant, expense.note, expense.cost, expense.date, 
+          JSON.stringify(expense.receipt)       
+        ]);
     });
   }
 
+  async deleteExpense(expense: Expense, allExpenses?) {
+    if (Capacitor.getPlatform() === 'web') {
+      await this._storage.set(this.EXPENSES, JSON.stringify(allExpenses));
+    }
+    else {
+      await this._database.transaction(tx => { 
+        tx.executeSql('DELETE FROM expenses WHERE id = ?', [expense.id], (tx, result) => {
+            console.log('Rows affected: ' + result.rowsAffected);
+          },
+        );
+      });
+    }
+  }
 }

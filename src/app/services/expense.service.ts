@@ -76,7 +76,7 @@ export class ExpenseService {
     if (isNewExpense) {
       expense.id = expenseId;
       this.expenses.unshift(expense);
-      await this.storageService.createExpense(expense);
+      await this.storageService.createExpense(expense, this.expenses);
     }
     else {
       await this.storageService.updateExpense(expense, this.expenses);
@@ -88,10 +88,8 @@ export class ExpenseService {
   // Remove expense from local copy and Storage
   async removeExpense(expense: Expense, position: number) {
     this.expenses.splice(position, 1);
-    // Storage.set({
-    //   key: this.EXPENSES,
-    //   value: JSON.stringify(this.expenses)
-    // });
+
+    await this.storageService.deleteExpense(expense, this.expenses);
 
     // Delete Receipt file on disk
     if (expense.receipt.name) {
