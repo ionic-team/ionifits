@@ -14,6 +14,9 @@ export class BrowserAuthService implements IdentityVault {
       this._storage = value;
     });
   }
+  setHideScreenOnBackground(enabled: boolean): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
 
   isLockedOutOfBiometrics(): Promise<boolean> {
     throw new Error("Method not implemented.");
