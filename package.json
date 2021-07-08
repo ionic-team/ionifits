@@ -8,6 +8,7 @@
     "start": "ng serve",
     "build": "ng build",
     "appflow:build": "ng build --prod",
+    "app-shell": "ng run app:app-shell:production",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
