@@ -1,0 +1,46 @@
+.badge-single-digits {
+  position: absolute;
+  top: 0px;
+  right: -5px;
+  font-size: 0.6em;
+  --padding-start: 5px;
+  --padding-end: 5px;
+}
+
+.badge-double-digits {
+  position: absolute;
+  top: 0px;
+  right: -5px;
+  font-size: 0.6em;
+  --padding-start: 3px;
+  --padding-end: 3px;
+}
+
+.category-slider {
+  margin-top: 1rem;
+
+  ion-slide {
+
+      width: 60%;
+      margin-right: 10px;
+      margin-left: 10px;
+
+      display: inline;
+      flex-direction: column;
+      justify-content: center;
+
+      img {
+          border-radius: 22px;
+      }
+  }
+}
+
+.detail-name {
+  margin-top: 5px;
+}
+
+.detail-price {
+  float:left; 
+  margin-top:-15px;
+  color: #888;
+}

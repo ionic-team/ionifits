@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons collapse="true" slot="end">
+      <!-- https://forum.ionicframework.com/t/ion-buttons-with-badges-for-ionic-4/166600/5 -->
+      <ion-button class="badge-button" fill="clear">
+        <ion-icon size="large" name="cart"></ion-icon>
+        <ion-badge class="badge-single-digits" color="danger">2</ion-badge>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Company Store</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="padding: 5px">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-buttons collapse="true" slot="end">
+        <ion-button class="badge-button" fill="clear">
+          <ion-icon size="large" name="cart"></ion-icon>
+          <ion-badge class="badge-single-digits" color="danger">2</ion-badge>
+        </ion-button>
+      </ion-buttons>
+      <ion-title size="large">Company Store</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <h4 style="padding-left: 10px;">Bestsellers and more</h4>
+  
+  <ion-slides id="slider" [options]="slideOptions" class="category-slider">
+    <ion-slide class="item-detail">
+      <img src="/assets/store/capacitor-snapback.png" />
+      <div style="float: left">
+        <p class="detail-name">Capacitor Snapback</p>
+        <p class="detail-price">$32</p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <img src="/assets/store/portals-tote.png" />
+      <div style="float: left">
+        <p class="detail-name">Portals Tote</p>
+        <p class="detail-price">$24</p>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <img src="/assets/store/capacitor-mask.png" />
+      <div style="float: left">
+        <p class="detail-name">Capacitor Mask</p>
+        <p class="detail-price">$12</p>
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+  <h4 style="padding-left: 10px;">New & Featured</h4>
+
+</ion-content>

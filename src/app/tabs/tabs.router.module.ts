@@ -16,7 +16,8 @@ const routes: Routes = [
         ],
       },
       { path: 'expenses', loadChildren: () => import('../expense-list/expense-list.module').then(m => m.ExpenseListPageModule) },
-      { path: 'settings', loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule) }
+      { path: 'settings', loadChildren: () => import('../settings/settings.module').then(m => m.SettingsPageModule) },
+      { path: 'store', loadChildren: () => import('../company-store/company-store.module').then(m => m.CompanyStorePageModule) }
     ]
   }
 ];
