@@ -1,30 +1,29 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons collapse="true" slot="end">
-      <!-- https://forum.ionicframework.com/t/ion-buttons-with-badges-for-ionic-4/166600/5 -->
       <ion-button class="badge-button" fill="clear">
         <ion-icon size="large" name="cart"></ion-icon>
-        <ion-badge class="badge-single-digits" color="danger">2</ion-badge>
+        <ion-badge class="badge-single-digits" color="danger">{{ cart.length }}</ion-badge>
       </ion-button>
     </ion-buttons>
     <ion-title>Company Store</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="padding: 5px">
+<ion-content>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-buttons collapse="true" slot="end">
-        <ion-button class="badge-button" fill="clear">
+        <ion-button class="badge-button" fill="clear" (click)="openCartModal(1)">
           <ion-icon size="large" name="cart"></ion-icon>
-          <ion-badge class="badge-single-digits" color="danger">2</ion-badge>
+          <ion-badge class="badge-single-digits" color="danger">{{ cart.length }}</ion-badge>
         </ion-button>
       </ion-buttons>
       <ion-title size="large">Company Store</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <h4 style="padding-left: 10px;">Bestsellers and more</h4>
+  <h4 class="category-header">Bestsellers and more</h4>
   
   <ion-slides id="slider" [options]="slideOptions" class="category-slider">
     <ion-slide class="item-detail">
@@ -50,46 +49,38 @@
     </ion-slide>
   </ion-slides>
 
-  <h4 style="padding-left: 10px;">New & Featured</h4>
+  <h4 class="category-header">New & Featured</h4>
 
-  <ion-grid>
+  <ion-grid class="grid">
     <ion-row>
-      <ion-col>
-        <img src="/assets/store/portals-shirt.png" />
-        <div style="float: left">
-          <p class="detail-name">Portals Shirt</p>
-          <p class="detail-price">$29</p>
-        </div>
-      </ion-col>
-      <ion-col>
-        <img src="/assets/store/capacitor-shirt.png" />
-        <div style="float: left">
-          <p class="detail-name">Capacitor Shirt</p>
-          <p class="detail-price">$29</p>
-        </div>
+      <ion-col style="position: relative;" *ngFor="let product of newProducts | slice:0:2">
+        <span (click)="addToCart(product)">
+          <img src="{{ product.image }}"  />
+          <ion-button class="product-button" fill="clear">
+            <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
+          </ion-button>
+        </span>
+        <p class="detail-name">{{ product.name }}</p>
+        <p class="detail-price">${{ product.price }}</p>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <img src="/assets/store/capacitor-sticker.png" />
-        <div style="float: left">
-          <p class="detail-name">Capacitor Sticker</p>
-          <p class="detail-price">$3</p>
-        </div>
-      </ion-col>
-      <ion-col>
-        <img src="/assets/store/capacitor-waterbottle.png" />
-        <div style="float: left">
-          <p class="detail-name">Capacitor Water Bottle</p>
-          <p class="detail-price">$32</p>
-        </div>
+      <ion-col style="position: relative;" *ngFor="let product of newProducts | slice:2:4">
+        <span (click)="addToCart(product)">
+          <img src="{{ product.image }}"  />
+          <ion-button class="product-button" fill="clear">
+            <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
+          </ion-button>
+        </span>
+        <p class="detail-name">{{ product.name }}</p>
+        <p class="detail-price">${{ product.price }}</p>
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <h4 style="padding-left: 10px;">Sale - Up to 50% Off</h4>
+  <h4 class="category-header">Sale - Up to 50% Off</h4>
 
-  <ion-grid>
+  <ion-grid class="grid">
     <ion-row>
       <ion-col>
         <img src="/assets/store/ionitron-shirt.png" />
@@ -124,9 +115,9 @@
     </ion-row>
   </ion-grid>
 
-  <h4 style="padding-left: 10px;">Recommended for you</h4>
+  <h4 class="category-header">Recommended for you</h4>
 
-  <ion-grid>
+  <ion-grid class="grid">
     <ion-row>
       <ion-col>
         <img src="/assets/store/stencil-shirt.png" />

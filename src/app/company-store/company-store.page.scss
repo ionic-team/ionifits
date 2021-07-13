@@ -16,6 +16,14 @@
   --padding-end: 3px;
 }
 
+.category-header {
+  padding-left: 16px;
+}
+
+.grid {
+  padding-left: 11px;
+}
+
 .category-slider {
   margin-top: 1rem;
 
@@ -40,7 +48,27 @@
 }
 
 .detail-price {
-  float:left; 
   margin-top:-15px;
+  margin-bottom: 0px;
   color: #888;
+  font-size: 14px;
+}
+
+.product-icon {
+  color: white;
+}
+
+.product-button {
+  position: absolute; 
+  right: 0px; 
+  top: 0px; 
+  margin-bottom: -10px;
+}
+
+.md .tabs-bottom {
+  transform: translateY(-76px) !important;
+}
+
+.tabs-bottom {
+  transform: translateY(-45px) !important;
 }
