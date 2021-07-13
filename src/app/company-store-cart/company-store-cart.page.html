@@ -1,9 +1,18 @@
-<ion-header>
+  <ion-header>
   <ion-toolbar>
     <ion-title>Cart</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-list>
+      <ion-item *ngFor="let product of productsInCart">
+        <img src="{{ product.image }}" />
+        <ion-label>
+          <h2>{{ product.name }}</h2>
+          <p>{{ product.quantity }}</p>
+          <p>${{ product.price * product.quantity }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
 </ion-content>

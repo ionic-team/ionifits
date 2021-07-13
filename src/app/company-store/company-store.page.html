@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons collapse="true" slot="end">
-      <ion-button class="badge-button" fill="clear">
+      <ion-button class="badge-button" fill="clear" (click)="openCartModal()">
         <ion-icon size="large" name="cart"></ion-icon>
-        <ion-badge class="badge-single-digits" color="danger">{{ cart.length }}</ion-badge>
+        <ion-badge class="badge-single-digits" color="danger">{{ calculateCartQuantity() }}</ion-badge>
       </ion-button>
     </ion-buttons>
     <ion-title>Company Store</ion-title>
@@ -14,9 +14,9 @@
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-buttons collapse="true" slot="end">
-        <ion-button class="badge-button" fill="clear" (click)="openCartModal(1)">
+        <ion-button class="badge-button" fill="clear" (click)="openCartModal()">
           <ion-icon size="large" name="cart"></ion-icon>
-          <ion-badge class="badge-single-digits" color="danger">{{ cart.length }}</ion-badge>
+          <ion-badge class="badge-single-digits" color="danger">{{ calculateCartQuantity() }}</ion-badge>
         </ion-button>
       </ion-buttons>
       <ion-title size="large">Company Store</ion-title>
