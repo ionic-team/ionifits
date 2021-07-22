@@ -1,57 +1,66 @@
 import { Injectable } from '@angular/core';
-import {
-  AuthMode,
-  IonicIdentityVaultUser,
-  IonicNativeAuthPlugin,
-  DefaultSession
-} from '@ionic-enterprise/identity-vault';
+import { IdentityVaultConfig, BrowserVault, Device, DeviceSecurityType, Vault, VaultType } from '@ionic-enterprise/identity-vault';
 import { Platform } from '@ionic/angular';
-import { BrowserAuthPlugin } from './browser-auth.plugin';
 import { Capacitor } from '@capacitor/core';
 import { KeyService } from './key.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IdentityService extends IonicIdentityVaultUser<DefaultSession> {
-  private key = 'encryption-key';
+export class IdentityService {
+  private encryptionKey = 'encryption-key';
+  vault: Vault | BrowserVault;
 
-  constructor(public platform: Platform, private browserAuthPlugin: BrowserAuthPlugin, private keyService: KeyService) {
-    super(platform, {
-      restoreSessionOnReady: false,
-      unlockOnReady: false,
-      // Automatically trigger Face Id 
-      unlockOnAccess: true,
-      lockAfter: 1000,
-      hideScreenOnBackground: true
-    });
-   }
+  constructor(public platform: Platform, private keyService: KeyService) {
+    this.init();
+  }
+  
+  async init() {
+    const config: IdentityVaultConfig = {
+      key: 'io.ionic.demoapp.ionifits',
+      type: VaultType.DeviceSecurity,
+      deviceSecurityType: DeviceSecurityType.Both,
+      lockAfterBackgrounded: 1000,
+      shouldClearVaultAfterTooManyFailedAttempts: false,
+      unlockVaultOnLoad: false
+    };
 
-   getPlugin(): IonicNativeAuthPlugin {
+    this.vault = Capacitor.isNativePlatform() 
+      ? new Vault(config)
+      : new BrowserVault(config);
+    
     if (Capacitor.isNativePlatform()) {
-      return super.getPlugin();
+      Device.setHideScreenOnBackground(true);
     }
-    return this.browserAuthPlugin;
   }
 
   async getEncryptionKey(): Promise<string> {
-    const vault = await this.getVault();
-    let dbKey = await vault.getValue(this.key);
+    let dbKey = await this.vault.getValue(this.encryptionKey);
 
     if (!dbKey) {
       dbKey = await this.keyService.get(); 
-      this.set(dbKey);
+      this.set(this.encryptionKey, dbKey);
     }
     return dbKey;
   }
 
-  private async set(value: string): Promise<void> {
-    const vault = await this.getVault();
-    await vault.storeValue(this.key, value);
+  private async set(key: string, value: string): Promise<void> {
+    await this.vault.setValue(key, value);
   }
 
-  async clear(): Promise<void> {
-    const vault = await this.getVault();
-    await vault.storeValue(this.key, undefined);
+  async clear(key: string): Promise<void> {
+    await this.vault.setValue(key, undefined);
+  }
+
+  async unlock() {
+    await this.vault.unlock();
+  }
+
+  async hasStoredSession() {
+    return await this.vault.doesVaultExist();
+  }
+
+  async logout() {
+    await this.vault.clear();
   }
 }
