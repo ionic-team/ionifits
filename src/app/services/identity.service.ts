@@ -48,10 +48,6 @@ export class IdentityService {
     await this.vault.setValue(key, value);
   }
 
-  async clear(key: string): Promise<void> {
-    await this.vault.setValue(key, undefined);
-  }
-
   async unlock() {
     await this.vault.unlock();
   }
