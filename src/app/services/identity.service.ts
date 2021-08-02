@@ -20,9 +20,7 @@ export class IdentityService {
       key: 'io.ionic.demoapp.ionifits',
       type: VaultType.DeviceSecurity,
       deviceSecurityType: DeviceSecurityType.Both,
-      lockAfterBackgrounded: 1000,
-      shouldClearVaultAfterTooManyFailedAttempts: false,
-      unlockVaultOnLoad: false
+      lockAfterBackgrounded: 1000    
     };
 
     this.vault = Capacitor.isNativePlatform() 
