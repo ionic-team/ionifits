@@ -16,7 +16,7 @@ dependencies {
     implementation project(':capacitor-keyboard')
     implementation project(':capacitor-splash-screen')
     implementation project(':capacitor-status-bar')
-    implementation "androidx.browser:browser:1.2.0"
+    implementation "androidx.browser:browser:1.3.0"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:3.10.0"
     implementation "net.zetetic:android-database-sqlcipher:4.2.0"
 }
