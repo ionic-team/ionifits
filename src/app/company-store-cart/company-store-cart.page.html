@@ -10,9 +10,23 @@
         <img src="{{ product.image }}" />
         <ion-label>
           <h2>{{ product.name }}</h2>
-          <p>{{ product.quantity }}</p>
+          <p>Qty {{ product.quantity }}</p>
           <p>${{ product.price * product.quantity }}</p>
         </ion-label>
       </ion-item>
     </ion-list>
+    <ion-item>
+      <ion-label>Subtotal</ion-label>
+      <ion-label slot>${{ subtotal }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Shipping</ion-label>
+      <ion-label slot="end">$4.99</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Total</ion-label>
+      <ion-label slot="end">${{ total }}</ion-label>
+    </ion-item>
+
+    <div class="apple-pay-button apple-pay-button-black"></div>
 </ion-content>

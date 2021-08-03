@@ -71,25 +71,27 @@ export class CompanyStorePage implements OnInit {
     await this.presentToast(product.name);
   }
 
-  public calculateCartQuantity() {
+  public calculateCartQuantity(): number {
     return this.cart.reduce((accumulator, current) => accumulator + current.quantity, 0);
   }
 
-  async openCartModal() {
-    const modal: HTMLIonModalElement = await this.modalController.create({
-      component: CompanyStoreCartPage,
-      swipeToClose: true,
-      presentingElement: this.routerOutlet.nativeEl,
-      componentProps: { 
-        "productsInCart": this.cart }
-    });
-     
-    modal.onDidDismiss().then((result) => { });
-    
-    return await modal.present();
+  async openCartModal(): Promise<void> {
+    if (this.cart.length > 0) {
+      const modal: HTMLIonModalElement = await this.modalController.create({
+        component: CompanyStoreCartPage,
+        swipeToClose: true,
+        presentingElement: this.routerOutlet.nativeEl,
+        componentProps: { 
+          "productsInCart": this.cart }
+      });
+      
+      modal.onDidDismiss().then((result) => { });
+      
+      return await modal.present();
+    }
   }
 
-  private async presentToast(productName) {
+  private async presentToast(productName): Promise<void> {
     const toast = await this.toastController.create({
       message: `${productName} added`,
       duration: 2000,

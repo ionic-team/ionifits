@@ -9,11 +9,21 @@ import { Product } from '../models/product';
 export class CompanyStoreCartPage implements OnInit {
 
   @Input() productsInCart: Product[];
+  subtotal: number = 0;
+  total: number = 0;
+  tax: number = 4.99;
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.productsInCart);
+    this.calculateTotals();
   }
 
+  private calculateTotals(): void {
+    this.productsInCart.forEach(p => {
+      this.subtotal += (p.price * p.quantity);
+    });
+
+    this.total = this.subtotal + this.tax;
+  }
 }
