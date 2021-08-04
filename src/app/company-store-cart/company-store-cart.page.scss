@@ -13,3 +13,23 @@
 .apple-pay-button-white-with-line {
   -apple-pay-button-style: white-outline;
 }
+
+/* Indicates how Google Pay button will appear */
+.button-google-pay {
+  min-width: 200px;
+  min-height: 40px;
+  padding: 11px 24px;
+  margin: 10px;
+  background-color: #000;
+  background-image: url('/assets/store/google-pay.svg');
+  background-origin: content-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 1px 1px 0 rgba(60, 64, 67, 0.30), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  outline: 0;
+  cursor: pointer;
+  display: none;
+}
