@@ -5,12 +5,13 @@ import {
   ApplePaySummaryItem,
   ApplePaySupportedNetworks
 } from '@ionic-enterprise/apple-pay';
+export { ApplePaySummaryItem } from '@ionic-enterprise/apple-pay';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PaymentsService {
-  private merchantIdentifier = 'merchant.com.dallastjames.applepay.test';
+  private merchantIdentifier = 'merchant.io.ionic.ionifits.applepay';
   private supportedNetworks: ApplePaySupportedNetworks[] = [
     ApplePaySupportedNetworks.VISA,
     ApplePaySupportedNetworks.MASTERCARD,
