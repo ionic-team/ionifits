@@ -16,7 +16,7 @@ export class AuthenticationService extends IonicAuth {
   constructor(router: Router, identityService: IdentityService) {
       // Determine whether to run on mobile or the web
       const selectedConfig = Capacitor.isNativePlatform() ? auth0NativeConfig : auth0WebConfig;
-      selectedConfig.tokenStorageProvider = identityService;
+      selectedConfig.tokenStorageProvider = identityService.vault;
       super(selectedConfig);
 
       this.router = router;
