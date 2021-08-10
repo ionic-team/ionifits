@@ -31,12 +31,14 @@ An [8 minute overview video](https://ionicpro.wistia.com/medias/s8h3vpsxp8) of t
 ## Tech Details
 
 - Native runtime: [Capacitor 3](https://capacitorjs.com)
-- Frameworks: Ionic 5 and Angular 12
+- Frameworks: Ionic Framework 5 and Angular 12
 - Capacitor Core plugins: Camera, Filesystem
 - Ionic Enterprise solutions: [Auth Connect](https://ionic.io/products/auth-connect), [Identity Vault](https://ionic.io/products/identity-vault), [Secure Storage](https://ionic.io/products/secure-storage)
 
 ## How to Run
-> Note: Installing and running this app requires a subscription to [Ionic Enterprise](https://ionicframework.com/enterprise). For details and a live demo, please reach out [here](https://ionic.io/contact/sales).
+> Note: Installing and running this app requires a subscription to [Ionic Enterprise](https://ionicframework.com/enterprise). For details, pricing info, and a live demo, please reach out [here](https://ionic.io/contact/sales).
+
+__Want to try Ionic's native solutions in your app?__ [Sign up for a free trial](https://dashboard.ionicframework.com/personal/apps?native_trial=1).
 
 - Install the Ionic CLI: `npm install -g @ionic/cli`
 - Clone this repository: `git clone https://github.com/ionic-team/ionifits.git`

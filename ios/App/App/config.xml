@@ -15,6 +15,12 @@
   <feature name="IonicNativeAuth">
     <param name="ios-package" value="IonicNativeAuthPlugin" onload="true"/>
   </feature>
+  <feature name="VaultPlugin">
+    <param name="ios-package" value="VaultPlugin" onload="true"/>
+  </feature>
+  <feature name="DevicePlugin">
+    <param name="ios-package" value="DevicePlugin" onload="true"/>
+  </feature>
 
   <feature name="SQLitePlugin">
     <param name="ios-package" value="SQLitePlugin"/>
