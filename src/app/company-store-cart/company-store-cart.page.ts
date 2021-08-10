@@ -11,7 +11,7 @@ export class CompanyStoreCartPage implements OnInit {
   @Input() productsInCart: Product[];
   subtotal: number = 0;
   total: number = 0;
-  tax: number = 4.99;
+  tax: number = 5;
 
   constructor() { }
 

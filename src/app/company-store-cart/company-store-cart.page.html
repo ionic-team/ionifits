@@ -6,31 +6,35 @@
 
 <ion-content>
   <ion-list>
-      <ion-item *ngFor="let product of productsInCart">
-        <img src="{{ product.image }}" />
-        <ion-label>
-          <h2>{{ product.name }}</h2>
-          <p>Qty {{ product.quantity }}</p>
-          <p>${{ product.price * product.quantity }}</p>
-        </ion-label>
+    <ion-item *ngFor="let product of productsInCart" lines="none">
+      <ion-thumbnail slot="start">
+        <img src="{{ product.image }}"/>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ product.name }}</h2>
+        <p>
+          <span>Qty {{ product.quantity }}</span>
+          <span style="float: right;">${{ product.price * product.quantity }}</span>
+        </p>
+      </ion-label>
       </ion-item>
     </ion-list>
-    <ion-item>
+    <ion-item class="gray" lines="none">
       <ion-label>Subtotal</ion-label>
       <ion-label slot>${{ subtotal }}</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item class="gray" lines="none">
       <ion-label>Shipping</ion-label>
-      <ion-label slot="end">$4.99</ion-label>
+      <ion-label slot="end">$5</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item lines="inset">
       <ion-label>Total</ion-label>
       <ion-label slot="end">${{ total }}</ion-label>
     </ion-item>
     
     <div class="apple-pay-button apple-pay-button-black"></div>
 
-    <ion-button color="dark">
+    <ion-button color="dark" class="button-google-pay">
       <ion-img src="/assets/store/google-pay.svg"></ion-img>
     </ion-button>
 
