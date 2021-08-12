@@ -5,6 +5,7 @@ import {
   ApplePaySummaryItem,
   ApplePaySupportedNetworks
 } from '@ionic-enterprise/apple-pay';
+import { IdentityService } from './identity.service';
 export { ApplePaySummaryItem } from '@ionic-enterprise/apple-pay';
 
 @Injectable({
@@ -30,6 +31,8 @@ export class PaymentsService {
   private authorizationUrl =
     'https://applepayrelay.dallastjames.com/applepayrelay/session/authorize';
 
+  constructor(private identityService: IdentityService) { }
+
   async isAvailable(): Promise<boolean> {
     const { canMakePayments } = await ApplePay.canMakePayments({
       merchantIdentifier: this.merchantIdentifier,
@@ -42,6 +45,9 @@ export class PaymentsService {
     items: ApplePaySummaryItem[],
     total: ApplePaySummaryItem,
   ): Promise<boolean> {
+
+    await this.identityService.toggleHideScreen(false);
+
     const { success } = await ApplePay.makePaymentRequest({
       version: 5,
       merchantValidation: {
@@ -65,6 +71,9 @@ export class PaymentsService {
         total,
       },
     });
+
+    await this.identityService.toggleHideScreen(true);
+
     return success;
   }
 }
