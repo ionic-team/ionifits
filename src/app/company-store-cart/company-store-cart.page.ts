@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../models/product';
-import { PaymentsService, ApplePaySummaryItem } from '../services/payments.service';
+import { ApplePayService } from '../services/apple-pay.service';
 
 @Component({
   selector: 'app-company-store-cart',
@@ -14,7 +14,7 @@ export class CompanyStoreCartPage implements OnInit {
   total: number = 0;
   tax: number = 5;
 
-  constructor(private paymentsService: PaymentsService) { }
+  constructor(private applePayService: ApplePayService) { }
 
   ngOnInit() {
     this.calculateTotals();
@@ -29,21 +29,6 @@ export class CompanyStoreCartPage implements OnInit {
   }
 
   async triggerApplePay() {
-    const items = this.productsInCart.map(product => {
-      let applePayItem: ApplePaySummaryItem = {
-        label: product.name,
-        amount: product.price.toLocaleString(),
-        type: "final"
-      };
-      return applePayItem;
-    });
-
-    const total: ApplePaySummaryItem = {
-      amount: this.total.toLocaleString(),
-      label: 'Total',
-      type: 'final',
-    };
-
-    const result = await this.paymentsService.makePayment(items, total);
+    const result = await this.applePayService.makePayment(this.productsInCart, this.total);
   }
 }

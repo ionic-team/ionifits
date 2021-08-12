@@ -5,13 +5,14 @@ import {
   ApplePaySummaryItem,
   ApplePaySupportedNetworks
 } from '@ionic-enterprise/apple-pay';
+import { Product } from '../models/product';
 import { IdentityService } from './identity.service';
 export { ApplePaySummaryItem } from '@ionic-enterprise/apple-pay';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PaymentsService {
+export class ApplePayService {
   private merchantIdentifier = 'merchant.io.ionic.ionifits.applepay';
   private supportedNetworks: ApplePaySupportedNetworks[] = [
     ApplePaySupportedNetworks.VISA,
@@ -41,12 +42,25 @@ export class PaymentsService {
     return canMakePayments;
   }
 
-  async makePayment(
-    items: ApplePaySummaryItem[],
-    total: ApplePaySummaryItem,
-  ): Promise<boolean> {
-
+  async makePayment(products: Product[], total: number): Promise<boolean> {
+    // Hide splash screen so it doesn't display when Apple Pay prompt appears
     await this.identityService.toggleHideScreen(false);
+
+    // Convert product items into Apple Pay items
+    const apItems = products.map(product => {
+      let applePayItem: ApplePaySummaryItem = {
+        label: product.name,
+        amount: product.price.toLocaleString(),
+        type: "final"
+      };
+      return applePayItem;
+    });
+
+    const apTotal: ApplePaySummaryItem = {
+      amount: total.toLocaleString(),
+      label: 'Total',
+      type: 'final',
+    };
 
     const { success } = await ApplePay.makePaymentRequest({
       version: 5,
@@ -54,7 +68,7 @@ export class PaymentsService {
         url: this.merchantValidationUrl,
         params: {
           merchantIdentifier: this.merchantIdentifier,
-          displayName: 'Dallas James Test Store',
+          displayName: 'Ionifits Test Store',
           initiative: 'web',
           initiativeContext: 'applepay.dallastjames.com',
         },
@@ -67,11 +81,12 @@ export class PaymentsService {
         currencyCode: this.currencyCode,
         merchantCapabilities: this.merchantCapabilties,
         supportedNetworks: this.supportedNetworks,
-        lineItems: items,
-        total,
+        lineItems: apItems,
+        total: apTotal,
       },
     });
 
+    // Turn hide screen back on
     await this.identityService.toggleHideScreen(true);
 
     return success;
