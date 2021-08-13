@@ -57,7 +57,7 @@
 //       allowedPaymentMethods: this.allowedPaymentMethods,
 //       merchantInfo: {
 //         merchantId: '12345678901234567890',
-//         merchantName: 'Dallas Test Merchant',
+//         merchantName: 'Ionifits Test Merchant',
 //       },
 //       transactionInfo: {
 //         countryCode: 'US',
@@ -67,5 +67,8 @@
 //       },
 //     });
 //     console.log('MAKE PAYMENT REQUEST', res);
+
+//     // real app: implement steps 6 to 9 yourself on a server.
+//     // todo: tell user transaction was successful
 //   }
 // }

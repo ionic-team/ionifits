@@ -6,8 +6,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let product of productsInCart" lines="none">
-      <ion-thumbnail slot="start">
+    <ion-item *ngFor="let product of productsInCart" lines="none" class="product-items">
+      <ion-thumbnail slot="start" class="thumbnail">
         <img src="{{ product.image }}"/>
       </ion-thumbnail>
       <ion-label>
@@ -19,23 +19,27 @@
       </ion-label>
       </ion-item>
     </ion-list>
+    <hr class="solid-divider">
+    <ion-list>
     <ion-item class="gray" lines="none">
-      <ion-label>Subtotal</ion-label>
-      <ion-label slot>${{ subtotal }}</ion-label>
+      <ion-label class="label-margin">Subtotal</ion-label>
+      <ion-note slot="end">${{ subtotal }}</ion-note>
     </ion-item>
     <ion-item class="gray" lines="none">
-      <ion-label>Shipping</ion-label>
-      <ion-label slot="end">$5</ion-label>
+      <ion-label class="label-margin">Shipping</ion-label>
+      <ion-note slot="end">$5</ion-note>
     </ion-item>
-    <ion-item lines="inset">
-      <ion-label>Total</ion-label>
-      <ion-label slot="end">${{ total }}</ion-label>
+    <ion-item lines="none">
+      <ion-label class="label-margin" color="dark"><strong>Total</strong></ion-label>
+      <ion-note color="dark" slot="end"><strong>${{ total }}</strong></ion-note>
     </ion-item>
-    
-    <div class="apple-pay-button apple-pay-button-black" (click)="triggerApplePay()"></div>
+    </ion-list>
+
+    <div class="apple-pay-button apple-pay-button-black" (click)="triggerApplePay()"
+      *ngIf="displayApplePay">
+    </div>
 
     <ion-button color="dark" class="button-google-pay">
       <ion-img src="/assets/store/google-pay.svg"></ion-img>
     </ion-button>
-
 </ion-content>

@@ -13,10 +13,15 @@ export class CompanyStoreCartPage implements OnInit {
   subtotal: number = 0;
   total: number = 0;
   tax: number = 5;
+  displayApplePay: boolean = false;
+  displayGooglePay: boolean = true;
 
   constructor(private applePayService: ApplePayService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.displayApplePay = await this.applePayService.isAvailable();
+    this.displayGooglePay = true;
+
     this.calculateTotals();
   }
 
