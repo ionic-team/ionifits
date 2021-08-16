@@ -1,15 +1,30 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
-import * as path from 'path';
-import * as fs from 'fs';
+import axios from 'axios';
+import * as https from 'https';
 
-export default (request: VercelRequest, response: VercelResponse) => {
-  const { name = 'World' } = request.query;
-  response.status(200).send(`Hello ${name}!`);
-
+export default async (request: VercelRequest, response: VercelResponse) => {
   // https://vercel.com/support/articles/how-can-i-use-files-in-serverless-functions?query=serverless%20locally
-  const certLocation = path.resolve(__dirname, './assets/merchant.io.ionic.ionifits.applepay.pem');
-  const cert = fs.readFileSync(certLocation, 'utf-8');
+  const { readFileSync } = require('fs');
+  const { join } = require('path');
+  
+  const certFile = readFileSync(join(__dirname, 'assets', 'merchant.io.ionic.ionifits.applepay.pem'), 'utf8');
+  const keyFile = readFileSync(join(__dirname, 'assets', 'applepay.key'), 'utf8');
+  console.log('parsed files');
 
-  const keyLocation = path.resolve(__dirname, './assets/applepay.key');
-  const key = fs.readFileSync(keyLocation, 'utf-8');
+  try {
+    const { validationUrl, body } = request.body;
+    const res = await axios.post(validationUrl, body, {
+      httpsAgent: new https.Agent({
+        cert: certFile,
+        key: keyFile,
+      }),
+    });
+    console.log(validationUrl);
+    console.log("called apple");
+    response.status(200).send(res.data);
+  }
+  catch (e) {
+    console.log(e);
+    response.status(200).send(e);
+  }
 };
