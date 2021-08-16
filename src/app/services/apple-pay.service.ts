@@ -28,11 +28,9 @@ export class ApplePayService {
   private countryCode = 'US';
   private currencyCode = 'USD';
   private merchantValidationUrl =
-    //'https://applepayrelay.dallastjames.com/applepayrelay/session/start';
-    "https://ionifits-mh02il4mv-ionic1.vercel.app/api/session/start";
+    "https://ionifits-g2rcfstu5-ionic1.vercel.app/api/session/start";
   private authorizationUrl =
-    //'https://applepayrelay.dallastjames.com/applepayrelay/session/authorize';
-    "https://ionifits-mh02il4mv-ionic1.vercel.app/api/session/authorize";
+    "https://ionifits-g2rcfstu5-ionic1.vercel.app/api/session/authorize";
 
   constructor(private identityService: IdentityService) { }
 
