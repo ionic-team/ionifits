@@ -3,6 +3,7 @@ import { IonRouterOutlet, ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { CompanyStoreCartPage } from '../company-store-cart/company-store-cart.page';
 import { Product } from '../models/product';
+import { mdEnterAnimation } from './toast-animation-md-enter';
 
 @Component({
   selector: 'app-company-store',
@@ -97,7 +98,7 @@ export class CompanyStorePage implements OnInit {
   private async presentToast(message): Promise<void> {
     const toast = await this.toastController.create({
       message: message,
-      duration: 2000,
+      duration: 3000,
       color: "tertiary"
     });
     

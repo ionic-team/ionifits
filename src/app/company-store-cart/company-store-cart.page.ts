@@ -49,16 +49,12 @@ export class CompanyStoreCartPage implements OnInit {
   async triggerApplePay() {
     const result = await this.applePayService.makePayment(this.productsInCart, this.total);
     
-    this.modalController.dismiss({
-      'total': this.total
-    });
+    this.modalController.dismiss({});
   }
 
   async triggerGooglePay() {
     const result = await this.googlePayService.makePayment(this.total);
     
-    this.modalController.dismiss({
-      'total': this.total
-    });
+    this.modalController.dismiss({});
   }
 }
