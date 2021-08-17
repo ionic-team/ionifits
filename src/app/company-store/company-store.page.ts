@@ -87,7 +87,7 @@ export class CompanyStorePage implements OnInit {
       });
       
       modal.onDidDismiss().then((result) => {
-        this.presentToast(`Successfully charged $${result.data.total}!`);
+        this.presentToast(`Thanks for your order!`);
       });
       
       return await modal.present();
