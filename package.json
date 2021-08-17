@@ -36,7 +36,7 @@
     "@capacitor/keyboard": "^1.0.2",
     "@capacitor/splash-screen": "^1.0.2",
     "@capacitor/status-bar": "^1.0.2",
-    "@ionic-enterprise/apple-pay": "^1.0.0",
+    "@ionic-enterprise/apple-pay": "0.1.2-dev-d47d609.0",
     "@ionic-enterprise/auth": "^3.7.0",
     "@ionic-enterprise/google-pay": "0.1.2-dev-98f4c74.0",
     "@ionic-enterprise/identity-vault": "^5.0.1",

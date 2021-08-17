@@ -3,7 +3,6 @@ import { IonRouterOutlet, ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { CompanyStoreCartPage } from '../company-store-cart/company-store-cart.page';
 import { Product } from '../models/product';
-import { mdEnterAnimation } from './toast-animation-md-enter';
 
 @Component({
   selector: 'app-company-store',
