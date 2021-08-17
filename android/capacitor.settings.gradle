@@ -25,3 +25,6 @@ project(':capacitor-status-bar').projectDir = new File('../node_modules/@capacit
 
 include ':ionic-enterprise-apple-pay'
 project(':ionic-enterprise-apple-pay').projectDir = new File('../node_modules/@ionic-enterprise/apple-pay/android')
+
+include ':ionic-enterprise-google-pay'
+project(':ionic-enterprise-google-pay').projectDir = new File('../node_modules/@ionic-enterprise/google-pay/android')

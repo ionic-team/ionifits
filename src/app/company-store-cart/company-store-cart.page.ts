@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Product } from '../models/product';
 import { ApplePayService } from '../services/apple-pay.service';
+import { GooglePayService } from '../services/google-pay.service';
 
 @Component({
   selector: 'app-company-store-cart',
@@ -14,13 +16,24 @@ export class CompanyStoreCartPage implements OnInit {
   total: number = 0;
   tax: number = 5;
   displayApplePay: boolean = false;
-  displayGooglePay: boolean = true;
+  displayGooglePay: boolean = false;
 
-  constructor(private applePayService: ApplePayService) { }
+  constructor(
+    private applePayService: ApplePayService, 
+    private googlePayService: GooglePayService,
+    private modalController: ModalController
+    ) { }
 
   async ngOnInit() {
-    this.displayApplePay = await this.applePayService.isAvailable();
-    this.displayGooglePay = true;
+     this.displayApplePay = await this.applePayService.isAvailable();
+    
+    // If not Apple Pay compatible, show Google Pay
+    if (!this.displayApplePay) {
+      const googlePayReady = await this.googlePayService.init();
+      console.log("g pay ready?", googlePayReady);
+      this.displayGooglePay = await this.googlePayService.isAvailable();
+      console.log("g pay available?", this.displayGooglePay);
+    }
 
     this.calculateTotals();
   }
@@ -35,5 +48,14 @@ export class CompanyStoreCartPage implements OnInit {
 
   async triggerApplePay() {
     const result = await this.applePayService.makePayment(this.productsInCart, this.total);
+    console.log("apple pay result: ", result);
+  }
+
+  async triggerGooglePay() {
+    const result = await this.googlePayService.makePayment(this.total);
+    
+    this.modalController.dismiss({
+      'total': this.total
+    });
   }
 }

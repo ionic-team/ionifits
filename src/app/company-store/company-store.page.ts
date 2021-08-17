@@ -68,7 +68,7 @@ export class CompanyStorePage implements OnInit {
       this.cart.push(product);
     }
 
-    await this.presentToast(product.name);
+    await this.presentToast(`${product.name} added`);
   }
 
   public calculateCartQuantity(): number {
@@ -82,18 +82,21 @@ export class CompanyStorePage implements OnInit {
         swipeToClose: true,
         presentingElement: this.routerOutlet.nativeEl,
         componentProps: { 
-          "productsInCart": this.cart }
+          "productsInCart": this.cart 
+        }
       });
       
-      modal.onDidDismiss().then((result) => { });
+      modal.onDidDismiss().then((result) => {
+        this.presentToast(`Successfully charged $${result.data.total}!`);
+      });
       
       return await modal.present();
     }
   }
 
-  private async presentToast(productName): Promise<void> {
+  private async presentToast(message): Promise<void> {
     const toast = await this.toastController.create({
-      message: `${productName} added`,
+      message: message,
       duration: 2000,
       color: "tertiary"
     });
