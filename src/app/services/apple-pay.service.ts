@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {
   ApplePay,
-  ApplePayMerchantCapabilities,
+  ApplePayMerchantCapability,
   ApplePaySummaryItem,
-  ApplePaySupportedNetworks
+  ApplePaySupportedNetwork
 } from '@ionic-enterprise/apple-pay';
 import { Product } from '../models/product';
 import { IdentityService } from './identity.service';
@@ -14,16 +14,16 @@ export { ApplePaySummaryItem } from '@ionic-enterprise/apple-pay';
 })
 export class ApplePayService {
   private merchantIdentifier = 'merchant.io.ionic.ionifits.applepay';
-  private supportedNetworks: ApplePaySupportedNetworks[] = [
-    ApplePaySupportedNetworks.VISA,
-    ApplePaySupportedNetworks.MASTERCARD,
-    ApplePaySupportedNetworks.AMEX,
-    ApplePaySupportedNetworks.DISCOVER,
+  private supportedNetworks: ApplePaySupportedNetwork[] = [
+    ApplePaySupportedNetwork.VISA,
+    ApplePaySupportedNetwork.MASTERCARD,
+    ApplePaySupportedNetwork.AMEX,
+    ApplePaySupportedNetwork.DISCOVER,
   ];
-  private merchantCapabilties: ApplePayMerchantCapabilities[] = [
-    ApplePayMerchantCapabilities.DEBIT,
-    ApplePayMerchantCapabilities.CREDIT,
-    ApplePayMerchantCapabilities.THREEDS,
+  private merchantCapabilties: ApplePayMerchantCapability[] = [
+    ApplePayMerchantCapability.DEBIT,
+    ApplePayMerchantCapability.CREDIT,
+    ApplePayMerchantCapability.THREEDS,
   ];
   private countryCode = 'US';
   private currencyCode = 'USD';

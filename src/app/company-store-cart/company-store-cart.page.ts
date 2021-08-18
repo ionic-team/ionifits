@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Capacitor } from '@capacitor/core';
 import { ModalController } from '@ionic/angular';
 import { Product } from '../models/product';
 import { ApplePayService } from '../services/apple-pay.service';
@@ -24,11 +25,10 @@ export class CompanyStoreCartPage implements OnInit {
     private modalController: ModalController
     ) { }
 
-  async ngOnInit() {
-     this.displayApplePay = await this.applePayService.isAvailable();
-    
-    // If not Apple Pay compatible, show Google Pay
-    if (!this.displayApplePay) {
+  async ngOnInit() { 
+    if (Capacitor.getPlatform() === 'ios') {
+      this.displayApplePay = await this.applePayService.isAvailable();
+    } else {
       const googlePayReady = await this.googlePayService.init();
       console.log("g pay ready?", googlePayReady);
       this.displayGooglePay = await this.googlePayService.isAvailable();

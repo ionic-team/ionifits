@@ -21,7 +21,7 @@ export class GooglePayService {
       parameters: {
         allowedAuthMethods: [
           GooglePayAllowedAuthMethods.PAN_ONLY,
-          GooglePayAllowedAuthMethods.CRYPTOGRAM_3DS,
+          GooglePayAllowedAuthMethods.CRYPTOGRAM_3DS
         ],
         allowedCardNetworks: [GooglePayAllowedNetworks.VISA],
       },
@@ -42,7 +42,6 @@ export class GooglePayService {
       environment: 'TEST',
       version: this.googlePayVersion,
     });
-    console.log('INIT RES', isReady);
     return isReady;
   }
 
@@ -54,7 +53,7 @@ export class GooglePayService {
   }
 
   public async makePayment(total: number): Promise<boolean> {
-    const res = await GooglePay.makePaymentRequest({
+    const result = await GooglePay.makePaymentRequest({
       allowedPaymentMethods: this.allowedPaymentMethods,
       merchantInfo: {
         merchantId: '12345678901234567890',
@@ -67,10 +66,10 @@ export class GooglePayService {
         totalPriceStatus: 'FINAL',
       },
     });
-    console.log('MAKE PAYMENT REQUEST', res);
     return true;
 
-    // real app: implement steps 6 to 9 yourself on a server.
-    // todo: tell user transaction was successful
+    // NOTE: In a production app, you send result details to your relay server
+    // in order to complete payment processing.
+    // See https://ionic.io/docs/google-pay
   }
 }
