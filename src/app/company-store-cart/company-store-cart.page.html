@@ -39,7 +39,8 @@
       *ngIf="displayApplePay">
     </div>
 
-    <ion-button color="dark" class="button-google-pay" (click)="triggerGooglePay()">
+    <ion-button color="dark" class="button-google-pay" (click)="triggerGooglePay()"
+      *ngIf="displayGooglePay">
       <ion-img src="/assets/store/google-pay.svg"></ion-img>
     </ion-button>
 

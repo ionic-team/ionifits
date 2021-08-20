@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
   GooglePay,
-  GooglePayAllowedAuthMethods,
+  GooglePayAllowedAuthMethod,
   GooglePayVersion,
   GooglePayPaymentMethod,
-  GooglePayAllowedNetworks,
+  GooglePayAllowedNetwork,
+  GooglePayEnvironment,
 } from '@ionic-enterprise/google-pay';
 
 @Injectable({
@@ -20,10 +21,10 @@ export class GooglePayService {
       type: 'CARD',
       parameters: {
         allowedAuthMethods: [
-          GooglePayAllowedAuthMethods.PAN_ONLY,
-          GooglePayAllowedAuthMethods.CRYPTOGRAM_3DS
+          GooglePayAllowedAuthMethod.PAN_ONLY,
+          GooglePayAllowedAuthMethod.CRYPTOGRAM_3DS
         ],
-        allowedCardNetworks: [GooglePayAllowedNetworks.VISA],
+        allowedCardNetworks: [GooglePayAllowedNetwork.VISA],
       },
       tokenizationSpecification: {
         type: 'PAYMENT_GATEWAY',
@@ -39,7 +40,7 @@ export class GooglePayService {
 
   public async init(): Promise<boolean> {
     const { isReady } = await GooglePay.initGooglePayClient({
-      environment: 'TEST',
+      environment: GooglePayEnvironment.TEST,
       version: this.googlePayVersion,
     });
     return isReady;
