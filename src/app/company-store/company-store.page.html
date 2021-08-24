@@ -25,8 +25,8 @@
 
   <h4 class="category-header">Bestsellers and more</h4>
   
-  <ion-slides id="slider" [options]="slideOptions" class="category-slider">
-    <ion-slide class="item-detail">
+  <!-- <ion-slides id="slider" [options]="slideOptions" class="category-slider">
+    <ion-slide class="item-detail" (click)="addToCart(product)">
       <img src="/assets/store/capacitor-snapback.png" />
       <div style="float: left">
         <p class="detail-name">Capacitor Snapback</p>
@@ -55,6 +55,16 @@
       <div style="float: left">
         <p class="detail-name">Capacitor Mask</p>
         <p class="detail-price">$12</p>
+      </div>
+    </ion-slide>
+  </ion-slides> -->
+
+  <ion-slides id="slider" [options]="slideOptions" class="category-slider">
+    <ion-slide class="item-detail" *ngFor="let product of bestsellerProducts">
+      <img src="{{ product.image }}" />
+      <div style="float: left">
+        <p class="detail-name">{{ product.name }}</p>
+        <p class="detail-price">${{product.price }}</p>
       </div>
     </ion-slide>
   </ion-slides>

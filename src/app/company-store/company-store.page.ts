@@ -3,6 +3,7 @@ import { IonRouterOutlet, ToastController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { CompanyStoreCartPage } from '../company-store-cart/company-store-cart.page';
 import { Product } from '../models/product';
+import { companyStoreProducts } from 'src/data/storeData';
 
 @Component({
   selector: 'app-company-store',
@@ -17,7 +18,7 @@ export class CompanyStorePage implements OnInit {
 
   slideOptions = {
     slidesPerView: "auto", 
-    autoplay: true,
+    autoplay: false,
     zoom: true, 
     grabCursor: true
   }
@@ -25,6 +26,7 @@ export class CompanyStorePage implements OnInit {
   public cart: Product[] = [];
   public products: Product[] = [];
   public newProducts: Product[] = [];
+  public bestsellerProducts: Product[] = [];
 
   ngOnInit() {
     this.products.push({
@@ -56,6 +58,7 @@ export class CompanyStorePage implements OnInit {
       quantity: 0
     });
 
+    this.bestsellerProducts = companyStoreProducts.filter(p => p.saleCategory === "bestsellers");
     this.newProducts = this.products.filter(p => p.saleCategory === "new");
   }
 
@@ -102,6 +105,10 @@ export class CompanyStorePage implements OnInit {
     });
     
     await toast.present();
+  }
+
+  private async initProducts() {
+
   }
 
 }
