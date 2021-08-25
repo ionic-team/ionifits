@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons collapse="true" slot="end">
+      <ion-icon name="information-circle-outline" slot="start" size="large"
+      class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
+      </ion-icon>
       <ion-button class="badge-button" fill="clear" (click)="openCartModal()">
         <ion-icon size="large" name="cart"></ion-icon>
         <ion-badge class="badge-single-digits" color="danger">{{ calculateCartQuantity() }}</ion-badge>
@@ -24,47 +27,21 @@
   </ion-header>
 
   <h4 class="category-header">Bestsellers and more</h4>
-  
-  <!-- <ion-slides id="slider" [options]="slideOptions" class="category-slider">
-    <ion-slide class="item-detail" (click)="addToCart(product)">
-      <img src="/assets/store/capacitor-snapback.png" />
+
+  <ion-slides id="slider" [options]="slideOptions" class="category-slider">
+    <ion-slide class="item-detail" *ngFor="let product of bestsellerProducts" (click)="addToCart(product)">
+      <img src="{{ product.image }}" />
+      <ion-button class="product-button" fill="clear">
+        <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
+      </ion-button>
       <div style="float: left">
-        <p class="detail-name">Capacitor Snapback</p>
-        <p class="detail-price">$32</p>
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <img src="/assets/store/portals-tote.png" />
-      <div style="float: left">
-        <p class="detail-name">Portals Tote</p>
-        <p class="detail-price">$24</p>
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <img src="/assets/store/ionic-headband.png" />
-      <div style="float: left">
-        <p class="detail-name">Ionic Headband</p>
-        <p class="detail-price">
+        <p class="detail-name">{{ product.name }}</p>
+        <!-- A little bit of fun -->
+        <p class="detail-price" *ngIf="product.name !== 'Ionic Headband'">${{product.price }}</p>
+        <p class="detail-price" *ngIf="product.name === 'Ionic Headband'">
           <span class="headband">$999</span>
           <span class="sold"> SOLD OUT</span>
         </p>
-      </div>
-    </ion-slide>
-    <ion-slide>
-      <img src="/assets/store/capacitor-mask.png" />
-      <div style="float: left">
-        <p class="detail-name">Capacitor Mask</p>
-        <p class="detail-price">$12</p>
-      </div>
-    </ion-slide>
-  </ion-slides> -->
-
-  <ion-slides id="slider" [options]="slideOptions" class="category-slider">
-    <ion-slide class="item-detail" *ngFor="let product of bestsellerProducts">
-      <img src="{{ product.image }}" />
-      <div style="float: left">
-        <p class="detail-name">{{ product.name }}</p>
-        <p class="detail-price">${{product.price }}</p>
       </div>
     </ion-slide>
   </ion-slides>
@@ -102,35 +79,27 @@
 
   <ion-grid class="grid">
     <ion-row>
-      <ion-col>
-        <img src="/assets/store/ionitron-shirt.png" />
-        <div style="float: left">
-          <p class="detail-name">Ionitron Shirt</p>
-          <p class="detail-price">$14</p>
-        </div>
-      </ion-col>
-      <ion-col>
-        <img src="/assets/store/ionic-hoodie.png" />
-        <div style="float: left">
-          <p class="detail-name">Ionic Hoodie</p>
-          <p class="detail-price">$30</p>
-        </div>
+      <ion-col style="position: relative;" *ngFor="let product of saleProducts | slice:0:2">
+        <span (click)="addToCart(product)">
+          <img src="{{ product.image }}"  />
+          <ion-button class="product-button" fill="clear">
+            <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
+          </ion-button>
+        </span>
+        <p class="detail-name">{{ product.name }}</p>
+        <p class="detail-price">${{ product.price }}</p>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <img src="/assets/store/ionic-shirt.png" />
-        <div style="float: left">
-          <p class="detail-name">Ionic Logo Shirt</p>
-          <p class="detail-price">$19</p>
-        </div>
-      </ion-col>
-      <ion-col>
-        <img src="/assets/store/ionitron-sticker.png" />
-        <div style="float: left">
-          <p class="detail-name">Ionitron Sticker</p>
-          <p class="detail-price">$1</p>
-        </div>
+      <ion-col style="position: relative;" *ngFor="let product of saleProducts | slice:2:4">
+        <span (click)="addToCart(product)">
+          <img src="{{ product.image }}"  />
+          <ion-button class="product-button" fill="clear">
+            <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
+          </ion-button>
+        </span>
+        <p class="detail-name">{{ product.name }}</p>
+        <p class="detail-price">${{ product.price }}</p>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -139,37 +108,28 @@
 
   <ion-grid class="grid">
     <ion-row>
-      <ion-col>
-        <img src="/assets/store/stencil-shirt.png" />
-        <div style="float: left">
-          <p class="detail-name">Stencil Longsleeve</p>
-          <p class="detail-price">$40</p>
-        </div>
-      </ion-col>
-      <ion-col>
-        <img src="/assets/store/stencil-buttons.png" />
-        <div style="float: left">
-          <p class="detail-name">Stencil Buttons</p>
-          <p class="detail-price">$4</p>
-        </div>
+      <ion-col style="position: relative;" *ngFor="let product of recommendedProducts | slice:0:2">
+        <span (click)="addToCart(product)">
+          <img src="{{ product.image }}"  />
+          <ion-button class="product-button" fill="clear">
+            <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
+          </ion-button>
+        </span>
+        <p class="detail-name">{{ product.name }}</p>
+        <p class="detail-price">${{ product.price }}</p>
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col>
-        <img src="/assets/store/ionic-sticker.png" />
-        <div style="float: left">
-          <p class="detail-name">Ionic Sticker</p>
-          <p class="detail-price">$3</p>
-        </div>
-      </ion-col>
-      <ion-col>
-        <img src="/assets/store/ionitron-shirt.png" />
-        <div style="float: left">
-          <p class="detail-name">Ionitron Shirt</p>
-          <p class="detail-price">$29</p>
-        </div>
+      <ion-col style="position: relative;" *ngFor="let product of recommendedProducts | slice:2:4">
+        <span (click)="addToCart(product)">
+          <img src="{{ product.image }}"  />
+          <ion-button class="product-button" fill="clear">
+            <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
+          </ion-button>
+        </span>
+        <p class="detail-name">{{ product.name }}</p>
+        <p class="detail-price">${{ product.price }}</p>
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
