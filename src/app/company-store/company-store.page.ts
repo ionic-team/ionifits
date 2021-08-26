@@ -51,7 +51,7 @@ export class CompanyStorePage implements OnInit {
   }
 
   private triggerHapticFeedback = async () => {
-    await Haptics.impact({ style: ImpactStyle.Medium });
+    await Haptics.vibrate();
   };
 
   public calculateCartQuantity(): number {
