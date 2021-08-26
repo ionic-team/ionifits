@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Capacitor } from '@capacitor/core';
 import { ModalController } from '@ionic/angular';
 import { Product } from '../models/product';
 import { ApplePayService } from '../services/apple-pay.service';
@@ -26,13 +25,11 @@ export class CompanyStoreCartPage implements OnInit {
     ) { }
 
   async ngOnInit() { 
-    if (Capacitor.getPlatform() === 'ios') {
+    if (this.applePayIsSupported()) {
       this.displayApplePay = await this.applePayService.isAvailable();
     } else {
       const googlePayReady = await this.googlePayService.init();
-      console.log("g pay ready?", googlePayReady);
       this.displayGooglePay = await this.googlePayService.isAvailable();
-      console.log("g pay available?", this.displayGooglePay);
     }
 
     this.calculateTotals();
@@ -46,15 +43,25 @@ export class CompanyStoreCartPage implements OnInit {
     this.total = this.subtotal + this.tax;
   }
 
+  // Apple Pay is only supported on Safari web browser or on iOS devices,
+  // so detect if the Apple Pay button is available
+  private applePayIsSupported(): boolean {
+    return CSS.supports("-webkit-appearance", "-apple-pay-button");
+  }
+
   async triggerApplePay() {
     const result = await this.applePayService.makePayment(this.productsInCart, this.total);
     
-    this.modalController.dismiss({});
+    this.modalController.dismiss({
+      paymentSuccessful: result
+    });
   }
 
   async triggerGooglePay() {
     const result = await this.googlePayService.makePayment(this.total);
     
-    this.modalController.dismiss({});
+    this.modalController.dismiss({
+      paymentSuccessful: result
+    });
   }
 }

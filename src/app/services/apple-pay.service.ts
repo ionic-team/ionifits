@@ -70,7 +70,7 @@ export class ApplePayService {
           merchantIdentifier: this.merchantIdentifier,
           displayName: 'Ionifits Test Store',
           initiative: 'web',
-          initiativeContext: 'applepay.dallastjames.com',
+          initiativeContext: 'ionifits.ionicframework.com',
         },
       },
       paymentAuthorization: {

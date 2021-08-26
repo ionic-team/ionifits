@@ -5,6 +5,7 @@ import { CompanyStoreCartPage } from '../company-store-cart/company-store-cart.p
 import { Product } from '../models/product';
 import { companyStoreProducts } from 'src/data/storeData';
 import { ImplementationModalPage } from '../implementation-modal/implementation-modal.page';
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 @Component({
   selector: 'app-company-store',
@@ -44,9 +45,14 @@ export class CompanyStorePage implements OnInit {
         this.cart.push(product);
       }
 
+      await this.triggerHapticFeedback();
       await this.presentToast(`${product.name} added`);
     }
   }
+
+  private triggerHapticFeedback = async () => {
+    await Haptics.impact({ style: ImpactStyle.Medium });
+  };
 
   public calculateCartQuantity(): number {
     return this.cart.reduce((accumulator, current) => accumulator + current.quantity, 0);
@@ -64,7 +70,11 @@ export class CompanyStorePage implements OnInit {
       });
       
       modal.onDidDismiss().then((result) => {
-        this.presentToast(`Thanks for your order!`);
+        // Data will be undefined if cart was swiped closed or back button used
+        if (result.data) {
+          this.cart.length = 0;
+          this.presentToast(`Thanks for your order!`);
+        }
       });
       
       return await modal.present();
