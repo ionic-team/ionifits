@@ -26,9 +26,10 @@
     </ion-toolbar>
   </ion-header>
 
+  <!-- Display Bestsellers with slides on mobile and a static grid on desktop -->
   <h4 class="category-header">Bestsellers and more</h4>
 
-  <!-- <ion-slides id="slider" [options]="slideOptions" class="category-slider">
+  <ion-slides id="slider" [options]="slideOptions" class="category-slider" *ngIf="!isDesktop">
     <ion-slide class="item-detail" *ngFor="let product of bestsellerProducts" (click)="addToCart(product)">
       <img src="{{ product.image }}" />
       <ion-button class="product-button" fill="clear">
@@ -36,7 +37,7 @@
       </ion-button>
       <div style="float: left">
         <p class="detail-name">{{ product.name }}</p>
-         A little bit of fun
+        <!-- A little bit of fun -->
         <p class="detail-price" *ngIf="product.name !== 'Ionic Headband'">${{product.price }}</p>
         <p class="detail-price" *ngIf="product.name === 'Ionic Headband'">
           <span class="headband">$999</span>
@@ -44,7 +45,27 @@
         </p>
       </div>
     </ion-slide>
-  </ion-slides> -->
+  </ion-slides>
+
+  <ion-grid class="grid" *ngIf="isDesktop">
+    <ion-row>
+      <ion-col size="12" size-xs="6" size-lg="3" size-xl="3" *ngFor="let product of bestsellerProducts">
+        <span (click)="addToCart(product)">
+          <img src="{{ product.image }}" class="grid-img" />
+          <ion-button class="product-button" fill="clear">
+            <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
+          </ion-button>
+        </span>
+        <p class="detail-name">{{ product.name }}</p>
+        <!-- A little bit of fun -->
+        <p class="detail-price" *ngIf="product.name !== 'Ionic Headband'">${{product.price }}</p>
+        <p class="detail-price" *ngIf="product.name === 'Ionic Headband'">
+          <span class="headband">$999</span>
+          <span class="sold"> SOLD OUT</span>
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
   <h4 class="category-header">New & Featured</h4>
 
@@ -63,52 +84,13 @@
     </ion-row>
   </ion-grid>
 
-  <!-- <ion-grid class="grid">
-    <ion-row>
-      <ion-col style="position: relative;" *ngFor="let product of newProducts | slice:0:2">
-        <span (click)="addToCart(product)">
-          <img src="{{ product.image }}"  />
-          <ion-button class="product-button" fill="clear">
-            <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
-          </ion-button>
-        </span>
-        <p class="detail-name">{{ product.name }}</p>
-        <p class="detail-price">${{ product.price }}</p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col style="position: relative;" *ngFor="let product of newProducts | slice:2:4">
-        <span (click)="addToCart(product)">
-          <img src="{{ product.image }}"  />
-          <ion-button class="product-button" fill="clear">
-            <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
-          </ion-button>
-        </span>
-        <p class="detail-name">{{ product.name }}</p>
-        <p class="detail-price">${{ product.price }}</p>
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
-
   <h4 class="category-header">Sale - Up to 50% Off</h4>
 
   <ion-grid class="grid">
     <ion-row>
-      <ion-col style="position: relative;" *ngFor="let product of saleProducts | slice:0:2">
+      <ion-col size="12" size-xs="6" size-lg="3" size-xl="3" *ngFor="let product of saleProducts">
         <span (click)="addToCart(product)">
-          <img src="{{ product.image }}"  />
-          <ion-button class="product-button" fill="clear">
-            <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
-          </ion-button>
-        </span>
-        <p class="detail-name">{{ product.name }}</p>
-        <p class="detail-price">${{ product.price }}</p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col style="position: relative;" *ngFor="let product of saleProducts | slice:2:4">
-        <span (click)="addToCart(product)">
-          <img src="{{ product.image }}"  />
+          <img src="{{ product.image }}" class="grid-img"  />
           <ion-button class="product-button" fill="clear">
             <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
           </ion-button>
@@ -123,21 +105,9 @@
 
   <ion-grid class="grid">
     <ion-row>
-      <ion-col style="position: relative;" *ngFor="let product of recommendedProducts | slice:0:2">
+      <ion-col size="12" size-xs="6" size-lg="3" size-xl="3" *ngFor="let product of recommendedProducts">
         <span (click)="addToCart(product)">
-          <img src="{{ product.image }}"  />
-          <ion-button class="product-button" fill="clear">
-            <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
-          </ion-button>
-        </span>
-        <p class="detail-name">{{ product.name }}</p>
-        <p class="detail-price">${{ product.price }}</p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col style="position: relative;" *ngFor="let product of recommendedProducts | slice:2:4">
-        <span (click)="addToCart(product)">
-          <img src="{{ product.image }}"  />
+          <img src="{{ product.image }}" class="grid-img"  />
           <ion-button class="product-button" fill="clear">
             <ion-icon name="add-circle-outline" class="product-icon"></ion-icon>
           </ion-button>

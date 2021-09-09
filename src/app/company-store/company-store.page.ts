@@ -5,7 +5,8 @@ import { CompanyStoreCartPage } from '../company-store-cart/company-store-cart.p
 import { Product } from '../models/product';
 import { companyStoreProducts } from 'src/data/storeData';
 import { ImplementationModalPage } from '../implementation-modal/implementation-modal.page';
-import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { Haptics } from '@capacitor/haptics';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-company-store',
@@ -16,7 +17,8 @@ export class CompanyStorePage implements OnInit {
 
   constructor(public toastController: ToastController, 
               public modalController: ModalController,
-              private routerOutlet: IonRouterOutlet) { }
+              private routerOutlet: IonRouterOutlet,
+              private platform: Platform) { }
 
   slideOptions = {
     slidesPerView: "auto", 
@@ -30,9 +32,12 @@ export class CompanyStorePage implements OnInit {
   public bestsellerProducts: Product[] = [];
   public saleProducts: Product[] = [];
   public recommendedProducts: Product[] = [];
+  public isDesktop: boolean = false;
 
   ngOnInit() {
     this.initProducts();
+
+    this.isDesktop = this.platform.is("desktop");
   }
 
   private async addToCart(product: Product): Promise<void> {
