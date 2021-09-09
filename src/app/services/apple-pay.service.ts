@@ -28,9 +28,9 @@ export class ApplePayService {
   private countryCode = 'US';
   private currencyCode = 'USD';
   private merchantValidationUrl =
-    "https://ionifits-g2rcfstu5-ionic1.vercel.app/api/session/start";
+    "https://ionifits.ionicframework.com/api/session/start";
   private authorizationUrl =
-    "https://ionifits-g2rcfstu5-ionic1.vercel.app/api/session/authorize";
+    "https://ionifits.ionicframework.com/api/session/authorize";
 
   constructor(private identityService: IdentityService) { }
 
