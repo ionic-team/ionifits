@@ -54,21 +54,9 @@
 
 .detail-price {
   margin-top:-15px;
-  margin-bottom: 0px;
   color: #888;
   font-size: 14px;
   float: left;
-}
-
-.product-icon {
-  color: white;
-}
-
-.product-button {
-  position: absolute; 
-  right: 0px; 
-  top: 0px; 
-  margin-bottom: -10px;
 }
 
 .headband {
@@ -79,10 +67,7 @@
   color: red;
 }
 
-.md .tabs-bottom {
-  transform: translateY(-76px) !important;
-}
-
-.tabs-bottom {
-  transform: translateY(-45px) !important;
+// Add some space on mobile between each product card
+.col-adjust {
+  margin-bottom: 20px;
 }
