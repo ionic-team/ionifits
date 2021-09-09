@@ -1,0 +1,60 @@
+/* Make product thumbnails larger than default 
+   Size variable doesn't work currently due to Framework bug below
+*/
+ion-thumbnail {
+  --size: 108px;
+  --border-radius: 12px;
+}
+
+/*  
+  Workaround for Framework bug:
+  https://github.com/ionic-team/ionic-framework/issues/22935
+*/
+.thumbnail {
+  height: 108px;
+  width: 108px;
+}
+
+.gray {
+  color: rgba(0, 0, 0, 0.4);
+}
+
+span {
+  font-size: 15px;
+}
+
+.solid-divider {
+  border-top: 1px solid #bbb;
+  margin: 20px;
+}
+
+.product-items {
+  margin-top: 20px;
+}
+
+.label-margin {
+  margin: 0px;
+}
+
+.payment-note {
+  margin: 15px;
+}
+
+/* Apple Pay button */
+.apple-pay-button {
+  display: flex;
+  -webkit-appearance: -apple-pay-button;
+  -apple-pay-button-type: check-out; /* Use any supported button type. */
+  margin: 15px;
+  padding: 25px;
+}
+.apple-pay-button-black {
+  -apple-pay-button-style: black;
+}
+
+/* Google Pay button */
+.button-google-pay {
+  display: flex;
+  margin: 15px;
+  height: 55px;
+}

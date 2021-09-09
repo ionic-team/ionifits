@@ -6,8 +6,8 @@ android {
         applicationId "io.ionic.demoapp.ionifits"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 6
-        versionName "0.0.12"
+        versionCode 7
+        versionName "0.0.13"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

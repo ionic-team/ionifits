@@ -85,4 +85,8 @@ export class IdentityService {
   async logout() {
     await this.vault.clear();
   }
+
+  async toggleHideScreen(shouldHide: boolean) {
+    await Device.setHideScreenOnBackground(shouldHide);
+  }
 }
