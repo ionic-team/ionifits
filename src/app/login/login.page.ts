@@ -28,11 +28,6 @@ export class LoginPage implements OnInit {
       // Pass it to Auth Connect
       await this.authService.callback(window.location.href, loadingIndicator);
     }
-
-    // If already signed in, then enter main app
-    if (await this.authService.isAuthenticated()) {
-      this.skipLogin();
-    }
    }
 
    async ionViewWillEnter() {
@@ -44,7 +39,7 @@ export class LoginPage implements OnInit {
       await this.identityService.unlock();
       if (await this.authService.isAuthenticated()) {
         // if it unlocks, enter app
-        await this.router.navigate(['tabs/employees']);
+        await this.skipLogin();
       }
    }
   }
