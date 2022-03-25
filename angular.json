@@ -74,7 +74,6 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb"
                 }
-
               ],
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
@@ -200,7 +199,7 @@
             }
           }
         }
-      } 
+      }
     },
     "app-e2e": {
       "root": "e2e/",
@@ -227,7 +226,6 @@
         }
       }
     }
-    
   },
   "cli": {
     "defaultCollection": "@ionic/angular-toolkit"
