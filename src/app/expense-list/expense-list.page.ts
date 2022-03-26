@@ -1,22 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { ExpenseService } from '../services/expense.service';
-import { ModalController } from '@ionic/angular';
-import { ExpenseModalPage } from '../expense-modal/expense-modal.page';
-import { Expense } from '../models/expense';
-import { ImplementationModalPage } from '../implementation-modal/implementation-modal.page';
-import { IonRouterOutlet } from '@ionic/angular';
+import { Component, OnInit } from "@angular/core";
+import { ExpenseService } from "../services/expense.service";
+import { ModalController } from "@ionic/angular";
+import { ExpenseModalPage } from "../expense-modal/expense-modal.page";
+import { Expense } from "../models/expense";
+import { IonRouterOutlet } from "@ionic/angular";
+import {
+  NativeFeature,
+  UIComponent,
+} from "src/app/implementation-modal/implementation-modal.page";
 
 @Component({
-  selector: 'app-expense-list',
-  templateUrl: './expense-list.page.html',
-  styleUrls: ['./expense-list.page.scss'],
+  selector: "app-expense-list",
+  templateUrl: "./expense-list.page.html",
+  styleUrls: ["./expense-list.page.scss"],
 })
 export class ExpenseListPage implements OnInit {
-
-  constructor(public modalController: ModalController, public expenseService: ExpenseService, 
-    private routerOutlet: IonRouterOutlet) { }
-
   public expenses: Expense[] = [];
+  private _implPage: any;
+
+  constructor(
+    public modalController: ModalController,
+    public expenseService: ExpenseService,
+    private routerOutlet: IonRouterOutlet
+  ) {}
 
   async ngOnInit() {
     this.expenses = await this.expenseService.loadSaved();
@@ -35,12 +41,13 @@ export class ExpenseListPage implements OnInit {
       component: ExpenseModalPage,
       swipeToClose: true,
       presentingElement: this.routerOutlet.nativeEl,
-      componentProps: { 
-        "existingExpenseId": expenseId }
+      componentProps: {
+        existingExpenseId: expenseId,
+      },
     });
-     
-    modal.onDidDismiss().then((result) => { });
-    
+
+    modal.onDidDismiss().then((result) => {});
+
     return await modal.present();
   }
 
@@ -49,47 +56,88 @@ export class ExpenseListPage implements OnInit {
   }
 
   async openImplModal() {
+    if (!this._implPage) {
+      const { ImplementationModalPage } = await import(
+        "src/app/implementation-modal/implementation-modal.page"
+      );
+      this._implPage = ImplementationModalPage;
+    }
+
+    let uiComps: UIComponent[] = [
+      {
+        name: "List",
+        icon: "list",
+        tag: "<ion-list>",
+        description: "Display all completed expenses.",
+      },
+      {
+        name: "Sliding Item",
+        icon: "return-down-back",
+        tag: "<ion-item-sliding>",
+        description:
+          "An item that can be dragged to reveal buttons. Drag right to left on an expense item to delete it.",
+      },
+      {
+        name: "Modal",
+        icon: "tablet-portrait",
+        tag: "<ion-modal>",
+        description:
+          "A dialog that appears on top of the current page's content. Tap on an expense item to edit its details.",
+      },
+      {
+        name: "FAB",
+        icon: "add-circle-outline",
+        tag: "<ion-fab>",
+        description:
+          "Floating Action Button. Tap to create a new expense item.",
+      },
+      {
+        name: "Grid",
+        icon: "grid",
+        tag: "<ion-grid>",
+        description:
+          "A powerful mobile-first flexbox system for building custom layouts. Used to center the 'No expenses found' messaging.",
+      },
+    ];
+
+    let nativeFeatures: NativeFeature[] = [
+      {
+        name: "Camera",
+        icon: "camera",
+        runtime: "Capacitor Core",
+        description:
+          "Used to take expense receipt pictures on user's mobile device.",
+      },
+      {
+        name: "Filesystem",
+        icon: "document",
+        runtime: "Capacitor Core",
+        description:
+          "Used to store expense receipt pictures on user's mobile device.",
+      },
+      {
+        name: "Secure Storage",
+        icon: "briefcase",
+        runtime: "Ionic Enterprise",
+        description:
+          "Secure, reliable high-performance data access. Save expense details securely on-device.",
+      },
+    ];
+
     const modal: HTMLIonModalElement = await this.modalController.create({
-      component: ImplementationModalPage,
+      component: this._implPage,
       swipeToClose: true,
       presentingElement: this.routerOutlet.nativeEl,
-      componentProps: { 
-        "description": "Complete expense management implementation (CRUD). Native device features include Camera and Filesystem access.",
-        "uiComps": [
-          {
-            name: "List", icon: "list", tag: "<ion-list>",
-            description: "Display all completed expenses."
-          }, {
-            name: "Sliding Item", icon: "return-down-back", tag: "<ion-item-sliding>",
-            description: "An item that can be dragged to reveal buttons. Drag right to left on an expense item to delete it."
-          }, {
-            name: "Modal", icon: "tablet-portrait", tag: "<ion-modal>",
-            description: "A dialog that appears on top of the current page's content. Tap on an expense item to edit its details."
-          }, {
-            name: "FAB", icon: "add-circle-outline", tag: "<ion-fab>",
-            description: "Floating Action Button. Tap to create a new expense item."
-          }, {
-            name: "Grid", icon: "grid", tag: "<ion-grid>", 
-            description: "A powerful mobile-first flexbox system for building custom layouts. Used to center the 'No expenses found' messaging."
-          }],
-        "nativeFeatures": [
-          {
-            name: "Camera", icon: "camera", runtime: "Capacitor Core",
-            description: "Used to take expense receipt pictures on user's mobile device."
-          }, {
-            name: "Filesystem", icon: "document", runtime: "Capacitor Core",
-            description: "Used to store expense receipt pictures on user's mobile device."
-          }, {
-            name: "Secure Storage", icon: "briefcase", runtime: "Ionic Enterprise",
-            description: "Secure, reliable high-performance data access. Save expense details securely on-device."
-          }
-        ]
-      }
+      componentProps: {
+        description:
+          "Complete expense management implementation (CRUD). Native device features include Camera and Filesystem access.",
+        uiComps: uiComps,
+        nativeFeatures: nativeFeatures,
+      },
     });
-     
-    modal.onDidDismiss().then((result) => { });
-    
+
+    modal.onDidDismiss().then((result) => {});
+
     return await modal.present();
   }
-
 }

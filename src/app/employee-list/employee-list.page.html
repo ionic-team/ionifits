@@ -1,15 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons collapse="true" slot="end">
-      <ion-button (click)="openImplModal()" >
-        <ion-icon name="information-circle-outline"  size="large"
-          class="icon-toolbar-padding" color="primary">
+      <ion-button (click)="openImplModal()">
+        <ion-icon
+          name="information-circle-outline"
+          size="large"
+          class="icon-toolbar-padding"
+          color="primary"
+        >
         </ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>People</ion-title>
+    <ion-title>Employees</ion-title>
   </ion-toolbar>
-</ion-header> 
+</ion-header>
 
 <ion-content id="content" fullscreen>
   <cdk-virtual-scroll-viewport
@@ -18,20 +22,8 @@
     itemSize="80"
     minBufferPx="900"
     maxBufferPx="1350"
-    (scrolledIndexChange)="checkNextPage($event, '')">
-    
-    <ion-header collapse="condense">              
-      <ion-toolbar>
-        <ion-buttons collapse="true" (click)="openImplModal()" slot="end">
-          <ion-button slot="end">
-            <ion-icon name="information-circle-outline"  size="large"
-              class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
-            </ion-icon>
-          </ion-button>
-        </ion-buttons>
-        <ion-title size="large">People</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    (scrolledIndexChange)="checkNextPage($event, '')"
+  >
     <ion-list>
       <ion-item
         *cdkVirtualFor="let employee of employees; trackBy: trackByFn"

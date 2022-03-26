@@ -26,9 +26,5 @@
     <param name="ios-package" value="SQLitePlugin"/>
   </feature>
 
-  <feature name="IonicCordovaCommon">
-    <param name="ios-package" value="IonicCordovaCommon" onload="true"/>
-  </feature>
-
   
 </widget>

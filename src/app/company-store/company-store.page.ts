@@ -1,31 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { IonRouterOutlet, ToastController } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
-import { CompanyStoreCartPage } from '../company-store-cart/company-store-cart.page';
-import { Product } from '../models/product';
-import { companyStoreProducts } from 'src/data/storeData';
-import { ImplementationModalPage } from '../implementation-modal/implementation-modal.page';
-import { Haptics } from '@capacitor/haptics';
-import { Platform } from '@ionic/angular';
+import { Component, OnInit } from "@angular/core";
+import { IonRouterOutlet, ToastController } from "@ionic/angular";
+import { ModalController } from "@ionic/angular";
+import { CompanyStoreCartPage } from "../company-store-cart/company-store-cart.page";
+import { Product } from "../models/product";
+import { companyStoreProducts } from "src/data/storeData";
+import {
+  NativeFeature,
+  UIComponent,
+} from "../implementation-modal/implementation-modal.page";
+import { Haptics } from "@capacitor/haptics";
+import { Platform } from "@ionic/angular";
 
 @Component({
-  selector: 'app-company-store',
-  templateUrl: './company-store.page.html',
-  styleUrls: ['./company-store.page.scss'],
+  selector: "app-company-store",
+  templateUrl: "./company-store.page.html",
+  styleUrls: ["./company-store.page.scss"],
 })
 export class CompanyStorePage implements OnInit {
-
-  constructor(public toastController: ToastController, 
-              public modalController: ModalController,
-              private routerOutlet: IonRouterOutlet,
-              private platform: Platform) { }
-
   slideOptions = {
-    slidesPerView: "auto", 
+    slidesPerView: "auto",
     autoplay: true,
-    zoom: true, 
-    grabCursor: true
-  }
+    zoom: true,
+    grabCursor: true,
+  };
 
   public cart: Product[] = [];
   public newProducts: Product[] = [];
@@ -33,6 +30,14 @@ export class CompanyStorePage implements OnInit {
   public saleProducts: Product[] = [];
   public recommendedProducts: Product[] = [];
   public isDesktop: boolean = false;
+  private _implPage: any;
+
+  constructor(
+    public toastController: ToastController,
+    public modalController: ModalController,
+    private routerOutlet: IonRouterOutlet,
+    private platform: Platform
+  ) {}
 
   ngOnInit() {
     this.initProducts();
@@ -42,7 +47,7 @@ export class CompanyStorePage implements OnInit {
 
   private async addToCart(product: Product): Promise<void> {
     if (product.name !== "Ionic Headband") {
-      const foundProduct = this.cart.find(p => p.name === product.name);
+      const foundProduct = this.cart.find((p) => p.name === product.name);
       if (foundProduct) {
         foundProduct.quantity += 1;
       } else {
@@ -60,7 +65,10 @@ export class CompanyStorePage implements OnInit {
   };
 
   public calculateCartQuantity(): number {
-    return this.cart.reduce((accumulator, current) => accumulator + current.quantity, 0);
+    return this.cart.reduce(
+      (accumulator, current) => accumulator + current.quantity,
+      0
+    );
   }
 
   async openCartModal(): Promise<void> {
@@ -69,11 +77,11 @@ export class CompanyStorePage implements OnInit {
         component: CompanyStoreCartPage,
         swipeToClose: true,
         presentingElement: this.routerOutlet.nativeEl,
-        componentProps: { 
-          "productsInCart": this.cart 
-        }
+        componentProps: {
+          productsInCart: this.cart,
+        },
       });
-      
+
       modal.onDidDismiss().then((result) => {
         // Data will be undefined if cart was swiped closed or back button used
         if (result.data) {
@@ -81,7 +89,7 @@ export class CompanyStorePage implements OnInit {
           this.presentToast(`Thanks for your order!`);
         }
       });
-      
+
       return await modal.present();
     }
   }
@@ -90,46 +98,76 @@ export class CompanyStorePage implements OnInit {
     const toast = await this.toastController.create({
       message: message,
       duration: 2000,
-      color: "tertiary"
+      color: "tertiary",
     });
-    
+
     await toast.present();
   }
 
   private initProducts() {
-    this.bestsellerProducts = companyStoreProducts.filter(p => p.saleCategory === "bestsellers");
-    this.newProducts = companyStoreProducts.filter(p => p.saleCategory === "new");
-    this.saleProducts = companyStoreProducts.filter(p => p.saleCategory === "sale");
-    this.recommendedProducts = companyStoreProducts.filter(p => p.saleCategory === "recommended");
+    this.bestsellerProducts = companyStoreProducts.filter(
+      (p) => p.saleCategory === "bestsellers"
+    );
+    this.newProducts = companyStoreProducts.filter(
+      (p) => p.saleCategory === "new"
+    );
+    this.saleProducts = companyStoreProducts.filter(
+      (p) => p.saleCategory === "sale"
+    );
+    this.recommendedProducts = companyStoreProducts.filter(
+      (p) => p.saleCategory === "recommended"
+    );
   }
 
   async openImplModal() {
+    if (!this._implPage) {
+      const { ImplementationModalPage } = await import(
+        "src/app/implementation-modal/implementation-modal.page"
+      );
+      this._implPage = ImplementationModalPage;
+    }
+
+    let uiComps: UIComponent[] = [
+      {
+        name: "Grid",
+        icon: "grid",
+        tag: "<ion-grid>",
+        description:
+          "A powerful mobile-first flexbox system for building custom layouts. Used to display each Product for sale.",
+      },
+      {
+        name: "Slides",
+        icon: "layers",
+        tag: "<ion-slides>",
+        description:
+          "Modern mobile swipe component powered by Swiper.js. Used to display each Product for sale.",
+      },
+    ];
+
+    let nativeFeatures: NativeFeature[] = [
+      {
+        name: "Ionic Payments",
+        icon: "card",
+        runtime: "Ionic Enterprise",
+        description:
+          "Collect payments securely and efficiently with Apple and Google Pay. Purchase store products in the shopping cart using Payments.",
+      },
+    ];
+
     const modal: HTMLIonModalElement = await this.modalController.create({
-      component: ImplementationModalPage,
+      component: this._implPage,
       swipeToClose: true,
       presentingElement: this.routerOutlet.nativeEl,
-      componentProps: { 
-        "description": "E-commerce experience powered by Ionic Payments. Add products to the shopping cart then purchase with Apple or Google Pay.",
-        "uiComps": [ {
-          name: "Grid", icon: "grid", tag: "<ion-grid>", 
-          description: "A powerful mobile-first flexbox system for building custom layouts. Used to display each Product for sale."
-        },
-        {
-          name: "Slides", icon: "layers", tag: "<ion-slides>", 
-          description: "Modern mobile swipe component powered by Swiper.js. Used to display each Product for sale."
-        },
-        ],
-        "nativeFeatures": [
-          {
-            name: "Ionic Payments", icon: "card", runtime: "Ionic Enterprise",
-            description: "Collect payments securely and efficiently with Apple and Google Pay. Purchase store products in the shopping cart using Payments."
-          },
-        ]
-      }
+      componentProps: {
+        description:
+          "E-commerce experience powered by Ionic Payments. Add products to the shopping cart then purchase with Apple or Google Pay.",
+        uiComps: uiComps,
+        nativeFeatures: nativeFeatures,
+      },
     });
-     
-    modal.onDidDismiss().then((result) => { });
-    
+
+    modal.onDidDismiss().then((result) => {});
+
     return await modal.present();
   }
 }

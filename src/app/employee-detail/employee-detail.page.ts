@@ -1,17 +1,17 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { Employee } from '../models/employee';
-import { EmployeeService } from '../services/employee.service';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
+import { Employee } from "../models/employee";
+import { EmployeeService } from "../services/employee.service";
 
 @Component({
-  selector: 'app-employee-detail',
-  templateUrl: './employee-detail.page.html',
-  styleUrls: ['./employee-detail.page.scss']
+  selector: "app-employee-detail",
+  templateUrl: "./employee-detail.page.html",
+  styleUrls: ["./employee-detail.page.scss"],
 })
 export class EmployeeDetailPage implements OnInit, OnDestroy {
   id: number;
-  fullName = '';
+  fullName = "";
   avatarExpanded = false;
   employee: Employee | undefined;
   employeeSubscription: Subscription;
@@ -22,11 +22,13 @@ export class EmployeeDetailPage implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.id = parseInt(this.route.snapshot.params['id'], 10);
-    this.employeeSubscription = this.employeeService.getEmployee(this.id).subscribe(employee => {
-      this.employee = employee;
-      this.fullName = employee.firstName + ' ' + employee.lastName;
-    });
+    this.id = parseInt(this.route.snapshot.paramMap.get("id"), 10);
+    this.employeeSubscription = this.employeeService
+      .getEmployee(this.id)
+      .subscribe((employee) => {
+        this.employee = employee;
+        this.fullName = `${employee.firstName} ${employee.lastName}`;
+      });
   }
 
   ngOnDestroy() {

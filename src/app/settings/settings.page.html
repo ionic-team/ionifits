@@ -1,8 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Settings</ion-title>
-    <ion-icon name="information-circle-outline" slot="end" size="large"
-      class="icon-toolbar-padding" color="primary" (click)="openImplModal()">
+    <ion-icon
+      name="information-circle-outline"
+      slot="end"
+      size="large"
+      class="icon-toolbar-padding"
+      color="primary"
+      (click)="openImplModal()"
+    >
     </ion-icon>
   </ion-toolbar>
 </ion-header>
@@ -56,15 +62,35 @@
     </ion-item>
   </ion-list>
 
+  <ion-list-header>
+    <ion-label class="ion-text-uppercase" color="ios-lh-labl-gray">
+      Appearance
+    </ion-label>
+  </ion-list-header>
+  <ion-radio-group [value]="theme" (ionChange)="toggleTheme($event)">
+    <ion-row>
+      <ion-col *ngFor="let th of themes" size-sm="4" size="12">
+        <ion-item
+          [class]='th.value === "system" ? (mqlDark.matches ? "dark" : "light") : th.value'
+          [class.current-theme]="theme === th.key"
+          lines="none"
+        >
+          <ion-label>{{th.key | titlecase}}</ion-label>
+          <ion-radio slot="start" [value]="th.value"></ion-radio>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-radio-group>
+
   <ion-card>
     <ion-card-header>
       <ion-card-subtitle>Ionifits Demo App</ion-card-subtitle>
-      <ion-card-title>Version 0.0.11</ion-card-title>
+      <ion-card-title>Version {{version}}</ion-card-title>
     </ion-card-header>
 
     <ion-card-content>
-      An Ionic 5 + Capacitor demo app built by the Ionic team to demonstrate various
-      native plugin and performance capabilities.
+      An Ionic 6 + Capacitor demo app built by the Ionic team to demonstrate
+      various native plugin and performance capabilities.
       <p class="card-padding">
         Interested in learning how Ionic can help your business?
       </p>

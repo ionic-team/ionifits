@@ -1,28 +1,77 @@
-ion-content {
-  --background: #F2F2F7;
-}
+// ion-content {
+//   --background: #F2F2F7;
+// }
 
 /* Workaround for Ionic bug where Card color is set to gray due to 
    ion-content background rule above */
-ion-card {
-  --background: white !important;
-}
+// ion-card {
+//   --background: white !important;
+// }
 
 .center {
   text-align: center;
 }
 
-.card-padding{
+.card-padding {
   padding-top: 30px;
-}
-
-.log-in-padding {
-  display: block;
-  margin-top: 20px;
-  margin-left: 20px;
 }
 
 .link {
   font-size: 14px;
   text-transform: uppercase;
+}
+
+ion-radio-group {
+  ion-item {
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    border: solid 1px;
+    ion-label {
+      color: inherit;
+      text-align: center;
+      margin-right: 15px;
+      font-size: var(--font-size--medium);
+    }
+    ion-radio {
+      margin-right: 0px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .light {
+    --background: #ffffff;
+    background: #ffffff;
+    border-color: #cecece;
+    ion-label {
+      color: #1e2023 !important;
+    }
+    ion-radio {
+      --color: #cecece;
+    }
+  }
+  .dim {
+    --background: #0b2238;
+    background: #0b2238;
+    border-color: #14395a;
+    ion-label {
+      color: #ffffff !important;
+    }
+    ion-radio {
+      --color: #14395a;
+    }
+  }
+  .dark {
+    --background: #242526;
+    background: #242526;
+    color: #e4e6eb !important;
+    border-color: #393a3b;
+    ion-label {
+      color: #e4e6eb !important;
+    }
+    ion-radio {
+      --color: #393a3b;
+    }
+  }
 }
