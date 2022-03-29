@@ -3,6 +3,8 @@ import { Capacitor } from "@capacitor/core";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import { SplashScreen } from "@capacitor/splash-screen";
 import { Platform } from "@ionic/angular";
+import { Subscription } from "rxjs";
+import { ThemeService } from "./services/theme.service";
 
 @Component({
   selector: "app-root",
@@ -10,8 +12,9 @@ import { Platform } from "@ionic/angular";
 })
 export class AppComponent {
   private platforms: string[];
+  private themeSub: Subscription;
 
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform, private themeService: ThemeService) {
     this.platforms = this.platform.platforms();
     this.initializeApp();
   }
@@ -51,6 +54,10 @@ export class AppComponent {
       SplashScreen.hide();
     } else if (this.isStandalone) {
     }
+
+    this.themeSub = this.themeService.getThemeChangeMsg().subscribe(() => {
+      this.themeService.toggleDarkClass();
+    });
   }
 
   private get mqlDark(): MediaQueryList {

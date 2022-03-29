@@ -51,17 +51,6 @@ ion-radio-group {
       --color: #cecece;
     }
   }
-  .dim {
-    --background: #0b2238;
-    background: #0b2238;
-    border-color: #14395a;
-    ion-label {
-      color: #ffffff !important;
-    }
-    ion-radio {
-      --color: #14395a;
-    }
-  }
   .dark {
     --background: #242526;
     background: #242526;
@@ -74,4 +63,8 @@ ion-radio-group {
       --color: #393a3b;
     }
   }
+}
+
+.current-theme {
+  border-color: var(--ion-color-primary) !important;
 }

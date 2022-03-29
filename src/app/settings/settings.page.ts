@@ -25,13 +25,12 @@ export class SettingsPage implements OnInit, OnDestroy {
   constructor(
     public router: Router,
     public modalController: ModalController,
+    public themeService: ThemeService,
     private routerOutlet: IonRouterOutlet,
     private authService: AuthenticationService,
-    private storageService: StorageService,
-    private themeService: ThemeService
+    private storageService: StorageService
   ) {
     this.version = packageJson.version;
-    this.setupThemeListener();
     this.themes = this.themeService.themes;
   }
 
@@ -71,7 +70,7 @@ export class SettingsPage implements OnInit, OnDestroy {
           break;
       }
 
-      this.toggleDarkClass();
+      this.themeService.toggleDarkClass();
     });
   }
 
@@ -121,42 +120,5 @@ export class SettingsPage implements OnInit, OnDestroy {
     modal.onDidDismiss().then((result) => {});
 
     return await modal.present();
-  }
-
-  public get mqlDark(): MediaQueryList {
-    return window.matchMedia("(prefers-color-scheme: dark)");
-  }
-
-  // Add or remove the "dark" class based on if the media query matches or user has
-  // an appearance setting set.
-  public toggleDarkClass() {
-    document.body.classList.toggle(
-      "dark",
-      this.theme === "dark" || (this.theme === "system" && this.mqlDark.matches)
-    );
-  }
-
-  private setupThemeListener(): void {
-    // let prefersDark = false;
-    try {
-      this.mqlDark.addEventListener("change", (evt) => {
-        // prefersDark = evt.matches;
-        const systemTheme = this.themes.find((t) => t.key === "system");
-        if (systemTheme) {
-          systemTheme.value = evt.matches ? "dark" : "light";
-        }
-        this.toggleDarkClass();
-      });
-    } catch (mqlError) {
-      console.log(mqlError);
-      this.mqlDark.addListener((evt) => {
-        // prefersDark = evt.matches;
-        const systemTheme = this.themes.find((t) => t.key === "system");
-        if (systemTheme) {
-          systemTheme.value = evt.matches ? "dark" : "light";
-        }
-        this.toggleDarkClass();
-      });
-    }
   }
 }

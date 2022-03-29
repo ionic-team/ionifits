@@ -71,9 +71,9 @@
     <ion-row>
       <ion-col *ngFor="let th of themes" size-sm="4" size="12">
         <ion-item
-          [class]='th.value === "system" ? (mqlDark.matches ? "dark" : "light") : th.value'
-          [class.current-theme]="theme === th.key"
+          [class]='th.value === "system" ? (themeService.mqlDark.matches ? "dark" : "light") : th.value'
           lines="none"
+          [ngClass]='{"current-theme": theme === th.key}'
         >
           <ion-label>{{th.key | titlecase}}</ion-label>
           <ion-radio slot="start" [value]="th.value"></ion-radio>

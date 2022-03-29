@@ -32,6 +32,8 @@ export class ThemeService {
   }
 
   private async init() {
+    this.setupSystemThemeListener();
+
     await this.storageService.init();
     this.storageService.readTheme().then((theme: string | undefined) => {
       console.log("storage theme:", theme);
@@ -47,12 +49,46 @@ export class ThemeService {
     return this.themeSubject.asObservable();
   }
 
-  getTheme(): string {
+  private get theme(): string {
     // console.log("Current Theme:", this.themeSubject.getValue());
     return this.themeSubject.getValue();
   }
 
   public get themes(): Theme[] {
     return this._themes;
+  }
+
+  // Add or remove the "dark" class based on if the media query matches or user has
+  // an appearance setting set.
+  public toggleDarkClass() {
+    document.body.classList.toggle(
+      "dark",
+      this.theme === "dark" || (this.theme === "system" && this.mqlDark.matches)
+    );
+  }
+
+  private get mqlDark(): MediaQueryList {
+    return window.matchMedia("(prefers-color-scheme: dark)");
+  }
+
+  private setupSystemThemeListener(): void {
+    try {
+      this.mqlDark.addEventListener("change", (evt) => {
+        const systemTheme = this.themes.find((t) => t.key === "system");
+        if (systemTheme) {
+          systemTheme.value = evt.matches ? "dark" : "light";
+        }
+        this.toggleDarkClass();
+      });
+    } catch (mqlError) {
+      console.log(mqlError);
+      this.mqlDark.addListener((evt) => {
+        const systemTheme = this.themes.find((t) => t.key === "system");
+        if (systemTheme) {
+          systemTheme.value = evt.matches ? "dark" : "light";
+        }
+        this.toggleDarkClass();
+      });
+    }
   }
 }
