@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthenticationService } from "../services/authentication.service";
 import { ImplementationModalPage } from "../implementation-modal/implementation-modal.page";
@@ -6,57 +6,71 @@ import { IonRouterOutlet, ModalController } from "@ionic/angular";
 import { StatusBar, Style } from "@capacitor/status-bar";
 import packageJson from "../../../package.json";
 import { StorageService } from "../services/storage.service";
-
-interface Theme {
-  key: string;
-  value: string;
-}
+import { Theme, ThemeService } from "../services/theme.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-settings",
   templateUrl: "./settings.page.html",
   styleUrls: ["./settings.page.scss"],
 })
-export class SettingsPage implements OnInit {
+export class SettingsPage implements OnInit, OnDestroy {
   public user: any;
   public version: string;
 
   public theme: string = "system";
-  public themes: Theme[] = [
-    {
-      key: "system",
-      value: "system",
-    },
-    {
-      key: "light",
-      value: "light",
-    },
-    {
-      key: "dark",
-      value: "dark",
-    },
-  ];
+  public themes: Theme[] = [];
+  private themeSub: Subscription;
 
   constructor(
     public router: Router,
     public modalController: ModalController,
     private routerOutlet: IonRouterOutlet,
     private authService: AuthenticationService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private themeService: ThemeService
   ) {
     this.version = packageJson.version;
     this.setupThemeListener();
+    this.themes = this.themeService.themes;
   }
 
   async ngOnInit() {
     this.user = await this.authService.getUserInfo();
+    this.setupSubs();
 
-    await this.storageService.init();
-    this.storageService.readTheme().then((theme: string | undefined) => {
-      console.log("storage theme:", theme);
-      this.theme = theme || "system";
-      console.log("theme:", this.theme);
-      console.log("prefersDark:", this.mqlDark.matches);
+    // await this.storageService.init();
+    // this.storageService.readTheme().then((theme: string | undefined) => {
+    //   console.log("storage theme:", theme);
+    //   this.theme = theme || "system";
+    //   console.log("theme:", this.theme);
+    //   console.log("prefersDark:", this.mqlDark.matches);
+    //   this.toggleDarkClass();
+    // });
+  }
+
+  ngOnDestroy(): void {
+    this.themeSub.unsubscribe();
+  }
+
+  private setupSubs() {
+    this.themeSub = this.themeService.getThemeChangeMsg().subscribe((res) => {
+      console.log(`theme: ${res}`);
+      this.theme = res;
+
+      switch (this.theme) {
+        case "dark":
+        case "light": {
+          this.storageService.replaceTheme(this.theme);
+          break;
+        }
+        default:
+          this.storageService.readTheme().then((theme: string | undefined) => {
+            if (theme) this.storageService.deleteTheme();
+          });
+          break;
+      }
+
       this.toggleDarkClass();
     });
   }
@@ -72,21 +86,9 @@ export class SettingsPage implements OnInit {
   public toggleTheme(evt: any) {
     evt.stopPropagation();
     this.theme = evt.detail.value;
-    console.log("theme:", this.theme);
-    switch (this.theme) {
-      case "dark":
-      case "light": {
-        this.storageService.replaceTheme(this.theme);
-        break;
-      }
-      default:
-        this.storageService.readTheme().then((theme: string | undefined) => {
-          if (theme) this.storageService.deleteTheme();
-        });
-        break;
-    }
 
-    this.toggleDarkClass();
+    this.themeService.sendThemeChangeMsg(evt.detail.value);
+    console.log("theme:", this.theme);
   }
 
   public async openImplModal() {

@@ -12,30 +12,60 @@
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label>Merchant</ion-label>
-    <ion-input
-      placeholder="Name"
-      [(ngModel)]="newExpense.merchant"
-      name="merchant"
-    ></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label>$</ion-label>
-    <ion-input
-      placeholder="0.00"
-      type="number"
-      [(ngModel)]="newExpense.cost"
-      slot
-    ></ion-input>
-  </ion-item>
-  <ion-item lines="full">
-    <ion-label>Date</ion-label>
-    <ion-datetime
-      [(ngModel)]="newExpense.date"
-      display-format="MMM DD, YYYY"
-    ></ion-datetime>
-  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label>Merchant</ion-label>
+      <ion-input
+        placeholder="Name"
+        [(ngModel)]="newExpense.merchant"
+        name="merchant"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>$</ion-label>
+      <ion-input
+        placeholder="0.00"
+        type="number"
+        [(ngModel)]="newExpense.cost"
+        slot
+      ></ion-input>
+    </ion-item>
+    <!-- <ion-item lines="full">
+      <ion-label>Date</ion-label>
+      <ion-datetime
+        [(ngModel)]="newExpense.date"
+        displayFormat="MMM DD, YYYY"
+      ></ion-datetime>
+    </ion-item> -->
+
+    <!-- <ion-accordion-group>
+      <ion-accordion value="start">
+        <ion-item slot="header">
+          <ion-label>Date</ion-label>
+          <ion-note slot="end" id="datetimeValue"></ion-note>
+        </ion-item>
+        <ion-datetime
+          id="datetime"
+          slot="content"
+          displayFormat="MMM DD, YYYY"
+        ></ion-datetime>
+      </ion-accordion>
+    </ion-accordion-group> -->
+
+    <ion-item button="true" id="open-date-input">
+      <ion-label>Date</ion-label>
+      <ion-text slot="end">{{ newExpense.date }}</ion-text>
+      <ion-popover trigger="open-date-input" show-backdrop="false">
+        <ng-template>
+          <ion-datetime
+            #popoverDatetime
+            presentation="date"
+            (ionChange)="newExpense.date = formatDate(popoverDatetime.value)"
+          ></ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+  </ion-list>
 
   <ion-list-header>
     <ion-label color="ios-lh-labl-gray">Details</ion-label>
@@ -80,7 +110,7 @@
 
   <img [src]="safeReceipt" (click)="captureReceipt()" />
 
-  <ion-fab horizontal="center" vertical="bottom">
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="captureReceipt()">
       <ion-icon name="camera"></ion-icon>
     </ion-fab-button>

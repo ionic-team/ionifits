@@ -1,7 +1,12 @@
-// ion-content {
-//   --background: #f2f2f7;
-// }
+img {
+  margin-bottom: 32px;
+}
 
-// ion-fab {
-//   padding-bottom: 30px;
-// }
+ion-fab {
+  padding-bottom: 16px;
+}
+
+ion-popover {
+  --width: 75%;
+  --border-radius: 8px;
+}

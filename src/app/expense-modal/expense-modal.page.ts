@@ -1,29 +1,33 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { Expense } from '../models/expense';
-import { ExpenseService } from '../services/expense.service';
-import { DomSanitizer } from '@angular/platform-browser';
-import {Capacitor} from '@capacitor/core';
+import { Component, OnInit, Input } from "@angular/core";
+import { ModalController } from "@ionic/angular";
+import { Expense } from "../models/expense";
+import { ExpenseService } from "../services/expense.service";
+import { DomSanitizer } from "@angular/platform-browser";
+import { Capacitor } from "@capacitor/core";
+import { format, parseISO } from "date-fns";
 
 @Component({
-  selector: 'app-expense-modal',
-  templateUrl: './expense-modal.page.html',
-  styleUrls: ['./expense-modal.page.scss'],
+  selector: "app-expense-modal",
+  templateUrl: "./expense-modal.page.html",
+  styleUrls: ["./expense-modal.page.scss"],
 })
 export class ExpenseModalPage implements OnInit {
-
   @Input() existingExpenseId: number;
 
-  constructor(private modalController: ModalController,
-              private sanitizer: DomSanitizer,
-              private expenseService: ExpenseService) { }
+  constructor(
+    private modalController: ModalController,
+    private sanitizer: DomSanitizer,
+    private expenseService: ExpenseService
+  ) {}
 
   public newExpense: Expense = new Expense();
   public safeReceipt: any;
 
   ngOnInit() {
     if (this.existingExpenseId) {
-      const foundExpense = this.expenseService.getExpense(this.existingExpenseId);
+      const foundExpense = this.expenseService.getExpense(
+        this.existingExpenseId
+      );
       this.newExpense = foundExpense;
     }
 
@@ -31,18 +35,27 @@ export class ExpenseModalPage implements OnInit {
 
     if (!this.newExpense.date) {
       // Automatically select Today's date
-      this.newExpense.date = new Date().toISOString();
+      this.newExpense.date = format(
+        parseISO(new Date().toISOString()),
+        "MMM dd yyyy"
+      );
     }
+  }
+
+  formatDate(value: string) {
+    console.log(value);
+    return format(parseISO(value), "MMM dd yyyy");
   }
 
   setReceiptImage() {
     if (this.newExpense.id && this.newExpense.receipt.webviewPath) {
-      this.safeReceipt = this.sanitizeReceiptImage(this.newExpense.receipt.webviewPath);
+      this.safeReceipt = this.sanitizeReceiptImage(
+        this.newExpense.receipt.webviewPath
+      );
     } else {
-        this.safeReceipt = 
-          Capacitor.isNativePlatform() 
-          ? Capacitor.convertFileSrc('assets/image-placeholder.jpg')
-          : 'assets/image-placeholder.jpg';
+      this.safeReceipt = Capacitor.isNativePlatform()
+        ? Capacitor.convertFileSrc("assets/image-placeholder.jpg")
+        : "assets/image-placeholder.jpg";
     }
   }
 
@@ -57,7 +70,9 @@ export class ExpenseModalPage implements OnInit {
   }
 
   async updateExpense() {
-    const updatedExpense = await this.expenseService.createUpdateExpense(this.newExpense);
+    const updatedExpense = await this.expenseService.createUpdateExpense(
+      this.newExpense
+    );
     this.modalController.dismiss(updatedExpense);
   }
 
