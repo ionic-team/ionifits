@@ -42,7 +42,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>IonApi</key>
 	<string>https://api.ionicjs.com</string>
 	<key>IonAppId</key>
