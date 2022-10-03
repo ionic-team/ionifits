@@ -19,7 +19,7 @@
     <param name="ios-package" value="VaultPlugin" onload="true"/>
   </feature>
   <feature name="DevicePlugin">
-    <param name="ios-package" value="DevicePlugin" onload="true"/>
+    <param name="ios-package" value="IdentityVaultDevicePlugin" onload="true"/>
   </feature>
 
   <feature name="SQLitePlugin">
