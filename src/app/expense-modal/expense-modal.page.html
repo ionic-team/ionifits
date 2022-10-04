@@ -18,10 +18,11 @@
 </ion-item>
 <ion-item lines="full">
    <ion-label>Date</ion-label>
-   <!-- <ion-datetime presentation="date" preferWheel="true" [(ngModel)]="newExpense.date" ></ion-datetime> -->
    <ion-datetime-button datetime="expense-datetime"></ion-datetime-button>
-   <ion-modal>
-    <ion-datetime id="expense-datetime" [(ngModel)]="newExpense.date"></ion-datetime>
+   <ion-modal [keepContentsMounted]="true">
+    <ng-template>
+      <ion-datetime id="expense-datetime" presentation="date" [(ngModel)]="newExpense.date"></ion-datetime>
+    </ng-template>
    </ion-modal>
    </ion-item>
 

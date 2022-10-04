@@ -67,7 +67,7 @@ export class CompanyStorePage implements OnInit {
     if (this.cart.length > 0) {
       const modal: HTMLIonModalElement = await this.modalController.create({
         component: CompanyStoreCartPage,
-        swipeToClose: true,
+        canDismiss: true,
         presentingElement: this.routerOutlet.nativeEl,
         componentProps: { 
           "productsInCart": this.cart 
@@ -106,7 +106,7 @@ export class CompanyStorePage implements OnInit {
   async openImplModal() {
     const modal: HTMLIonModalElement = await this.modalController.create({
       component: ImplementationModalPage,
-      swipeToClose: true,
+      canDismiss: true,
       presentingElement: this.routerOutlet.nativeEl,
       componentProps: { 
         "description": "E-commerce experience powered by Ionic Payments. Add products to the shopping cart then purchase with Apple or Google Pay.",

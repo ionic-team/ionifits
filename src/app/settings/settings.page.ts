@@ -33,7 +33,7 @@ export class SettingsPage implements OnInit {
   async openImplModal() {
     const modal: HTMLIonModalElement = await this.modalController.create({
       component: ImplementationModalPage,
-      swipeToClose: true,
+      canDismiss: true,
       presentingElement: this.routerOutlet.nativeEl,
       componentProps: { 
         "description": "App management settings.",
