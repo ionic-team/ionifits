@@ -29,10 +29,10 @@ export class ExpenseModalPage implements OnInit {
 
     this.setReceiptImage();
 
-    if (!this.newExpense.date) {
-      // Automatically select Today's date
-      this.newExpense.date = new Date().toISOString();
-    }
+    // if (!this.newExpense.date) {
+    //   // Automatically select Today's date
+    //   this.newExpense.date = new Date().toISOString();
+    // }
   }
 
   setReceiptImage() {
