@@ -1,4 +1,6 @@
-platform :ios, '12.0'
+require_relative '../../node_modules/@capacitor/ios/scripts/pods_helpers'
+
+platform :ios, '13.0'
 use_frameworks!
 
 # workaround to avoid Xcode caching of Pods that requires
@@ -19,10 +21,14 @@ def capacitor_pods
   pod 'IonicEnterpriseApplePay', :path => '../../node_modules/@ionic-enterprise/apple-pay'
   pod 'IonicEnterpriseGooglePay', :path => '../../node_modules/@ionic-enterprise/google-pay'
   pod 'CordovaPlugins', :path => '../capacitor-cordova-ios-plugins'
-  pod 'CordovaPluginsStatic', :path => '../capacitor-cordova-ios-plugins'
 end
 
 target 'App' do
   capacitor_pods
   # Add your Pods here
+end
+
+
+post_install do |installer|
+  assertDeploymentTarget(installer)
 end

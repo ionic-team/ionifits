@@ -33,7 +33,7 @@ export class ExpenseListPage implements OnInit {
   async openExpenseModal(expenseId) {
     const modal: HTMLIonModalElement = await this.modalController.create({
       component: ExpenseModalPage,
-      swipeToClose: true,
+      canDismiss: true,
       presentingElement: this.routerOutlet.nativeEl,
       componentProps: { 
         "existingExpenseId": expenseId }
@@ -51,7 +51,7 @@ export class ExpenseListPage implements OnInit {
   async openImplModal() {
     const modal: HTMLIonModalElement = await this.modalController.create({
       component: ImplementationModalPage,
-      swipeToClose: true,
+      canDismiss: true,
       presentingElement: this.routerOutlet.nativeEl,
       componentProps: { 
         "description": "Complete expense management implementation (CRUD). Native device features include Camera and Filesystem access.",

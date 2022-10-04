@@ -13,8 +13,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [CommonModule, IonicModule, RouterModule.forChild(routes), FormsModule],
-  declarations: [EmployeeDetailPage],
-  entryComponents: []
+    imports: [CommonModule, IonicModule, RouterModule.forChild(routes), FormsModule],
+    declarations: [EmployeeDetailPage]
 })
 export class EmployeeDetailPageModule {}

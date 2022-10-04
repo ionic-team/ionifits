@@ -20,26 +20,25 @@ import { IonicStorageModule } from '@ionic/storage-angular';
 import { Drivers } from '@ionic/storage';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
-  imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    FormsModule,
-    IonicModule.forRoot(),
-    AppRoutingModule,
-    ScrollingModule,
-    ExpenseModalPageModule,
-    ImplementationModalPageModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    RouterModule,
-    IonicStorageModule.forRoot({
-      driverOrder: [Drivers.SecureStorage, Drivers.IndexedDB, Drivers.LocalStorage]
-    })
-  ],
-  providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    SQLite
-  ],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        FormsModule,
+        IonicModule.forRoot(),
+        AppRoutingModule,
+        ScrollingModule,
+        ExpenseModalPageModule,
+        ImplementationModalPageModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+        RouterModule,
+        IonicStorageModule.forRoot({
+            driverOrder: [Drivers.SecureStorage, Drivers.IndexedDB, Drivers.LocalStorage]
+        })
+    ],
+    providers: [
+        { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        SQLite
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {}
