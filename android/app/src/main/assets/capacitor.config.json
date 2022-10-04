@@ -1,1 +1,11 @@
-{}
+{
+	"appId": "io.ionic.demoapp.ionifits",
+	"appName": "Ionifits",
+	"webDir": "www",
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 1000,
+			"launchAutoHide": false
+		}
+	}
+}
