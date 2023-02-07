@@ -19,7 +19,8 @@ dependencies {
     implementation project(':ionic-enterprise-apple-pay')
     implementation project(':ionic-enterprise-google-pay')
     implementation "androidx.browser:browser:1.3.0"
-    implementation "net.zetetic:android-database-sqlcipher:4.3.0"
+    implementation "net.zetetic:android-database-sqlcipher:4.5.2"
+    implementation "androidx.sqlite:sqlite:2.0.1"
 }
 apply from: "../../node_modules/@ionic-enterprise/identity-vault/src/android/ionicnativeauth.gradle"
 apply from: "../../node_modules/cordova-plugin-ionic/src/android/cordovapluginionic.gradle"
