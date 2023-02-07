@@ -17,4 +17,6 @@ ext {
     androidxWebkitVersion='1.4.0'
     androidxFragmentVersion='1.4.1'
     playServicesLocationVersion='20.0.0'
+    coreSplashScreenVersion='1.0.0'
+    androidxFragmentVersion='1.4.1'
 }
