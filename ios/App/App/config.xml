@@ -21,13 +21,12 @@
   <feature name="DevicePlugin">
     <param name="ios-package" value="IdentityVaultDevicePlugin" onload="true"/>
   </feature>
+  <feature name="IdentityVaultPlugin">
+    <param name="ios-package" value="IdentityVaultPlugin" onload="true"/>
+  </feature>
 
   <feature name="SQLitePlugin">
     <param name="ios-package" value="SQLitePlugin"/>
-  </feature>
-
-  <feature name="IonicCordovaCommon">
-    <param name="ios-package" value="IonicCordovaCommon" onload="true"/>
   </feature>
 
   

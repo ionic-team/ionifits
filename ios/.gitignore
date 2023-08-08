@@ -5,7 +5,6 @@
 App/build
 App/Pods
 App/App/public
-App/Podfile.lock
 DerivedData
 xcuserdata
 
@@ -15,3 +14,4 @@ capacitor-cordova-ios-plugins
 # Generated Config files
 App/App/capacitor.config.json
 App/App/config.xml
+

@@ -1,0 +1,109 @@
+PODS:
+  - Capacitor (5.2.2):
+    - CapacitorCordova
+  - CapacitorApp (5.0.6):
+    - Capacitor
+  - CapacitorCamera (5.0.6):
+    - Capacitor
+  - CapacitorCordova (5.2.2)
+  - CapacitorFilesystem (5.1.1):
+    - Capacitor
+  - CapacitorHaptics (5.0.6):
+    - Capacitor
+  - CapacitorKeyboard (5.0.6):
+    - Capacitor
+  - CapacitorLiveUpdates (0.1.0):
+    - Capacitor
+    - IonicLiveUpdates (~> 0.4.0)
+  - CapacitorSplashScreen (5.0.6):
+    - Capacitor
+  - CapacitorStatusBar (5.0.6):
+    - Capacitor
+  - CordovaPlugins (5.2.2):
+    - CapacitorCordova
+    - SQLCipher (~> 4.0)
+  - IonicEnterpriseApplePay (2.0.0):
+    - Capacitor
+  - IonicEnterpriseGooglePay (2.0.0):
+    - Capacitor
+  - IonicLiveUpdates (0.4.1):
+    - ZIPFoundation (= 0.9.9)
+  - SQLCipher (4.5.3):
+    - SQLCipher/standard (= 4.5.3)
+  - SQLCipher/common (4.5.3)
+  - SQLCipher/standard (4.5.3):
+    - SQLCipher/common
+  - ZIPFoundation (0.9.9)
+
+DEPENDENCIES:
+  - "Capacitor (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorApp (from `../../node_modules/@capacitor/app`)"
+  - "CapacitorCamera (from `../../node_modules/@capacitor/camera`)"
+  - "CapacitorCordova (from `../../node_modules/@capacitor/ios`)"
+  - "CapacitorFilesystem (from `../../node_modules/@capacitor/filesystem`)"
+  - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
+  - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
+  - CapacitorLiveUpdates (from `../../../../products/capacitor-live-updates-plugin`)
+  - "CapacitorSplashScreen (from `../../node_modules/@capacitor/splash-screen`)"
+  - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
+  - CordovaPlugins (from `../capacitor-cordova-ios-plugins`)
+  - "IonicEnterpriseApplePay (from `../../node_modules/@ionic-enterprise/apple-pay`)"
+  - "IonicEnterpriseGooglePay (from `../../node_modules/@ionic-enterprise/google-pay`)"
+  - IonicLiveUpdates (from `../../../../products/live-updates-sdk/ios`)
+
+SPEC REPOS:
+  trunk:
+    - SQLCipher
+    - ZIPFoundation
+
+EXTERNAL SOURCES:
+  Capacitor:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorApp:
+    :path: "../../node_modules/@capacitor/app"
+  CapacitorCamera:
+    :path: "../../node_modules/@capacitor/camera"
+  CapacitorCordova:
+    :path: "../../node_modules/@capacitor/ios"
+  CapacitorFilesystem:
+    :path: "../../node_modules/@capacitor/filesystem"
+  CapacitorHaptics:
+    :path: "../../node_modules/@capacitor/haptics"
+  CapacitorKeyboard:
+    :path: "../../node_modules/@capacitor/keyboard"
+  CapacitorLiveUpdates:
+    :path: "../../../../products/capacitor-live-updates-plugin"
+  CapacitorSplashScreen:
+    :path: "../../node_modules/@capacitor/splash-screen"
+  CapacitorStatusBar:
+    :path: "../../node_modules/@capacitor/status-bar"
+  CordovaPlugins:
+    :path: "../capacitor-cordova-ios-plugins"
+  IonicEnterpriseApplePay:
+    :path: "../../node_modules/@ionic-enterprise/apple-pay"
+  IonicEnterpriseGooglePay:
+    :path: "../../node_modules/@ionic-enterprise/google-pay"
+  IonicLiveUpdates:
+    :path: "../../../../products/live-updates-sdk/ios"
+
+SPEC CHECKSUMS:
+  Capacitor: 070b18988e0f566728ae9a5eb3a7a974595f1626
+  CapacitorApp: 024e1b1bea5f883d79f6330d309bc441c88ad04a
+  CapacitorCamera: 4a95204d13a05b0b726bf9086b44124349ab1952
+  CapacitorCordova: 3773395d5331add072300ff6041ca2cf7b93cb0b
+  CapacitorFilesystem: 38e85e56818420bed3f0aa1b77128f503a960821
+  CapacitorHaptics: 1fffc1217c7e64a472d7845be50fb0c2f7d4204c
+  CapacitorKeyboard: b978154b024a5f65e044908e37d15b7de58b9d12
+  CapacitorLiveUpdates: f3f3f4645441b81a1a5b95b4985a11445bdfc3c7
+  CapacitorSplashScreen: 5fa2ab5e46cf5cc530cf16a51c80c7a986579ccd
+  CapacitorStatusBar: 565c0a1ebd79bb40d797606a8992b4a105885309
+  CordovaPlugins: 70cb025329f390609aef40072aa663dd6dba05b3
+  IonicEnterpriseApplePay: 207537b1a4db9718fa7e6c2be1fe50bc703c1988
+  IonicEnterpriseGooglePay: 6675c72b3252c9948975860ef85cf86ed5d17e6e
+  IonicLiveUpdates: c098bf278cc13d738873f522b7a0f6b05656ed69
+  SQLCipher: 57fa9f863fa4a3ed9dd3c90ace52315db8c0fdca
+  ZIPFoundation: 89df685c971926b0323087952320bdfee9f0b6ef
+
+PODFILE CHECKSUM: 875e7c0cad472358ae2c99439ea563b3f102459e
+
+COCOAPODS: 1.12.1

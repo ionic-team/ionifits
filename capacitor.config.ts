@@ -8,6 +8,12 @@ const config: CapacitorConfig = {
     SplashScreen: {
       launchShowDuration: 1000,
       launchAutoHide: false
+    },
+    LiveUpdates: {
+      appId: '34df4710',
+      channel: 'new-lu-sdk',
+      autoUpdateMethod: 'background',
+      maxVersions: 2,
     }
   }
 };
