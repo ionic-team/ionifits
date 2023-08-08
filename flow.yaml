@@ -1,0 +1,27 @@
+appId: io.ionic.demoapp.ionifits
+---
+- launchApp
+- tapOn: "SKIP"
+- swipe:
+    start: "41%,69%"
+    end: "66%,15%"
+    duration: 602
+- tapOn: "card Expenses"
+- tapOn: "close create"
+- tapOn: "Name"
+- inputText: "Drifty co."
+- tapOn: "0.00"
+- inputText: "76.99"
+- tapOn: "Select One"
+- tapOn: "Software"
+- tapOn: "OK"
+- tapOn: "Additional details..."
+- inputText: "Oh. My. Goodness!"
+- tapOn: "Add"
+- assertVisible: "Drifty co."
+- assertVisible: "$76.99"
+- swipe:
+    start: "85%,21%"
+    end: "57%,22%"
+    duration: 581
+- tapOn: "Remove"
