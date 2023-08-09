@@ -100,7 +100,7 @@ SPEC CHECKSUMS:
   CordovaPlugins: 70cb025329f390609aef40072aa663dd6dba05b3
   IonicEnterpriseApplePay: 207537b1a4db9718fa7e6c2be1fe50bc703c1988
   IonicEnterpriseGooglePay: 6675c72b3252c9948975860ef85cf86ed5d17e6e
-  IonicLiveUpdates: c098bf278cc13d738873f522b7a0f6b05656ed69
+  IonicLiveUpdates: 417eb67169de45d37fe2f556ac07d23cd9df7ce8
   SQLCipher: 57fa9f863fa4a3ed9dd3c90ace52315db8c0fdca
   ZIPFoundation: 89df685c971926b0323087952320bdfee9f0b6ef
 
