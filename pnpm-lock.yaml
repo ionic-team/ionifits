@@ -1,16 +1,12 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@angular/animations':
     specifier: ^15.2.9
     version: 15.2.9(@angular/core@15.2.9)
   '@angular/cdk':
-    specifier: 14.2.7
-    version: 14.2.7(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@6.6.7)
+    specifier: 15.2.9
+    version: 15.2.9(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@6.6.7)
   '@angular/common':
     specifier: ^15.2.9
     version: 15.2.9(@angular/core@15.2.9)(rxjs@6.6.7)
@@ -39,8 +35,8 @@ dependencies:
     specifier: ^15.2.9
     version: 15.2.9(@angular/common@15.2.9)(@angular/core@15.2.9)
   '@awesome-cordova-plugins/core':
-    specifier: 5.46.0
-    version: 5.46.0(rxjs@6.6.7)
+    specifier: ^6.0.1
+    version: 6.0.1(rxjs@6.6.7)
   '@capacitor/android':
     specifier: ^5.2.3
     version: 5.2.3(@capacitor/core@5.2.3)
@@ -84,14 +80,17 @@ dependencies:
     specifier: 5.10.1
     version: 5.10.1(typescript@4.9.5)
   '@ionic-enterprise/secure-storage':
-    specifier: 2.3.4
-    version: 2.3.4(@awesome-cordova-plugins/core@5.46.0)(rxjs@6.6.7)
+    specifier: 3.0.2
+    version: 3.0.2(@awesome-cordova-plugins/core@6.0.1)(rxjs@6.6.7)
   '@ionic/angular':
     specifier: 6.5.2
     version: 6.5.2(@angular/core@15.2.9)(@angular/forms@15.2.9)(@angular/router@15.2.9)(rxjs@6.6.7)(zone.js@0.11.8)
   '@ionic/pwa-elements':
     specifier: ^3.2.2
     version: 3.2.2
+  '@ionic/storage':
+    specifier: ^4.0.0
+    version: 4.0.0
   '@ionic/storage-angular':
     specifier: ^4.0.0
     version: 4.0.0(@angular/core@15.2.9)(rxjs@6.6.7)
@@ -436,11 +435,11 @@ packages:
       '@angular/core': 15.2.9(rxjs@6.6.7)(zone.js@0.11.8)
       tslib: 2.5.0
 
-  /@angular/cdk@14.2.7(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@6.6.7):
-    resolution: {integrity: sha512-/tEsYaUbDSnfEmKVvAMramIptmhI67O+9STjOV0i+74XR2NospeK0fkbywIANu1n3w6AHGMotvRWJrjmbCElFg==}
+  /@angular/cdk@15.2.9(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@6.6.7):
+    resolution: {integrity: sha512-koaM07N1AIQ5oHU27l0/FoQSSoYAwlAYwVZ4Di3bYrJsTBNCN2Xsby7wI8gZxdepMnV4Fe9si382BDBov+oO4Q==}
     peerDependencies:
-      '@angular/common': ^14.0.0 || ^15.0.0
-      '@angular/core': ^14.0.0 || ^15.0.0
+      '@angular/common': ^15.0.0 || ^16.0.0
+      '@angular/core': ^15.0.0 || ^16.0.0
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/common': 15.2.9(@angular/core@15.2.9)(rxjs@6.6.7)
@@ -448,7 +447,7 @@ packages:
       rxjs: 6.6.7
       tslib: 2.5.0
     optionalDependencies:
-      parse5: 5.1.1
+      parse5: 7.1.2
     dev: false
 
   /@angular/cli@15.2.9:
@@ -659,8 +658,8 @@ packages:
     resolution: {integrity: sha512-H71nDOOL8Y7kWRLqf6Sums+01Q5msqBW2KhDUTemh1tvY04eSkSXrK0uj/4mmY0Xr16/3zyZmsrxN7CKuRbNRg==}
     dev: true
 
-  /@awesome-cordova-plugins/core@5.46.0(rxjs@6.6.7):
-    resolution: {integrity: sha512-EkCTsS9sE4lXzPbKZonn7PEzoF1/vvhsJDnIyqP3FObBqb8fjqhEz4r7z4iNRNHel4Mq9bICzI5J/3vQ+jbWVw==}
+  /@awesome-cordova-plugins/core@6.0.1(rxjs@6.6.7):
+    resolution: {integrity: sha512-DTlyvVrqwRG7fwhmc2Nu514ACiSX7AkwG8lCoJqgnav6md+hABqZ+pJNpfmMtuQEzhoev/Mh+aZ2LdG3d065ow==}
     peerDependencies:
       rxjs: ^5.5.0 || ^6.5.0 || ^7.3.0
     dependencies:
@@ -668,13 +667,13 @@ packages:
       rxjs: 6.6.7
     dev: false
 
-  /@awesome-cordova-plugins/sqlite@5.46.0(@awesome-cordova-plugins/core@5.46.0)(rxjs@6.6.7):
-    resolution: {integrity: sha512-Jw0/IjNsjaKYXJYQKGEc59P00LT7bxSSKpd40pS9QZLzTcpCkaIKTb4/JSA4gtZPcMFsdj+VrXvtK++3HFno+g==}
+  /@awesome-cordova-plugins/sqlite@6.4.0(@awesome-cordova-plugins/core@6.0.1)(rxjs@6.6.7):
+    resolution: {integrity: sha512-2CXSZxp0pQUabSv4kLzCMpicNjuKmwraJ3xCP3+6QVvZr0kZ10Xh8cgIU5nPL/x9G2zzG9fVubLewh3hEgR8Zg==}
     peerDependencies:
-      '@awesome-cordova-plugins/core': ^5.1.0
+      '@awesome-cordova-plugins/core': ^6.0.1
       rxjs: ^5.5.0 || ^6.5.0 || ^7.3.0
     dependencies:
-      '@awesome-cordova-plugins/core': 5.46.0(rxjs@6.6.7)
+      '@awesome-cordova-plugins/core': 6.0.1(rxjs@6.6.7)
       '@types/cordova': 11.0.0
       rxjs: 6.6.7
     dev: false
@@ -1804,7 +1803,7 @@ packages:
       babel-plugin-polyfill-corejs2: 0.3.3(@babel/core@7.20.12)
       babel-plugin-polyfill-corejs3: 0.6.0(@babel/core@7.20.12)
       babel-plugin-polyfill-regenerator: 0.4.1(@babel/core@7.20.12)
-      core-js-compat: 3.32.0
+      core-js-compat: 3.32.1
       semver: 6.3.1
     transitivePeerDependencies:
       - supports-color
@@ -2233,14 +2232,14 @@ packages:
       typescript: 4.9.5
     dev: false
 
-  /@ionic-enterprise/secure-storage@2.3.4(@awesome-cordova-plugins/core@5.46.0)(rxjs@6.6.7):
-    resolution: {integrity: sha512-KBvKW4J/tqYW+rUNMR5MuQV5Q4c8Q/0DKSNQF0rtJ+JA53Fs9BZa4ZGQlN3xjxPWkgb+XJ62NGODzEmFFfUvog==}
+  /@ionic-enterprise/secure-storage@3.0.2(@awesome-cordova-plugins/core@6.0.1)(rxjs@6.6.7):
+    resolution: {integrity: sha512-H2im1uXsaak44firL5R9KP+xrWDyxrqwwv6Zd+TkmizjFXamPOFs4qUqbDXDQAIrXKRzAsXzJ4JeNE84qYl5RA==}
     peerDependencies:
-      '@awesome-cordova-plugins/core': ^5.1.0
+      '@awesome-cordova-plugins/core': ^6.0.0
       rxjs: ^5.5.0 || ^6.5.0 || ^7.3.0
     dependencies:
-      '@awesome-cordova-plugins/core': 5.46.0(rxjs@6.6.7)
-      '@awesome-cordova-plugins/sqlite': 5.46.0(@awesome-cordova-plugins/core@5.46.0)(rxjs@6.6.7)
+      '@awesome-cordova-plugins/core': 6.0.1(rxjs@6.6.7)
+      '@awesome-cordova-plugins/sqlite': 6.4.0(@awesome-cordova-plugins/core@6.0.1)(rxjs@6.6.7)
       '@types/cordova': 11.0.0
       rxjs: 6.6.7
     dev: false
@@ -3384,8 +3383,8 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.5
-      caniuse-lite: 1.0.30001521
-      fraction.js: 4.2.0
+      caniuse-lite: 1.0.30001522
+      fraction.js: 4.2.1
       normalize-range: 0.1.2
       picocolors: 1.0.0
       postcss: 8.4.21
@@ -3446,7 +3445,7 @@ packages:
     dependencies:
       '@babel/core': 7.20.12
       '@babel/helper-define-polyfill-provider': 0.3.3(@babel/core@7.20.12)
-      core-js-compat: 3.32.0
+      core-js-compat: 3.32.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3579,8 +3578,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001521
-      electron-to-chromium: 1.4.494
+      caniuse-lite: 1.0.30001522
+      electron-to-chromium: 1.4.496
       node-releases: 2.0.13
       update-browserslist-db: 1.0.11(browserslist@4.21.10)
     dev: true
@@ -3590,8 +3589,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001521
-      electron-to-chromium: 1.4.494
+      caniuse-lite: 1.0.30001522
+      electron-to-chromium: 1.4.496
       node-releases: 2.0.13
       update-browserslist-db: 1.0.11(browserslist@4.21.5)
     dev: true
@@ -3680,8 +3679,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /caniuse-lite@1.0.30001521:
-    resolution: {integrity: sha512-fnx1grfpEOvDGH+V17eccmNjucGUnCbP6KL+l5KqBIerp26WK/+RQ7CIDE37KGJjaPyqWXXlFUyKiWmvdNNKmQ==}
+  /caniuse-lite@1.0.30001522:
+    resolution: {integrity: sha512-TKiyTVZxJGhsTszLuzb+6vUZSjVOAhClszBr2Ta2k9IwtNBT/4dzmL6aywt0HCgEZlmwJzXJd8yNiob6HgwTRg==}
     dev: true
 
   /chalk@2.4.2:
@@ -3935,8 +3934,8 @@ packages:
       typescript: 3.8.3
     dev: false
 
-  /core-js-compat@3.32.0:
-    resolution: {integrity: sha512-7a9a3D1k4UCVKnLhrgALyFcP7YCsLOQIxPd0dKjf/6GuPcgyiGP70ewWdCGrSK7evyhymi0qO4EqCmSJofDeYw==}
+  /core-js-compat@3.32.1:
+    resolution: {integrity: sha512-GSvKDv4wE0bPnQtjklV101juQ85g6H3rm5PDP20mqlS5j0kXF3pP97YvAu5hl+uFHqMictp3b2VxOHljWMAtuA==}
     dependencies:
       browserslist: 4.21.10
     dev: true
@@ -4057,7 +4056,6 @@ packages:
 
   /debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
-    requiresBuild: true
     peerDependencies:
       supports-color: '*'
     peerDependenciesMeta:
@@ -4220,8 +4218,8 @@ packages:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: true
 
-  /electron-to-chromium@1.4.494:
-    resolution: {integrity: sha512-KF7wtsFFDu4ws1ZsSOt4pdmO1yWVNWCFtijVYZPUeW4SV7/hy/AESjLn/+qIWgq7mHscNOKAwN5AIM1+YAy+Ww==}
+  /electron-to-chromium@1.4.496:
+    resolution: {integrity: sha512-qeXC3Zbykq44RCrBa4kr8v/dWzYJA8rAwpyh9Qd+NKWoJfjG5vvJqy9XOJ9H4P/lqulZBCgUWAYi+FeK5AuJ8g==}
     dev: true
 
   /elementtree@0.1.7:
@@ -4304,7 +4302,6 @@ packages:
   /entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
-    dev: true
 
   /env-paths@2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
@@ -4679,8 +4676,8 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
-  /fraction.js@4.2.0:
-    resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
+  /fraction.js@4.2.1:
+    resolution: {integrity: sha512-/KxoyCnPM0GwYI4NN0Iag38Tqt+od3/mLuguepLgCAKPn0ZhC544nssAW0tG2/00zXEYl9W+7hwAIpLHo6Oc7Q==}
     dev: true
 
   /fresh@0.5.2:
@@ -6112,7 +6109,6 @@ packages:
 
   /node-addon-api@3.2.1:
     resolution: {integrity: sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==}
-    requiresBuild: true
     dev: true
     optional: true
 
@@ -6124,7 +6120,6 @@ packages:
   /node-gyp-build@4.6.0:
     resolution: {integrity: sha512-NTZVKn9IylLwUzaKjkas1e4u2DLNcV4rdYagA4PWdPwW87Bi7z+BznyKSRwS/761tV/lzCGXplWsiaMjLqP2zQ==}
     hasBin: true
-    requiresBuild: true
     dev: true
     optional: true
 
@@ -6503,12 +6498,6 @@ packages:
       parse5: 7.1.2
     dev: true
 
-  /parse5@5.1.1:
-    resolution: {integrity: sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==}
-    requiresBuild: true
-    dev: false
-    optional: true
-
   /parse5@6.0.1:
     resolution: {integrity: sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==}
 
@@ -6516,7 +6505,6 @@ packages:
     resolution: {integrity: sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==}
     dependencies:
       entities: 4.5.0
-    dev: true
 
   /parseurl@1.3.3:
     resolution: {integrity: sha512-CiyeOxFT/JZyN5m0z9PfXw4SCBJ6Sygz1Dpl0wqjlhDEGGBP1GnsUVEL0p63hoG1fcj3fHynXi9NYO4nWOL+qQ==}
@@ -6570,7 +6558,6 @@ packages:
   /pify@4.0.1:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
-    requiresBuild: true
     dev: true
 
   /piscina@3.2.0:
@@ -6752,7 +6739,6 @@ packages:
 
   /prr@1.0.1:
     resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==}
-    requiresBuild: true
     dev: true
     optional: true
 
@@ -7131,7 +7117,6 @@ packages:
   /semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
     hasBin: true
-    requiresBuild: true
     dev: true
 
   /semver@6.3.1:
