@@ -12,9 +12,9 @@ PODS:
     - Capacitor
   - CapacitorKeyboard (5.0.6):
     - Capacitor
-  - CapacitorLiveUpdates (0.1.0):
+  - CapacitorLiveUpdates (0.1.1-beta.1):
     - Capacitor
-    - IonicLiveUpdates (~> 0.4.0)
+    - IonicLiveUpdates (~> 0.5.0-beta.1)
   - CapacitorSplashScreen (5.0.6):
     - Capacitor
   - CapacitorStatusBar (5.0.6):
@@ -26,14 +26,12 @@ PODS:
     - Capacitor
   - IonicEnterpriseGooglePay (2.0.0):
     - Capacitor
-  - IonicLiveUpdates (0.4.1):
-    - ZIPFoundation (= 0.9.9)
+  - IonicLiveUpdates (0.5.0-beta.1)
   - SQLCipher (4.5.3):
     - SQLCipher/standard (= 4.5.3)
   - SQLCipher/common (4.5.3)
   - SQLCipher/standard (4.5.3):
     - SQLCipher/common
-  - ZIPFoundation (0.9.9)
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
@@ -43,18 +41,17 @@ DEPENDENCIES:
   - "CapacitorFilesystem (from `../../node_modules/@capacitor/filesystem`)"
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
-  - CapacitorLiveUpdates (from `../../../../products/capacitor-live-updates-plugin`)
+  - "CapacitorLiveUpdates (from `../../node_modules/@capacitor/live-updates`)"
   - "CapacitorSplashScreen (from `../../node_modules/@capacitor/splash-screen`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
   - CordovaPlugins (from `../capacitor-cordova-ios-plugins`)
   - "IonicEnterpriseApplePay (from `../../node_modules/@ionic-enterprise/apple-pay`)"
   - "IonicEnterpriseGooglePay (from `../../node_modules/@ionic-enterprise/google-pay`)"
-  - IonicLiveUpdates (from `../../../../products/live-updates-sdk/ios`)
 
 SPEC REPOS:
   trunk:
+    - IonicLiveUpdates
     - SQLCipher
-    - ZIPFoundation
 
 EXTERNAL SOURCES:
   Capacitor:
@@ -72,7 +69,7 @@ EXTERNAL SOURCES:
   CapacitorKeyboard:
     :path: "../../node_modules/@capacitor/keyboard"
   CapacitorLiveUpdates:
-    :path: "../../../../products/capacitor-live-updates-plugin"
+    :path: "../../node_modules/@capacitor/live-updates"
   CapacitorSplashScreen:
     :path: "../../node_modules/@capacitor/splash-screen"
   CapacitorStatusBar:
@@ -83,8 +80,6 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@ionic-enterprise/apple-pay"
   IonicEnterpriseGooglePay:
     :path: "../../node_modules/@ionic-enterprise/google-pay"
-  IonicLiveUpdates:
-    :path: "../../../../products/live-updates-sdk/ios"
 
 SPEC CHECKSUMS:
   Capacitor: 070b18988e0f566728ae9a5eb3a7a974595f1626
@@ -94,16 +89,15 @@ SPEC CHECKSUMS:
   CapacitorFilesystem: 38e85e56818420bed3f0aa1b77128f503a960821
   CapacitorHaptics: 1fffc1217c7e64a472d7845be50fb0c2f7d4204c
   CapacitorKeyboard: b978154b024a5f65e044908e37d15b7de58b9d12
-  CapacitorLiveUpdates: f3f3f4645441b81a1a5b95b4985a11445bdfc3c7
+  CapacitorLiveUpdates: 089afde855067adaea2e6ea7c2c772c4cd5fc584
   CapacitorSplashScreen: 5fa2ab5e46cf5cc530cf16a51c80c7a986579ccd
   CapacitorStatusBar: 565c0a1ebd79bb40d797606a8992b4a105885309
   CordovaPlugins: 70cb025329f390609aef40072aa663dd6dba05b3
   IonicEnterpriseApplePay: 207537b1a4db9718fa7e6c2be1fe50bc703c1988
   IonicEnterpriseGooglePay: 6675c72b3252c9948975860ef85cf86ed5d17e6e
-  IonicLiveUpdates: 417eb67169de45d37fe2f556ac07d23cd9df7ce8
+  IonicLiveUpdates: bf5aa07e5bedb693a9fd5a977056d5fa785c7012
   SQLCipher: 57fa9f863fa4a3ed9dd3c90ace52315db8c0fdca
-  ZIPFoundation: 89df685c971926b0323087952320bdfee9f0b6ef
 
-PODFILE CHECKSUM: 875e7c0cad472358ae2c99439ea563b3f102459e
+PODFILE CHECKSUM: ed430caf6456b641765d437c8933ef544084194c
 
 COCOAPODS: 1.12.1

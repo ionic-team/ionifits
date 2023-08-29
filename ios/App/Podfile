@@ -16,7 +16,7 @@ def capacitor_pods
   pod 'CapacitorFilesystem', :path => '../../node_modules/@capacitor/filesystem'
   pod 'CapacitorHaptics', :path => '../../node_modules/@capacitor/haptics'
   pod 'CapacitorKeyboard', :path => '../../node_modules/@capacitor/keyboard'
-  pod 'CapacitorLiveUpdates', :path => '../../../../products/capacitor-live-updates-plugin'
+  pod 'CapacitorLiveUpdates', :path => '../../node_modules/@capacitor/live-updates'
   pod 'CapacitorSplashScreen', :path => '../../node_modules/@capacitor/splash-screen'
   pod 'CapacitorStatusBar', :path => '../../node_modules/@capacitor/status-bar'
   pod 'IonicEnterpriseApplePay', :path => '../../node_modules/@ionic-enterprise/apple-pay'
@@ -27,7 +27,6 @@ end
 target 'App' do
   capacitor_pods
   # Add your Pods here
-  pod 'IonicLiveUpdates', :path => '../../../../products/live-updates-sdk/ios'
 end
 
 
