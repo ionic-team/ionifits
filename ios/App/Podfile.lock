@@ -12,7 +12,7 @@ PODS:
     - Capacitor
   - CapacitorKeyboard (5.0.6):
     - Capacitor
-  - CapacitorLiveUpdates (0.1.1-beta.1):
+  - CapacitorLiveUpdates (0.1.1-beta.3):
     - Capacitor
     - IonicLiveUpdates (~> 0.5.0-beta.1)
   - CapacitorSplashScreen (5.0.6):
@@ -27,10 +27,10 @@ PODS:
   - IonicEnterpriseGooglePay (2.0.0):
     - Capacitor
   - IonicLiveUpdates (0.5.0-beta.1)
-  - SQLCipher (4.5.3):
-    - SQLCipher/standard (= 4.5.3)
-  - SQLCipher/common (4.5.3)
-  - SQLCipher/standard (4.5.3):
+  - SQLCipher (4.5.5):
+    - SQLCipher/standard (= 4.5.5)
+  - SQLCipher/common (4.5.5)
+  - SQLCipher/standard (4.5.5):
     - SQLCipher/common
 
 DEPENDENCIES:
@@ -89,14 +89,14 @@ SPEC CHECKSUMS:
   CapacitorFilesystem: 38e85e56818420bed3f0aa1b77128f503a960821
   CapacitorHaptics: 1fffc1217c7e64a472d7845be50fb0c2f7d4204c
   CapacitorKeyboard: b978154b024a5f65e044908e37d15b7de58b9d12
-  CapacitorLiveUpdates: 089afde855067adaea2e6ea7c2c772c4cd5fc584
+  CapacitorLiveUpdates: dd5d096ceac8709657e14b4c60dd3637a28401d8
   CapacitorSplashScreen: 5fa2ab5e46cf5cc530cf16a51c80c7a986579ccd
   CapacitorStatusBar: 565c0a1ebd79bb40d797606a8992b4a105885309
   CordovaPlugins: 70cb025329f390609aef40072aa663dd6dba05b3
   IonicEnterpriseApplePay: 207537b1a4db9718fa7e6c2be1fe50bc703c1988
   IonicEnterpriseGooglePay: 6675c72b3252c9948975860ef85cf86ed5d17e6e
   IonicLiveUpdates: bf5aa07e5bedb693a9fd5a977056d5fa785c7012
-  SQLCipher: 57fa9f863fa4a3ed9dd3c90ace52315db8c0fdca
+  SQLCipher: f2e96b3822e3006b379181a0e4fd145f6de29b56
 
 PODFILE CHECKSUM: ed430caf6456b641765d437c8933ef544084194c
 

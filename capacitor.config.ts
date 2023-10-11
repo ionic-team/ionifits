@@ -13,8 +13,8 @@ const config: CapacitorConfig = {
       appId: '34df4710',
       channel: 'new-lu-sdk',
       autoUpdateMethod: 'background',
-      strategy: 'differential',
-      maxVersions: 2,
+      maxVersions: 3,
+      enabled: false
     }
   }
 };
