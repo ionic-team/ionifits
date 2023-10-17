@@ -14,6 +14,8 @@ const config: CapacitorConfig = {
       channel: 'new-lu-sdk',
       autoUpdateMethod: 'background',
       maxVersions: 3,
+      /* Disable Live Updates since this is a public reference app. 
+        Otherwise a live update override could cause confusion for developers.  */
       enabled: false
     }
   }
