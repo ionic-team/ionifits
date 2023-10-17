@@ -16,6 +16,7 @@ const config: CapacitorConfig = {
       maxVersions: 3,
       /* Disable Live Updates since this is a public reference app. 
         Otherwise a live update override could cause confusion for developers.  */
+      // @ts-ignore until Capacitor 6 resolves this
       enabled: false
     }
   }
