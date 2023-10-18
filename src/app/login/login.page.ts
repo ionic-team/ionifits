@@ -68,7 +68,6 @@ export class LoginPage implements OnInit {
   async openImplModal() {
     const modal: HTMLIonModalElement = await this.modalController.create({
       component: ImplementationModalPage,
-      canDismiss: true,
       presentingElement: this.routerOutlet.nativeEl,
       componentProps: { 
         "description": "Log in with username: user@test.com and password: ionic",

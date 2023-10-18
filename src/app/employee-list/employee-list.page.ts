@@ -61,7 +61,6 @@ export class EmployeeListPage implements OnInit {
   async openImplModal() {
     const modal: HTMLIonModalElement = await this.modalController.create({
       component: ImplementationModalPage,
-      canDismiss: true,
       presentingElement: this.routerOutlet.nativeEl,
       componentProps: { 
         "description": "High performance infinite scrolling in a list containing hundreds of items.",
