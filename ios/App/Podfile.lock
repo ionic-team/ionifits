@@ -24,6 +24,8 @@ PODS:
     - SQLCipher (~> 4.0)
   - IonicEnterpriseApplePay (2.0.0):
     - Capacitor
+  - IonicEnterpriseAuth (5.1.0):
+    - Capacitor
   - IonicEnterpriseGooglePay (2.0.0):
     - Capacitor
   - IonicLiveUpdates (0.5.0-beta.1)
@@ -46,6 +48,7 @@ DEPENDENCIES:
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
   - CordovaPlugins (from `../capacitor-cordova-ios-plugins`)
   - "IonicEnterpriseApplePay (from `../../node_modules/@ionic-enterprise/apple-pay`)"
+  - "IonicEnterpriseAuth (from `../../node_modules/@ionic-enterprise/auth`)"
   - "IonicEnterpriseGooglePay (from `../../node_modules/@ionic-enterprise/google-pay`)"
 
 SPEC REPOS:
@@ -78,6 +81,8 @@ EXTERNAL SOURCES:
     :path: "../capacitor-cordova-ios-plugins"
   IonicEnterpriseApplePay:
     :path: "../../node_modules/@ionic-enterprise/apple-pay"
+  IonicEnterpriseAuth:
+    :path: "../../node_modules/@ionic-enterprise/auth"
   IonicEnterpriseGooglePay:
     :path: "../../node_modules/@ionic-enterprise/google-pay"
 
@@ -92,12 +97,13 @@ SPEC CHECKSUMS:
   CapacitorLiveUpdates: 1f37f66f44ca50a8b1a975126839ce383aade987
   CapacitorSplashScreen: 5fa2ab5e46cf5cc530cf16a51c80c7a986579ccd
   CapacitorStatusBar: 565c0a1ebd79bb40d797606a8992b4a105885309
-  CordovaPlugins: 625f3c3594305e1048b04763b770fa435eb35a39
+  CordovaPlugins: 5d8ac3aea71708477240cfa89220eb11e8b3d5b1
   IonicEnterpriseApplePay: 207537b1a4db9718fa7e6c2be1fe50bc703c1988
+  IonicEnterpriseAuth: 32539d9c798feb84d79457759ed3633ddcf0df52
   IonicEnterpriseGooglePay: 6675c72b3252c9948975860ef85cf86ed5d17e6e
   IonicLiveUpdates: bf5aa07e5bedb693a9fd5a977056d5fa785c7012
   SQLCipher: f2e96b3822e3006b379181a0e4fd145f6de29b56
 
-PODFILE CHECKSUM: ed430caf6456b641765d437c8933ef544084194c
+PODFILE CHECKSUM: 9265b39752899fc0eb4b66021753a7cade4091ca
 
 COCOAPODS: 1.13.0

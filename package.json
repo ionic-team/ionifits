@@ -40,7 +40,7 @@
     "@capacitor/splash-screen": "^5.0.6",
     "@capacitor/status-bar": "^5.0.6",
     "@ionic-enterprise/apple-pay": "2.0.0",
-    "@ionic-enterprise/auth": "3.10.3",
+    "@ionic-enterprise/auth": "^5.1.0",
     "@ionic-enterprise/google-pay": "2.0.0",
     "@ionic-enterprise/identity-vault": "^5.12.1",
     "@ionic-enterprise/secure-storage": "^3.0.2",

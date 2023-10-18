@@ -36,6 +36,10 @@
 		"classpath": "com.ionic.enterprise.applepay.ApplePay"
 	},
 	{
+		"pkg": "@ionic-enterprise/auth",
+		"classpath": "io.ionic.authconnect.AuthConnectPlugin"
+	},
+	{
 		"pkg": "@ionic-enterprise/google-pay",
 		"classpath": "io.ionic.enterprise.googlepay.GooglePay"
 	}

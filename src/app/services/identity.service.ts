@@ -3,12 +3,14 @@ import { IdentityVaultConfig, BrowserVault, Device, DeviceSecurityType, Vault, V
 import { Platform } from '@ionic/angular';
 import { Capacitor } from '@capacitor/core';
 import { KeyService } from './key.service';
+import { AuthResult } from '@ionic-enterprise/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IdentityService {
   private encryptionKey = 'encryption-key';
+  private authConnectKey = 'auth-connect';
   vault: Vault | BrowserVault;
 
   constructor(public platform: Platform, private keyService: KeyService) {
@@ -26,37 +28,8 @@ export class IdentityService {
     if (Capacitor.isNativePlatform()) {
       this.vault = new Vault(config);
       await Device.setHideScreenOnBackground(true);
-      await this.migrateDataToV5();
     } else {
       this.vault = new BrowserVault(config);
-    }
-  }
-
-  // Migrate the v4 vault to v5 once
-  async migrateDataToV5() {
-    if (Capacitor.isNativePlatform() && !localStorage.vaultMigrated) {
-      try {
-        const migrator = new VaultMigrator({
-          // old V4 config
-          restoreSessionOnReady: false,
-          unlockOnReady: false,
-          unlockOnAccess: true,
-          lockAfter: 1000,
-          hideScreenOnBackground: true
-        });
-
-        const oldData = await migrator.exportVault();
-        if (!!oldData) {
-          // Import data into new vault
-          await this.vault.importVault(oldData);
-          // Remove all of the old data from the legacy vault
-          await migrator.clear();
-          localStorage.vaultMigrated = true;
-        }
-      } catch (err) {
-        // Something went wrong...
-        console.log("MIGRATOR ERROR: ", err.message);
-      }
     }
   }
 
@@ -74,12 +47,27 @@ export class IdentityService {
     await this.vault.setValue(key, value);
   }
 
+  public clear(): Promise<void> {
+    return this.vault.clear();
+  }
+
+  public async getSession(): Promise<AuthResult | null> {
+    const data = await this.vault.getValue(this.authConnectKey);
+    if (!data) return null;
+    return JSON.parse(data);
+  }
+
+  public setSession(value: AuthResult): Promise<void> {
+    return this.vault.setValue(this.authConnectKey, JSON.stringify(value));
+  }
+
   async unlock() {
     await this.vault.unlock();
   }
 
   async hasStoredSession() {
-    return await this.vault.doesVaultExist();
+    // todo on web: why does this return empty true when data is there in session storage?
+    return await !this.vault.isEmpty();
   }
 
   async logout() {

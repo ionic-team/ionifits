@@ -22,17 +22,18 @@ export class LoginPage implements OnInit {
   async ngOnInit() {
     // If coming back after logging into Auth0,
     // and using CURRENT Implicit (web) Login
-    if (window.location.hash) {
-      const loadingIndicator = await this.showLoadingIndictator();
+    // if (window.location.hash) {
+    //   const loadingIndicator = await this.showLoadingIndictator();
 
-      // Pass it to Auth Connect
-      await this.authService.callback(window.location.href, loadingIndicator);
-    }
+    //   // Pass it to Auth Connect
+    //   await this.authService.callback(window.location.hash, loadingIndicator);
+    // }
    }
 
    async ionViewWillEnter() {
     // Check if user has previously signed into Auth Connect
     const hasSession = await this.identityService.hasStoredSession();
+    console.log("user has stored session: " + hasSession);
 
     if (hasSession) {
       // if yes, then attempt FaceId unlock

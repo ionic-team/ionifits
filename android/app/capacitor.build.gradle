@@ -18,8 +18,8 @@ dependencies {
     implementation project(':capacitor-splash-screen')
     implementation project(':capacitor-status-bar')
     implementation project(':ionic-enterprise-apple-pay')
+    implementation project(':ionic-enterprise-auth')
     implementation project(':ionic-enterprise-google-pay')
-    implementation "androidx.browser:browser:1.3.0"
     implementation "net.zetetic:android-database-sqlcipher:4.5.2"
     implementation "androidx.sqlite:sqlite:2.0.1"
 }
