@@ -66,7 +66,7 @@ export class IdentityService {
   }
 
   async hasStoredSession() {
-    // todo on web: why does this return empty true when data is there in session storage?
+    // todo: why does this return empty true when data is there in session storage?
     return await !this.vault.isEmpty();
   }
 

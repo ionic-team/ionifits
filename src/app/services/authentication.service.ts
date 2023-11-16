@@ -11,7 +11,6 @@ import { Auth0Provider, AuthConnect, AuthResult, ProviderOptions, TokenType } fr
 export class AuthenticationService {
   private identityService: IdentityService;
   private router: Router;
-  private loadingIndicator: HTMLIonLoadingElement;
   private initializing: Promise<void> | undefined;
   private provider = new Auth0Provider();
   private authOptions: ProviderOptions;
@@ -55,18 +54,11 @@ export class AuthenticationService {
       return this.initializing;
   }
 
-     async login(loadingIndicator) {
-      this.loadingIndicator = loadingIndicator;
-
+     async login() {
       const authResult = await AuthConnect.login(this.provider, this.authOptions);
       await this.saveAuthResult(authResult);
 
       await this.router.navigate(['tabs/employees']);
-
-      // Implicit login: POPUP flow
-      if (this.loadingIndicator) {
-        this.loadingIndicator.dismiss();
-      }
      }
 
      public async getAuthResult(): Promise<AuthResult | null> {
@@ -78,16 +70,6 @@ export class AuthenticationService {
       
       return authResult;
   }
-
-     // Called as part of CURRENT implicit login flow only
-    //  async callback(url, loadingIndicator) {
-    //    loadingIndicator.dismiss();
-
-    //    const hash = url.substring(1); // Puts hash in variable, and removes the # character
-    //    const urlParams = new URLSearchParams(hash);
-    //    const queryEntries = Object.fromEntries(urlParams.entries());
-    //    const authResult = await AuthConnect.handleLoginCallback(queryEntries, this.authOptions);
-    //  }
 
     // Log out of auth provider, then automatically redirect to the app page
     // specified in the `logoutUrl` property
