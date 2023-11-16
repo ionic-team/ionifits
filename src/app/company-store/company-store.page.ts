@@ -7,6 +7,7 @@ import { companyStoreProducts } from 'src/data/storeData';
 import { ImplementationModalPage } from '../implementation-modal/implementation-modal.page';
 import { Haptics } from '@capacitor/haptics';
 import { Platform } from '@ionic/angular';
+import { IonicSlides } from '@ionic/angular';
 
 @Component({
   selector: 'app-company-store',
@@ -19,20 +20,13 @@ export class CompanyStorePage implements OnInit {
               public modalController: ModalController,
               private routerOutlet: IonRouterOutlet,
               private platform: Platform) { }
-
-  slideOptions = {
-    slidesPerView: "auto", 
-    autoplay: true,
-    zoom: true, 
-    grabCursor: true
-  }
-
   public cart: Product[] = [];
   public newProducts: Product[] = [];
   public bestsellerProducts: Product[] = [];
   public saleProducts: Product[] = [];
   public recommendedProducts: Product[] = [];
   public isDesktop: boolean = false;
+  swiperModules = [IonicSlides];
 
   ngOnInit() {
     this.initProducts();
@@ -89,7 +83,8 @@ export class CompanyStorePage implements OnInit {
     const toast = await this.toastController.create({
       message: message,
       duration: 2000,
-      color: "tertiary"
+      color: "tertiary",
+      positionAnchor: "main-tabbar"
     });
     
     await toast.present();

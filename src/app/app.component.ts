@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { SplashScreen } from '@capacitor/splash-screen';
+import { register } from 'swiper/element/bundle';
+
+register();
 
 @Component({
   selector: 'app-root',

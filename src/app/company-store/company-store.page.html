@@ -29,8 +29,8 @@
   <!-- Display Bestsellers using slides on mobile and a static grid on desktop -->
   <h4 class="category-header">Bestsellers and more</h4>
 
-  <ion-slides id="slider" [options]="slideOptions" class="category-slider" *ngIf="!isDesktop">
-    <ion-slide class="item-detail" *ngFor="let product of bestsellerProducts" (click)="addToCart(product)">
+  <swiper-container id="slider" [slidesPerView]="Auto" [autoplay]="true" [zoom]="true" [grabCursor]="true" class="category-slider" *ngIf="!isDesktop" [modules]="swiperModules">
+    <swiper-slide class="item-detail" *ngFor="let product of bestsellerProducts" (click)="addToCart(product)">
       <img src="{{ product.image }}" />
       <div style="float: left">
         <p class="detail-name">{{ product.name }}</p>
@@ -41,8 +41,8 @@
           <span class="sold"> SOLD OUT</span>
         </p>
       </div>
-    </ion-slide>
-  </ion-slides>
+    </swiper-slide>
+  </swiper-container>
 
   <ion-grid class="grid" *ngIf="isDesktop">
     <ion-row>

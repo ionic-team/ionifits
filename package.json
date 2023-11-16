@@ -44,13 +44,14 @@
     "@ionic-enterprise/google-pay": "2.0.0",
     "@ionic-enterprise/identity-vault": "^5.12.1",
     "@ionic-enterprise/secure-storage": "^3.0.2",
-    "@ionic/angular": "^7.5.1",
+    "@ionic/angular": "^7.5.5",
     "@ionic/angular-server": "^7.5.1",
     "@ionic/pwa-elements": "^3.0.2",
     "@ionic/storage-angular": "^4.0.0",
     "axios": "^0.21.1",
     "core-js": "3.27.2",
     "rxjs": "^7.5.0",
+    "swiper": "^11.0.4",
     "zone.js": "~0.13.3"
   },
   "devDependencies": {

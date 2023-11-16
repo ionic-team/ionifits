@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CompanyStorePage } from './company-store.page';
 import { RouterModule, Routes } from '@angular/router';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CompanyStorePage]
+  declarations: [CompanyStorePage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CompanyStorePageModule {}
