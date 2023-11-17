@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { IdentityService } from '../services/identity.service';
 import { ModalController, IonRouterOutlet } from '@ionic/angular';
@@ -10,16 +10,13 @@ import { ImplementationModalPage } from '../implementation-modal/implementation-
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
   constructor(private authService: AuthenticationService, 
     private identityService: IdentityService,
     public router: Router,
     public modalController: ModalController,
     private routerOutlet: IonRouterOutlet) { }
-
-  async ngOnInit() {
-   }
 
    async ionViewWillEnter() {
     // Check if user has previously signed into Auth Connect

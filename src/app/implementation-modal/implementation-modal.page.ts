@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -6,15 +6,13 @@ import { ModalController } from '@ionic/angular';
   templateUrl: './implementation-modal.page.html',
   styleUrls: ['./implementation-modal.page.scss'],
 })
-export class ImplementationModalPage implements OnInit {
+export class ImplementationModalPage {
 
   @Input() description: string;
   @Input() uiComps: UIComponent[];
   @Input() nativeFeatures: NativeFeature[];
 
   constructor(private modalController: ModalController) { }
-
-  ngOnInit() { }
 
   async closeModal() {
     await this.modalController.dismiss(null);
