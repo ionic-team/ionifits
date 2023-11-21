@@ -29,22 +29,18 @@
   width: 80%;
 }
 
-.category-slider {
+swiper-container {
   margin-top: 1rem;
 
-  ion-slide {
+  swiper-slide {
+    width: 60% !important;
+    margin-right: 10px;
+    margin-left: 16px;
+    display: inline;
 
-      width: 60%;
-      margin-right: 10px;
-      margin-left: 16px;
-
-      display: inline;
-      flex-direction: column;
-      justify-content: center;
-
-      img {
-          border-radius: 22px;
-      }
+    img {
+      border-radius: 22px;
+    }
   }
 }
 

@@ -29,7 +29,7 @@
   <!-- Display Bestsellers using slides on mobile and a static grid on desktop -->
   <h4 class="category-header">Bestsellers and more</h4>
 
-  <swiper-container id="slider" [slidesPerView]="Auto" [autoplay]="true" [zoom]="true" [grabCursor]="true" class="category-slider" *ngIf="!isDesktop" [modules]="swiperModules">
+  <swiper-container id="slider" [slidesPerView]="Auto" [autoplay]="true" *ngIf="!isDesktop" [modules]="swiperModules">
     <swiper-slide class="item-detail" *ngFor="let product of bestsellerProducts" (click)="addToCart(product)">
       <img src="{{ product.image }}" />
       <div style="float: left">
