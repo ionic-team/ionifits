@@ -35,7 +35,7 @@ An [8 minute overview video](https://ionicpro.wistia.com/medias/s8h3vpsxp8) of t
 ## Tech Details
 
 - Native runtime: [Capacitor 5](https://capacitorjs.com)
-- Frameworks: Ionic Framework 6 and Angular 15
+- Frameworks: Ionic Framework 7 and Angular 17
 - Capacitor Core plugins: Camera, Filesystem
 - Appflow features: [Live Updates SDK](https://ionic.io/docs/appflow/deploy/intro)
 - Ionic Enterprise solutions: [Auth Connect](https://ionic.io/products/auth-connect), [Identity Vault](https://ionic.io/products/identity-vault), [Secure Storage](https://ionic.io/products/secure-storage), and [Ionic Payments](https://ionic.io/docs/apple-pay).
