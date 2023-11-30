@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicRouteStrategy, provideIonicAngular, IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +24,6 @@ import { Drivers } from '@ionic/storage';
     imports: [
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
         FormsModule,
-        IonicModule.forRoot(),
         AppRoutingModule,
         ScrollingModule,
         ExpenseModalPageModule,
@@ -33,12 +32,15 @@ import { Drivers } from '@ionic/storage';
         RouterModule,
         IonicStorageModule.forRoot({
             driverOrder: [Drivers.SecureStorage, Drivers.IndexedDB, Drivers.LocalStorage]
-        })
+        }),
+        IonApp,
+        IonRouterOutlet
     ],
     providers: [
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        SQLite
+        SQLite,
+        provideIonicAngular()
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
