@@ -8,19 +8,27 @@
 </ion-header>
 
 <ion-content>
-    <ion-list-header *ngIf="expenses.length > 0">
+    @if (expenses.length > 0) {
+<ion-list-header>
       <ion-label color="ios-lh-labl-gray">Completed Expenses</ion-label>
     </ion-list-header>
+}
 
-  <ion-list *ngIf="expenses.length > 0">
-    <ion-item-sliding *ngFor="let expense of expenses; index as position">
+  @if (expenses.length > 0) {
+<ion-list>
+    @for (expense of expenses; track expense; let position = $index) {
+  <ion-item-sliding>
     <ion-item (click)="openExpense(expense.id)">
-      <ion-avatar slot="start" *ngIf="expense.receipt && expense.receipt.webviewPath">
+      @if (expense.receipt && expense.receipt.webviewPath) {
+<ion-avatar slot="start">
         <ion-img src="{{expense.receipt.webviewPath}}"></ion-img>
       </ion-avatar>
-      <ion-avatar slot="start" *ngIf="!expense.receipt.webviewPath">
+}
+      @if (!expense.receipt.webviewPath) {
+<ion-avatar slot="start">
             <img src="/assets/expenses.svg">
         </ion-avatar>
+}
       <ion-label>
         <h2>{{expense.merchant}}</h2>
         <p>{{expense.category}}</p>
@@ -31,9 +39,12 @@
         <ion-item-option (click)="removeExpense(expense, position)" color="danger">Remove</ion-item-option>
         </ion-item-options>
     </ion-item-sliding>
+}
   </ion-list>
+}
 
-<ion-grid *ngIf="expenses.length === 0" class="no-expenses">
+@if (expenses.length === 0) {
+<ion-grid class="no-expenses">
   <ion-row>
     <ion-col>
       <div class="ion-text-center">
@@ -46,6 +57,7 @@
     </ion-col>
   </ion-row>
 </ion-grid>
+}
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="newExpense()">

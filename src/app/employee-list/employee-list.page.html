@@ -47,6 +47,8 @@
         </ion-label>
       </ion-item>
     </ion-list>
-    <ion-spinner name="crescent" *ngIf="showLoading"></ion-spinner>
+    @if (showLoading) {
+<ion-spinner name="crescent"></ion-spinner>
+}
   </cdk-virtual-scroll-viewport>
 </ion-content>

@@ -13,7 +13,8 @@
       User Details
     </ion-label>
   </ion-list-header>
-  <ion-list *ngIf="user">
+  @if (user) {
+<ion-list>
     <ion-item lines="full">
       <ion-avatar slot="start">
         <img src="{{ user.picture }}" />
@@ -27,11 +28,14 @@
       </div>
     </ion-item>
   </ion-list>
-  <ion-list *ngIf="!user">
+}
+  @if (!user) {
+<ion-list>
     <ion-item lines="full">
       <a class="link" (click)="logIn()">Log in to view</a>
     </ion-item>
   </ion-list>
+}
 
   <ion-card>
     <ion-card-header>

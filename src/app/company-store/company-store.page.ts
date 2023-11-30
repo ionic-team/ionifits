@@ -38,7 +38,7 @@ export class CompanyStorePage implements OnInit {
         this.isDesktop = this.platform.is("desktop");
     }
 
-    private async addToCart(product: Product): Promise<void> {
+    public async addToCart(product: Product): Promise<void> {
         if (product.name !== "Ionic Headband") {
             const foundProduct = this.cart.find(p => p.name === product.name);
             if (foundProduct) {
