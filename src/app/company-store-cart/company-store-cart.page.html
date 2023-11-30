@@ -6,7 +6,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let product of productsInCart" lines="none" class="product-items">
+    @for (product of productsInCart; track product) {
+  <ion-item lines="none" class="product-items">
       <ion-thumbnail slot="start" class="thumbnail">
         <img src="{{ product.image }}"/>
       </ion-thumbnail>
@@ -18,6 +19,7 @@
         </p>
       </ion-label>
       </ion-item>
+}
     </ion-list>
     <hr class="solid-divider">
     <ion-list>
@@ -35,14 +37,18 @@
     </ion-item>
     </ion-list>
 
-    <div class="apple-pay-button apple-pay-button-black" (click)="triggerApplePay()"
-      *ngIf="displayApplePay">
+    @if (displayApplePay) {
+<div class="apple-pay-button apple-pay-button-black" (click)="triggerApplePay()"
+     >
     </div>
+}
 
-    <ion-button color="dark" class="button-google-pay" (click)="triggerGooglePay()"
-      *ngIf="displayGooglePay">
+    @if (displayGooglePay) {
+<ion-button color="dark" class="button-google-pay" (click)="triggerGooglePay()"
+     >
       <ion-img src="/assets/store/google-pay.svg"></ion-img>
     </ion-button>
+}
 
     <p class="payment-note">Note: This is for demonstration purposes only. 
       Your card will not be charged and no items will be shipped.</p>

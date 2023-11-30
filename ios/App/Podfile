@@ -20,6 +20,7 @@ def capacitor_pods
   pod 'CapacitorSplashScreen', :path => '../../node_modules/@capacitor/splash-screen'
   pod 'CapacitorStatusBar', :path => '../../node_modules/@capacitor/status-bar'
   pod 'IonicEnterpriseApplePay', :path => '../../node_modules/@ionic-enterprise/apple-pay'
+  pod 'IonicEnterpriseAuth', :path => '../../node_modules/@ionic-enterprise/auth'
   pod 'IonicEnterpriseGooglePay', :path => '../../node_modules/@ionic-enterprise/google-pay'
   pod 'CordovaPlugins', :path => '../capacitor-cordova-ios-plugins'
 end

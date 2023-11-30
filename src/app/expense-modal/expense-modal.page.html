@@ -9,12 +9,10 @@
 
 <ion-content>
 <ion-item>
-  <ion-label>Merchant</ion-label>
-  <ion-input placeholder="Name" [(ngModel)]="newExpense.merchant" name="merchant"></ion-input>
+  <ion-input placeholder="Name" label="Merchant" [(ngModel)]="newExpense.merchant" name="merchant"></ion-input>
 </ion-item>
 <ion-item>
-  <ion-label>$</ion-label>
-  <ion-input placeholder="0.00" type="number" [(ngModel)]="newExpense.cost" slot></ion-input>
+  <ion-input placeholder="0.00" label="$" type="number" [(ngModel)]="newExpense.cost" slot></ion-input>
 </ion-item>
 <ion-item lines="full">
    <ion-label>Date</ion-label>
@@ -31,8 +29,7 @@
     </ion-list-header>
 <ion-list>
    <ion-item>
-   <ion-label>Category</ion-label>
-   <ion-select role="combobox" placeholder="Select One" [(ngModel)]="newExpense.category" slot>
+   <ion-select role="combobox" label="Category" placeholder="Select One" [(ngModel)]="newExpense.category" slot>
       <ion-select-option value="Office">Office Expense</ion-select-option>
       <ion-select-option value="Parking">Parking</ion-select-option>
       <ion-select-option value="Recruiting">Recruiting</ion-select-option>
@@ -44,8 +41,7 @@
     </ion-select>
    </ion-item>
    <ion-item slot lines="full">
-   <ion-label>Notes</ion-label>
-   <ion-input placeholder="Additional details..." [(ngModel)]="newExpense.note" slot></ion-input>
+   <ion-input placeholder="Additional details..." label="Notes" [(ngModel)]="newExpense.note" slot></ion-input>
    </ion-item>
 </ion-list>   
    <ion-list-header>

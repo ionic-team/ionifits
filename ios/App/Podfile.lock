@@ -1,12 +1,12 @@
 PODS:
-  - Capacitor (5.2.2):
+  - Capacitor (5.5.0):
     - CapacitorCordova
   - CapacitorApp (5.0.6):
     - Capacitor
-  - CapacitorCamera (5.0.6):
+  - CapacitorCamera (5.0.7):
     - Capacitor
-  - CapacitorCordova (5.2.2)
-  - CapacitorFilesystem (5.1.1):
+  - CapacitorCordova (5.5.0)
+  - CapacitorFilesystem (5.1.4):
     - Capacitor
   - CapacitorHaptics (5.0.6):
     - Capacitor
@@ -19,10 +19,12 @@ PODS:
     - Capacitor
   - CapacitorStatusBar (5.0.6):
     - Capacitor
-  - CordovaPlugins (5.2.2):
+  - CordovaPlugins (5.5.0):
     - CapacitorCordova
     - SQLCipher (~> 4.0)
   - IonicEnterpriseApplePay (2.0.0):
+    - Capacitor
+  - IonicEnterpriseAuth (5.1.0):
     - Capacitor
   - IonicEnterpriseGooglePay (2.0.0):
     - Capacitor
@@ -46,6 +48,7 @@ DEPENDENCIES:
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
   - CordovaPlugins (from `../capacitor-cordova-ios-plugins`)
   - "IonicEnterpriseApplePay (from `../../node_modules/@ionic-enterprise/apple-pay`)"
+  - "IonicEnterpriseAuth (from `../../node_modules/@ionic-enterprise/auth`)"
   - "IonicEnterpriseGooglePay (from `../../node_modules/@ionic-enterprise/google-pay`)"
 
 SPEC REPOS:
@@ -78,26 +81,29 @@ EXTERNAL SOURCES:
     :path: "../capacitor-cordova-ios-plugins"
   IonicEnterpriseApplePay:
     :path: "../../node_modules/@ionic-enterprise/apple-pay"
+  IonicEnterpriseAuth:
+    :path: "../../node_modules/@ionic-enterprise/auth"
   IonicEnterpriseGooglePay:
     :path: "../../node_modules/@ionic-enterprise/google-pay"
 
 SPEC CHECKSUMS:
-  Capacitor: 070b18988e0f566728ae9a5eb3a7a974595f1626
+  Capacitor: 57890b363df14d5d2d5d8461aa23e886cb34da2a
   CapacitorApp: 024e1b1bea5f883d79f6330d309bc441c88ad04a
-  CapacitorCamera: 4a95204d13a05b0b726bf9086b44124349ab1952
-  CapacitorCordova: 3773395d5331add072300ff6041ca2cf7b93cb0b
-  CapacitorFilesystem: 38e85e56818420bed3f0aa1b77128f503a960821
+  CapacitorCamera: 084b0b228bba7d00587910337b1c89e93b1d32ab
+  CapacitorCordova: 3d3908a3d208a11a75f9df3b18c4405c4de76e1d
+  CapacitorFilesystem: af704badfbc69f6f8623d9ed313e5490e3723dcb
   CapacitorHaptics: 1fffc1217c7e64a472d7845be50fb0c2f7d4204c
   CapacitorKeyboard: b978154b024a5f65e044908e37d15b7de58b9d12
   CapacitorLiveUpdates: 1f37f66f44ca50a8b1a975126839ce383aade987
   CapacitorSplashScreen: 5fa2ab5e46cf5cc530cf16a51c80c7a986579ccd
   CapacitorStatusBar: 565c0a1ebd79bb40d797606a8992b4a105885309
-  CordovaPlugins: 70cb025329f390609aef40072aa663dd6dba05b3
+  CordovaPlugins: 5d8ac3aea71708477240cfa89220eb11e8b3d5b1
   IonicEnterpriseApplePay: 207537b1a4db9718fa7e6c2be1fe50bc703c1988
+  IonicEnterpriseAuth: 32539d9c798feb84d79457759ed3633ddcf0df52
   IonicEnterpriseGooglePay: 6675c72b3252c9948975860ef85cf86ed5d17e6e
   IonicLiveUpdates: bf5aa07e5bedb693a9fd5a977056d5fa785c7012
   SQLCipher: f2e96b3822e3006b379181a0e4fd145f6de29b56
 
-PODFILE CHECKSUM: ed430caf6456b641765d437c8933ef544084194c
+PODFILE CHECKSUM: 9265b39752899fc0eb4b66021753a7cade4091ca
 
 COCOAPODS: 1.13.0

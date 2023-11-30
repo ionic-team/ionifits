@@ -6,7 +6,8 @@
 </ion-header>
 
 <ion-content>
-  <ng-container *ngIf="employee">
+  @if (employee) {
+
     <div
       class="detail-header"
       [ngClass]="avatarExpanded ? 'expanded' : ''"
@@ -54,5 +55,6 @@
         </ion-item>
       </ion-list>
     </div>
-  </ng-container>
+  
+}
 </ion-content>
