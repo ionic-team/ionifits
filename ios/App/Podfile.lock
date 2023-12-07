@@ -12,9 +12,6 @@ PODS:
     - Capacitor
   - CapacitorKeyboard (5.0.6):
     - Capacitor
-  - CapacitorLiveUpdates (0.1.1-beta.4):
-    - Capacitor
-    - IonicLiveUpdates (~> 0.5.0-beta.1)
   - CapacitorSplashScreen (5.0.6):
     - Capacitor
   - CapacitorStatusBar (5.0.6):
@@ -28,7 +25,6 @@ PODS:
     - Capacitor
   - IonicEnterpriseGooglePay (2.0.0):
     - Capacitor
-  - IonicLiveUpdates (0.5.0-beta.1)
   - SQLCipher (4.5.5):
     - SQLCipher/standard (= 4.5.5)
   - SQLCipher/common (4.5.5)
@@ -43,7 +39,6 @@ DEPENDENCIES:
   - "CapacitorFilesystem (from `../../node_modules/@capacitor/filesystem`)"
   - "CapacitorHaptics (from `../../node_modules/@capacitor/haptics`)"
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
-  - "CapacitorLiveUpdates (from `../../node_modules/@capacitor/live-updates`)"
   - "CapacitorSplashScreen (from `../../node_modules/@capacitor/splash-screen`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
   - CordovaPlugins (from `../capacitor-cordova-ios-plugins`)
@@ -53,7 +48,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - IonicLiveUpdates
     - SQLCipher
 
 EXTERNAL SOURCES:
@@ -71,8 +65,6 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/haptics"
   CapacitorKeyboard:
     :path: "../../node_modules/@capacitor/keyboard"
-  CapacitorLiveUpdates:
-    :path: "../../node_modules/@capacitor/live-updates"
   CapacitorSplashScreen:
     :path: "../../node_modules/@capacitor/splash-screen"
   CapacitorStatusBar:
@@ -94,16 +86,14 @@ SPEC CHECKSUMS:
   CapacitorFilesystem: af704badfbc69f6f8623d9ed313e5490e3723dcb
   CapacitorHaptics: 1fffc1217c7e64a472d7845be50fb0c2f7d4204c
   CapacitorKeyboard: b978154b024a5f65e044908e37d15b7de58b9d12
-  CapacitorLiveUpdates: 1f37f66f44ca50a8b1a975126839ce383aade987
   CapacitorSplashScreen: 5fa2ab5e46cf5cc530cf16a51c80c7a986579ccd
   CapacitorStatusBar: 565c0a1ebd79bb40d797606a8992b4a105885309
   CordovaPlugins: 5d8ac3aea71708477240cfa89220eb11e8b3d5b1
   IonicEnterpriseApplePay: 207537b1a4db9718fa7e6c2be1fe50bc703c1988
   IonicEnterpriseAuth: 32539d9c798feb84d79457759ed3633ddcf0df52
   IonicEnterpriseGooglePay: 6675c72b3252c9948975860ef85cf86ed5d17e6e
-  IonicLiveUpdates: bf5aa07e5bedb693a9fd5a977056d5fa785c7012
   SQLCipher: f2e96b3822e3006b379181a0e4fd145f6de29b56
 
-PODFILE CHECKSUM: 9265b39752899fc0eb4b66021753a7cade4091ca
+PODFILE CHECKSUM: 611386cd7403bae1f43e30a73354400cba271b18
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.11.3
