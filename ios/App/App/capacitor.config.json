@@ -12,7 +12,7 @@
 			"channel": "new-lu-sdk",
 			"autoUpdateMethod": "background",
 			"maxVersions": 3,
-			"enabled": false
+			"enabled": true
 		}
 	}
 }
