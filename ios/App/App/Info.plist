@@ -85,7 +85,7 @@
     <key>IonAppId</key>
     <string>34df4710</string>
     <key>IonChannelName</key>
-    <string>staging</string>
+    <string>old-lu-sdk</string>
     <key>IonUpdateMethod</key>
     <string>background</string>
     <key>IonMaxVersions</key>
