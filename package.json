@@ -48,7 +48,7 @@
     "@ionic/angular-server": "^7.5.1",
     "@ionic/pwa-elements": "^3.0.2",
     "@ionic/storage-angular": "^4.0.0",
-    "axios": "^0.21.1",
+    "axios": "^0.28.0",
     "core-js": "3.27.2",
     "rxjs": "^7.5.0",
     "swiper": "^11.0.4",
