@@ -44,7 +44,7 @@
     "@ionic-enterprise/google-pay": "2.0.0",
     "@ionic-enterprise/identity-vault": "^5.12.1",
     "@ionic-enterprise/secure-storage": "^3.0.2",
-    "@ionic/angular": "^8.0.0-beta.1",
+    "@ionic/angular": "^8.0.0-beta.2",
     "@ionic/angular-server": "^8.0.0-beta.1",
     "@ionic/core": "^8.0.0-beta.1",
     "@ionic/pwa-elements": "^3.0.2",

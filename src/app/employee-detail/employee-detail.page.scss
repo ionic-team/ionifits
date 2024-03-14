@@ -58,14 +58,13 @@
 
 .employee-details {
   padding: 16px;
-  color: #888;
   font-size: .9rem;
 
   p {
     margin: 0 0 3px;
+    color: #888;
 
     &.name {
-      color: black;
       font-size: 1.1rem;
       font-weight: bold;
     }
